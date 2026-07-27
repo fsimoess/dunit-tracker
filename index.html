@@ -25,7 +25,6 @@
           <i class="ph ph-crown text-base"></i> Exportar default_data.json
         </button>
 
-        <!-- Botões de Reset Separados -->
         <button onclick="resetMasterDefaults()" class="bg-slate-700 hover:bg-slate-600 text-slate-200 border border-slate-600 px-3 py-1.5 rounded flex items-center gap-1 text-xs transition" title="Reseta apenas Conjuntos, Imagens e Jogress mantendo seu progresso">
           <i class="ph ph-arrows-counter-clockwise"></i> Resetar Base
         </button>
@@ -458,7 +457,6 @@
       checkSecretTrigger(name);
     }
 
-    // SANFONA DE EVOLUÇÕES NO FORMULÁRIO DO USUÁRIO
     function toggleEvoCollapse() {
       const content = document.getElementById('evo-collapse-content');
       const icon = document.getElementById('evo-collapse-icon');
@@ -466,7 +464,6 @@
       icon.classList.toggle('rotate-180');
     }
 
-    // BUSCA E RENDERIZAÇÃO ESTRITA DAS EVOLUÇÕES DA BASE NOS CONJUNTOS
     function renderEvoCheckboxes(preSelectedEvos = []) {
       const baseInput = document.getElementById('user-digi-base').value.trim().toLowerCase();
       const container = document.getElementById('evo-checkboxes-container');
@@ -480,7 +477,6 @@
         return;
       }
 
-      // Busca estrita: compara baseInput exato com req.base
       const mappedEvosSet = new Set();
       
       setsDB.forEach(set => {
@@ -573,10 +569,10 @@
       saveStorage();
     }
 
-    // CHECK BUFFS STATUS (COM SOMA DE NÍVEL DIRETA / COMPLETA)
+    // CHECK BUFFS STATUS (COM CORREÇÃO NA TRANSCENDÊNCIA DE 6★)
     function checkBuffsStatus(set) {
       let b1 = true;
-      let b3 = true;
+      let b3 = true; // Só será verdadeiro se TODAS as evoluções estiverem presentes E forem 6*
       
       const uniqueBasesMap = {};
       let evosUnlockedCount = 0;
@@ -586,6 +582,7 @@
       for (let req of set.requirements) {
         const digi = getResolvedDigiData(req.evo, req.base);
         
+        // Validação da Evolução (Nível 1)
         if (!digi || !digi.hasEvo) {
           b1 = false;
           missingEvos.push(req.evo);
@@ -593,7 +590,9 @@
           evosUnlockedCount++;
         }
 
-        if (!digi || !digi.transcended) {
+        // Validação de Transcendência (Nível 3)
+        // EXIGÊNCIA: O Digimon deve ter sido cadastrado, POSSUIR a evolução e ser 6*
+        if (!digi || !digi.hasEvo || !digi.transcended) {
           b3 = false;
         }
 
@@ -606,7 +605,8 @@
           if (!uniqueBasesMap[baseKey] || digi.level > uniqueBasesMap[baseKey].level) {
             uniqueBasesMap[baseKey] = {
               level: digi.level,
-              transcended: digi.transcended
+              // Uma base só conta como válida no card se tiver todas as evoluções ou se for 6*
+              transcended: digi.transcended && digi.hasEvo
             };
           }
         } else {
@@ -738,13 +738,11 @@
       const level = parseInt(document.getElementById('user-digi-level').value);
       const transcended = document.getElementById('user-digi-transcend').checked;
       
-      // Coleta evoluções marcadas nos checkboxes
       const unlockedEvos = [];
       document.querySelectorAll('.evo-checkbox:checked').forEach(cb => {
         unlockedEvos.push(cb.value.trim());
       });
 
-      // Coleta evoluções do campo manual extra
       const extraEvosRaw = document.getElementById('user-digi-evos-extra').value;
       if (extraEvosRaw) {
         extraEvosRaw.split(',').forEach(e => {
@@ -780,7 +778,6 @@
       updateDigiPreview();
       renderEvoCheckboxes(d.unlockedEvos);
       
-      // Abre a sanfona na edição
       document.getElementById('evo-collapse-content').classList.remove('hidden');
       document.getElementById('evo-collapse-icon').classList.add('rotate-180');
 
@@ -794,7 +791,6 @@
       document.getElementById('btn-cancel-digi-edit').classList.add('hidden');
       document.getElementById('digi-edit-preview').classList.add('hidden');
       
-      // Fecha a sanfona e reseta os checkboxes
       document.getElementById('evo-collapse-content').classList.add('hidden');
       document.getElementById('evo-collapse-icon').classList.remove('rotate-180');
       renderEvoCheckboxes();
@@ -1061,7 +1057,7 @@
                 <span class="font-semibold ${status.b3 ? 'text-purple-300' : 'text-slate-300'}">
                   ${status.totalTranscendCount}/${status.uniqueBasesCount} Bases
                 </span>
-                <p class="text-[10px] text-slate-400">${status.b3 ? 'Todas 6★ OK' : 'Pendentes'}</p>
+                <p class="text-[10px] text-slate-400">${status.b3 ? 'Todas 6★ OK' : (status.missingEvos.length > 0 ? 'Faltam evoluções' : 'Pendentes')}</p>
               </div>
 
               <div>
