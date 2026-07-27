@@ -256,16 +256,23 @@
           </h2>
           
           <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+            <!-- Filtro de Estado do Conjunto (Todos / Concluídos / A Concluir) -->
+            <div class="flex bg-slate-800 p-1 rounded-lg border border-slate-700 text-xs font-semibold">
+              <button id="filter-btn-all" onclick="setSetStatusFilter('all')" class="px-2.5 py-1 rounded bg-cyan-600 text-white transition">Todos</button>
+              <button id="filter-btn-completed" onclick="setSetStatusFilter('completed')" class="px-2.5 py-1 rounded text-slate-400 hover:text-slate-200 transition">Concluídos</button>
+              <button id="filter-btn-pending" onclick="setSetStatusFilter('pending')" class="px-2.5 py-1 rounded text-slate-400 hover:text-slate-200 transition">A Concluir</button>
+            </div>
+
             <!-- Filtro por texto em Membros e Conjuntos -->
-            <div class="relative flex-1 sm:w-64">
+            <div class="relative flex-1 sm:w-48">
               <i class="ph ph-magnifying-glass absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-              <input type="text" id="set-search-input" oninput="render()" placeholder="Buscar conjunto ou membro..." class="w-full bg-slate-800 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:border-cyan-500 outline-none transition">
+              <input type="text" id="set-search-input" oninput="render()" placeholder="Buscar conjunto..." class="w-full bg-slate-800 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:border-cyan-500 outline-none transition">
             </div>
 
             <div class="flex gap-2 text-xs">
-              <button onclick="toggleAllSets(true)" class="text-slate-400 hover:text-cyan-400 underline">Expandir Todos</button>
+              <button onclick="toggleAllSets(true)" class="text-slate-400 hover:text-cyan-400 underline">Expandir</button>
               <span class="text-slate-600">•</span>
-              <button onclick="toggleAllSets(false)" class="text-slate-400 hover:text-cyan-400 underline">Recolher Todos</button>
+              <button onclick="toggleAllSets(false)" class="text-slate-400 hover:text-cyan-400 underline">Recolher</button>
             </div>
           </div>
         </div>
@@ -328,6 +335,7 @@
     let jogressDB = {};
     let collapsedSets = {};
     let editingImageName = null;
+    let currentSetFilter = 'all'; // 'all', 'completed', 'pending'
 
     async function initAppData() {
       const storedImages = localStorage.getItem('dmo_dunit_images') || sessionStorage.getItem('dmo_dunit_images');
@@ -445,13 +453,28 @@
       render();
     }
 
+    function setSetStatusFilter(filter) {
+      currentSetFilter = filter;
+      const btnAll = document.getElementById('filter-btn-all');
+      const btnCompleted = document.getElementById('filter-btn-completed');
+      const btnPending = document.getElementById('filter-btn-pending');
+
+      [btnAll, btnCompleted, btnPending].forEach(btn => {
+        btn.className = "px-2.5 py-1 rounded text-slate-400 hover:text-slate-200 transition";
+      });
+
+      if (filter === 'all') btnAll.className = "px-2.5 py-1 rounded bg-cyan-600 text-white transition";
+      if (filter === 'completed') btnCompleted.className = "px-2.5 py-1 rounded bg-amber-500 text-slate-950 font-bold transition";
+      if (filter === 'pending') btnPending.className = "px-2.5 py-1 rounded bg-blue-600 text-white transition";
+
+      render();
+    }
+
     function getDigiImg(name) {
       if (!name) return 'https://via.placeholder.com/80/1e293b/475569?text=?';
       const foundKey = Object.keys(imagesDB).find(k => k.toLowerCase() === name.toLowerCase());
       if (foundKey) return imagesDB[foundKey];
-      const newUrl = getDefaultGrindosaurUrl(name);
-      imagesDB[name] = newUrl;
-      return newUrl;
+      return getDefaultGrindosaurUrl(name);
     }
 
     function updateDigiPreview() {
@@ -567,7 +590,7 @@
 
       if (name && bases.length > 0) {
         jogressDB[name] = bases;
-        getDigiImg(name);
+        if (!imagesDB[name]) imagesDB[name] = getDefaultGrindosaurUrl(name);
         document.getElementById('form-jogress').reset();
         saveStorage();
       }
@@ -578,7 +601,6 @@
       saveStorage();
     }
 
-    // CHECK BUFFS STATUS (COM CORREÇÃO NA SOMA DE NÍVEL E TRANSCENDÊNCIA)
     function checkBuffsStatus(set) {
       let b1 = true;
       let b3 = true;
@@ -591,7 +613,6 @@
       for (let req of set.requirements) {
         const digi = getResolvedDigiData(req.evo, req.base);
         
-        // Validação da Evolução (Nível 1)
         if (!digi || !digi.hasEvo) {
           b1 = false;
           missingEvos.push(req.evo);
@@ -599,12 +620,10 @@
           evosUnlockedCount++;
         }
 
-        // Validação de Transcendência (Nível 3)
         if (!digi || !digi.hasEvo || !digi.transcended) {
           b3 = false;
         }
 
-        // ALTERAÇÃO SOLICITADA: Adicionado digi.hasEvo na verificação de soma de nível
         if (digi && digi.hasEvo && digi.level) {
           totalLevelSum += digi.level;
         }
@@ -652,7 +671,6 @@
       };
     }
 
-    // ALTERAÇÃO SOLICITADA: Próximos Digimons apenas para bases NÃO obtidas, levando em conta evoluções soltas
     function calculateFocusDigimons() {
       const counts = {};
 
@@ -666,7 +684,6 @@
             const digi = getResolvedDigiData(req.evo, req.base);
             const isMaxed = digi && digi.transcended && digi.hasEvo;
 
-            // Filtra se não estiver completo e se a BASE AINDA NÃO FOI CADASTRADA/OBTIDA na coleção
             if (!isMaxed && base && !userProgress[base]) {
               setBasesNeedingFocus.add(base);
             }
@@ -769,7 +786,12 @@
 
       if (!unlockedEvos.includes(base)) unlockedEvos.push(base);
 
-      [base, ...unlockedEvos].forEach(digiName => getDigiImg(digiName));
+      // Garante a imagem na base de imagens SOMENTE ao efetivar o salvamento no progresso
+      [base, ...unlockedEvos].forEach(digiName => {
+        if (!imagesDB[digiName]) {
+          imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
+        }
+      });
 
       userProgress[base] = { level, transcended, unlockedEvos };
       checkSecretTrigger(base);
@@ -835,7 +857,11 @@
       const requirements = parseRequirementString(digimonsStr);
 
       requirements.forEach(req => {
-        [req.evo, req.base].forEach(digiName => { if (digiName) getDigiImg(digiName); });
+        [req.evo, req.base].forEach(digiName => { 
+          if (digiName && !imagesDB[digiName]) {
+            imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
+          } 
+        });
       });
 
       const buffs = {
@@ -985,14 +1011,20 @@
         }).join('');
       }
 
-      // 5. Lista de Conjuntos (COM FILTRO POR TEXTO / MEMBROS)
+      // 5. Lista de Conjuntos (COM FILTRO POR TEXTO E STATUS CONCLUÍDO/PENDENTE)
       const container = document.getElementById('sets-container');
       container.innerHTML = '';
 
       const searchInput = (document.getElementById('set-search-input')?.value || '').trim().toLowerCase();
 
-      // Filtra os conjuntos com base no nome do conjunto ou membros (Evo ou Base)
       const filteredSets = setsDB.filter(set => {
+        const status = checkBuffsStatus(set);
+
+        // Filtro por Estado (Todos, Concluídos, A Concluir)
+        if (currentSetFilter === 'completed' && !status.isFullCompleted) return false;
+        if (currentSetFilter === 'pending' && status.isFullCompleted) return false;
+
+        // Filtro por Busca de Texto
         if (!searchInput) return true;
         const nameMatch = set.name.toLowerCase().includes(searchInput);
         const reqMatch = set.requirements.some(r => 
@@ -1003,7 +1035,7 @@
       });
 
       if (filteredSets.length === 0) {
-        container.innerHTML = `<div class="bg-slate-800 p-8 rounded-xl text-center text-slate-500">Nenhum conjunto encontrado para a busca.</div>`;
+        container.innerHTML = `<div class="bg-slate-800 p-8 rounded-xl text-center text-slate-500">Nenhum conjunto encontrado para os filtros selecionados.</div>`;
       } else {
         filteredSets.forEach(set => {
           const status = checkBuffsStatus(set);
