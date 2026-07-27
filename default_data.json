@@ -11,16 +11,12 @@
     "Gaiomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gaiomon-icon.png",
     "Agumon Laço da Coragem": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/agumon-bond-of-bravery-icon.png",
     "Omegamon Merciful Mode": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-mm-icon.png",
-    "m": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/m-icon.png",
-    "mu": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mu-icon.png",
-    "mug": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mug-icon.png",
-    "mugi": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mugi-icon.png",
-    "mugiw": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mugiw-icon.png",
-    "mugiwa": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mugiwa-icon.png",
-    "mugiwar": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mugiwar-icon.png",
-    "mugiwara": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mugiwara-icon.png",
-    "mugiwaray": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mugiwaray-icon.png",
-    "mugiwaraya": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mugiwaraya-icon.png"
+    "Agumon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/agumon-black-icon.png",
+    "Omegamon Zwart": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-zwart-icon.png",
+    "Greymon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/greymon-blue-icon.png",
+    "MetalGreymon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/metalgreymon-blue-icon.png",
+    "WarGreymon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/blackwargreymon-icon.png",
+    "Omegamon ZwartD": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-zwart-defeat-icon.png"
   },
   "setsDB": [
     {
@@ -113,6 +109,74 @@
         "b2": "HT +50",
         "b3": "Skill +1%",
         "b4": "Skill Vacina +1%"
+      }
+    },
+    {
+      "id": "set-1785180359235",
+      "name": "Agumon (Black)",
+      "reqLvl2": 550,
+      "reqLvl4": 700,
+      "requirements": [
+        {
+          "evo": "Agumon Black",
+          "base": "Agumon Black"
+        },
+        {
+          "evo": "Greymon Black",
+          "base": "Agumon Black"
+        },
+        {
+          "evo": "MetalGreymon Black",
+          "base": "Agumon Black"
+        },
+        {
+          "evo": "WarGreymon Black",
+          "base": "Agumon Black"
+        },
+        {
+          "evo": "Omegamon Zwart",
+          "base": "Agumon Black"
+        }
+      ],
+      "buffs": {
+        "b1": "DS +80",
+        "b2": "DS +120",
+        "b3": "AT +50",
+        "b4": "Skill Elétrico +1%"
+      }
+    },
+    {
+      "id": "set-1785181078624",
+      "name": "Agumon (Black)",
+      "reqLvl2": 600,
+      "reqLvl4": 750,
+      "requirements": [
+        {
+          "evo": "Agumon Black",
+          "base": "Agumon Black"
+        },
+        {
+          "evo": "Greymon Black",
+          "base": "Agumon Black"
+        },
+        {
+          "evo": "MetalGreymon Black",
+          "base": "Agumon Black"
+        },
+        {
+          "evo": "WarGreymon Black",
+          "base": "Agumon Black"
+        },
+        {
+          "evo": "Omegamon ZwartD",
+          "base": "Agumon Black"
+        }
+      ],
+      "buffs": {
+        "b1": "EXP +20%",
+        "b2": "HT +30",
+        "b3": "Skill Vacina +1%",
+        "b4": "Skill Vírus +1%"
       }
     }
   ],
