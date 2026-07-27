@@ -16,7 +16,10 @@
     "Greymon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/greymon-blue-icon.png",
     "MetalGreymon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/metalgreymon-blue-icon.png",
     "WarGreymon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/blackwargreymon-icon.png",
-    "Omegamon ZwartD": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-zwart-defeat-icon.png"
+    "Omegamon ZwartD": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-zwart-defeat-icon.png",
+    "Agumon Black [BlitzGreymon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/agumon-black-icon.png",
+    "BlitzGreymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/blitzgreymon-icon.png",
+    "Omegamon Alter-S": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-alter-s-icon.png",
   },
   "setsDB": [
     {
@@ -176,6 +179,40 @@
         "b1": "EXP +20%",
         "b2": "HT +30",
         "b3": "Skill Vacina +1%",
+        "b4": "Skill Vírus +1%"
+      }
+    },
+    {
+      "id": "set-1785181388169",
+      "name": "Agumon (Black) [BlitzGreymon]",
+      "reqLvl2": 550,
+      "reqLvl4": 700,
+      "requirements": [
+        {
+          "evo": "Agumon Black [BlitzGreymon]",
+          "base": "Agumon Black [BlitzGreymon]"
+        },
+        {
+          "evo": "Greymon Black",
+          "base": "Agumon Black [BlitzGreymon]"
+        },
+        {
+          "evo": "MetalGreymon Black",
+          "base": "Agumon Black [BlitzGreymon]"
+        },
+        {
+          "evo": "BlitzGreymon",
+          "base": "Agumon Black [BlitzGreymon]"
+        },
+        {
+          "evo": "Omegamon Alter-S",
+          "base": "Agumon Black [BlitzGreymon]"
+        }
+      ],
+      "buffs": {
+        "b1": "HP +50",
+        "b2": "BL +20",
+        "b3": "HP +100",
         "b4": "Skill Vírus +1%"
       }
     }
