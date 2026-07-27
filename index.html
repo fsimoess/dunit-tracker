@@ -326,18 +326,16 @@
       }
     }
 
-    // Resetar apenas os dados Mestre (Mantém progresso do Usuário)
-    async function resetMasterDefaults() {
+    function resetMasterDefaults() {
       if (confirm('Deseja restaurar os Conjuntos, Ícones e Jogress padrão? Seu progresso de Digimons NÃO será apagado.')) {
         localStorage.removeItem('dmo_dunit_images');
         localStorage.removeItem('dmo_dunit_sets');
         localStorage.removeItem('dmo_dunit_jogress');
         sessionStorage.clear();
-        await fetchDefaultJSON();
+        fetchDefaultJSON();
       }
     }
 
-    // Botão dedicado exclusivamente para limpar o progresso do usuário
     function clearUserProgress() {
       if (confirm('Tem certeza que deseja LIMPAR TODOS OS DIGIMONS do seu progresso? Essa ação não pode ser desfeita.')) {
         userProgress = {};
@@ -484,6 +482,7 @@
       saveStorage();
     }
 
+    // CHECK BUFFS STATUS (COM SOMA DE NÍVEL DIRETA / COMPLETA)
     function checkBuffsStatus(set) {
       let b1 = true;
       let b3 = true;
@@ -491,9 +490,11 @@
       const uniqueBasesMap = {};
       let evosUnlockedCount = 0;
       let missingEvos = [];
+      let totalLevelSum = 0;
 
       for (let req of set.requirements) {
         const digi = getResolvedDigiData(req.evo, req.base);
+        
         if (!digi || !digi.hasEvo) {
           b1 = false;
           missingEvos.push(req.evo);
@@ -505,6 +506,12 @@
           b3 = false;
         }
 
+        // Soma direta por cada slot desbloqueado/cadastrado
+        if (digi && digi.level) {
+          totalLevelSum += digi.level;
+        }
+
+        // Mapeamento mantido individual por base única apenas para a checagem da Transcendência (6★)
         const baseKey = req.base || req.evo;
         if (digi) {
           if (!uniqueBasesMap[baseKey] || digi.level > uniqueBasesMap[baseKey].level) {
@@ -520,12 +527,10 @@
         }
       }
 
-      let totalLevelSum = 0;
       let totalTranscendCount = 0;
       const baseKeys = Object.keys(uniqueBasesMap);
 
       baseKeys.forEach(k => {
-        totalLevelSum += uniqueBasesMap[k].level;
         if (uniqueBasesMap[k].transcended) totalTranscendCount++;
       });
 
