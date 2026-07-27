@@ -25,8 +25,13 @@
           <i class="ph ph-crown text-base"></i> Exportar default_data.json
         </button>
 
-        <button onclick="resetToDefaults()" class="bg-red-900/50 hover:bg-red-800 text-red-200 border border-red-700/50 px-3 py-1.5 rounded flex items-center gap-1 text-xs mr-2 transition">
-          <i class="ph ph-arrows-counter-clockwise"></i> Resetar Padrão
+        <!-- Botões de Reset Separados -->
+        <button onclick="resetMasterDefaults()" class="bg-slate-700 hover:bg-slate-600 text-slate-200 border border-slate-600 px-3 py-1.5 rounded flex items-center gap-1 text-xs transition" title="Reseta apenas Conjuntos, Imagens e Jogress mantendo seu progresso">
+          <i class="ph ph-arrows-counter-clockwise"></i> Resetar Base
+        </button>
+
+        <button onclick="clearUserProgress()" class="bg-red-900/50 hover:bg-red-800 text-red-200 border border-red-700/50 px-3 py-1.5 rounded flex items-center gap-1 text-xs mr-2 transition" title="Apaga apenas o seu progresso de Digimons cadastrados">
+          <i class="ph ph-trash"></i> Limpar Meu Progresso
         </button>
 
         <button onclick="exportData('sets')" class="bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded flex items-center gap-1 text-xs">
@@ -283,7 +288,7 @@
     let setsDB = [];
     let userProgress = {};
     let jogressDB = {};
-    let collapsedSets = {}; // Armazena estado recolhido/expandido dos conjuntos
+    let collapsedSets = {};
     let editingImageName = null;
 
     async function initAppData() {
@@ -312,7 +317,6 @@
         imagesDB = data.imagesDB || {};
         setsDB = data.setsDB || [];
         jogressDB = data.jogressDB || {};
-        userProgress = {};
         syncSetImagesToDB();
         saveStorage();
       } catch (err) {
@@ -322,11 +326,22 @@
       }
     }
 
-    function resetToDefaults() {
-      if (confirm('Deseja limpar seu progresso e recarregar os dados mestre?')) {
-        localStorage.clear();
+    // Resetar apenas os dados Mestre (Mantém progresso do Usuário)
+    async function resetMasterDefaults() {
+      if (confirm('Deseja restaurar os Conjuntos, Ícones e Jogress padrão? Seu progresso de Digimons NÃO será apagado.')) {
+        localStorage.removeItem('dmo_dunit_images');
+        localStorage.removeItem('dmo_dunit_sets');
+        localStorage.removeItem('dmo_dunit_jogress');
         sessionStorage.clear();
-        fetchDefaultJSON();
+        await fetchDefaultJSON();
+      }
+    }
+
+    // Botão dedicado exclusivamente para limpar o progresso do usuário
+    function clearUserProgress() {
+      if (confirm('Tem certeza que deseja LIMPAR TODOS OS DIGIMONS do seu progresso? Essa ação não pode ser desfeita.')) {
+        userProgress = {};
+        saveStorage();
       }
     }
 
@@ -469,12 +484,11 @@
       saveStorage();
     }
 
-    // AVALIAÇÃO DE STATUS DO CONJUNTO (Soma de níveis + Verificações)
     function checkBuffsStatus(set) {
-      let b1 = true; // Evoluções
-      let b3 = true; // Transcendências
+      let b1 = true;
+      let b3 = true;
       
-      const uniqueBasesMap = {}; // Armazena maior nível e transcendência por base única
+      const uniqueBasesMap = {};
       let evosUnlockedCount = 0;
       let missingEvos = [];
 
@@ -506,7 +520,6 @@
         }
       }
 
-      // Soma dos níveis das bases únicas
       let totalLevelSum = 0;
       let totalTranscendCount = 0;
       const baseKeys = Object.keys(uniqueBasesMap);
@@ -842,7 +855,7 @@
         }).join('');
       }
 
-      // 5. Lista de Conjuntos (com Accordion & Cores Especiais)
+      // 5. Lista de Conjuntos
       const container = document.getElementById('sets-container');
       container.innerHTML = '';
 
@@ -853,7 +866,6 @@
           const status = checkBuffsStatus(set);
           const isCollapsed = !!collapsedSets[set.id];
 
-          // Define Estilos do Card se Concluído
           let cardBgClass = "bg-slate-800 border-slate-700";
           let titleColorClass = "text-slate-100";
           let badgeHTML = "";
@@ -893,7 +905,6 @@
           const card = document.createElement('div');
           card.className = `${cardBgClass} rounded-xl border p-4 transition-all duration-200 space-y-3`;
           card.innerHTML = `
-            <!-- Cabeçalho / Resumo do Conjunto -->
             <div class="flex flex-wrap justify-between items-center gap-2">
               <div class="flex items-center gap-3 cursor-pointer select-none" onclick="toggleSetCollapse('${set.id}')">
                 <i class="ph ph-caret-down text-lg text-slate-400 transition-transform ${isCollapsed ? '-rotate-90' : ''}"></i>
@@ -909,7 +920,6 @@
               </div>
             </div>
 
-            <!-- Resumo Rápido (Visível sempre ou quando recolhido) -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-slate-900/60 p-2.5 rounded-lg border border-slate-700/50">
               <div>
                 <span class="text-[10px] uppercase font-bold text-slate-500 block">Evoluções</span>
@@ -944,7 +954,6 @@
               </div>
             </div>
 
-            <!-- Conteúdo Detalhado (Apenas quando expandido) -->
             <div class="${isCollapsed ? 'hidden' : 'space-y-4 pt-2'}">
               <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">${digimonsHTML}</div>
 
