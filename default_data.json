@@ -75,7 +75,21 @@
     "Pegasusmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/pegasusmon-icon.png",
     "Shakkoumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/shakkoumon-icon.png",
     "SlashAngemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/slashangemon-icon.png",
-    "Patamon [Shakkoumon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/patamon-icon.png"
+    "Patamon [Shakkoumon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/patamon-icon.png",
+    "Palmon [Original]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/palmon-icon.png",
+    "Togemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/togemon-icon.png",
+    "Lillymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/lillymon-icon.png",
+    "Rosemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/rosemon-icon.png",
+    "Rafflesimon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmy2A8JuBRy1MLnNBHIjCOxWz6yt31v5JAPaZelOqeHg&s=10",
+    "Palmon [Woodmon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/palmon-icon.png",
+    "Woodmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/woodmon-icon.png",
+    "Cherrymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/cherrymon-icon.png",
+    "Puppetmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/puppetmon-icon.png",
+    "AncientTroiamon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07RWQ-VigCKpUJlLvruGwHbHISJ0IEwOrWBzikp8YiQ&s=10",
+    "Apocalymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/apocalymon-icon.png",
+    "Palmon [Togemon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/palmon-icon.png",
+    "MarineAngemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/marineangemon-icon.png",
+    "Palmon [Apocalymon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/palmon-icon.png"
   },
   "setsDB": [
     {
@@ -996,6 +1010,138 @@
         "b2": "EV +0.7%",
         "b3": "HT +30",
         "b4": "Skill Vento +1%"
+      }
+    },
+    {
+      "id": "set-1785187898902",
+      "name": "Palmon [Original]",
+      "reqLvl2": 550,
+      "reqLvl4": 700,
+      "requirements": [
+        {
+          "evo": "Palmon [Original]",
+          "base": "Palmon [Original]"
+        },
+        {
+          "evo": "Togemon",
+          "base": "Palmon [Original]"
+        },
+        {
+          "evo": "Lillymon",
+          "base": "Palmon [Original]"
+        },
+        {
+          "evo": "Rosemon",
+          "base": "Palmon [Original]"
+        },
+        {
+          "evo": "Rafflesimon",
+          "base": "Palmon [Original]"
+        }
+      ],
+      "buffs": {
+        "b1": "BL +0.2%",
+        "b2": "BL +0.3%",
+        "b3": "HT +50",
+        "b4": "Skill Madeira +1%"
+      }
+    },
+    {
+      "id": "set-1785187991972",
+      "name": "Palmon [Woodmon]",
+      "reqLvl2": 660,
+      "reqLvl4": 840,
+      "requirements": [
+        {
+          "evo": "Palmon [Woodmon]",
+          "base": "Palmon [Woodmon]"
+        },
+        {
+          "evo": "Woodmon",
+          "base": "Palmon [Woodmon]"
+        },
+        {
+          "evo": "Cherrymon",
+          "base": "Palmon [Woodmon]"
+        },
+        {
+          "evo": "Puppetmon",
+          "base": "Palmon [Woodmon]"
+        },
+        {
+          "evo": "AncientTroiamon",
+          "base": "Palmon [Woodmon]"
+        },
+        {
+          "evo": "Apocalymon",
+          "base": "Palmon [Woodmon]"
+        }
+      ],
+      "buffs": {
+        "b1": "EV +0.3%",
+        "b2": "EV +0.7%",
+        "b3": "HT +30",
+        "b4": "Skill Madeira +1%"
+      }
+    },
+    {
+      "id": "set-1785188052781",
+      "name": "Palmon [Togemon]",
+      "reqLvl2": 440,
+      "reqLvl4": 560,
+      "requirements": [
+        {
+          "evo": "Palmon [Togemon]",
+          "base": "Palmon [Togemon]"
+        },
+        {
+          "evo": "Togemon",
+          "base": "Palmon [Togemon]"
+        },
+        {
+          "evo": "Lillymon",
+          "base": "Palmon [Togemon]"
+        },
+        {
+          "evo": "MarineAngemon",
+          "base": "Palmon [Togemon]"
+        }
+      ],
+      "buffs": {
+        "b1": "BL +0.2%",
+        "b2": "BL +0.3%",
+        "b3": "HT +30",
+        "b4": "Skill Água +1%"
+      }
+    },
+    {
+      "id": "set-1785188117198",
+      "name": "Palmon [Apocalymon]",
+      "reqLvl2": 440,
+      "reqLvl4": 560,
+      "requirements": [
+        {
+          "evo": "Palmon [Apocalymon]",
+          "base": "Palmon [Apocalymon]"
+        },
+        {
+          "evo": "Woodmon",
+          "base": "Palmon [Apocalymon]"
+        },
+        {
+          "evo": "Cherrymon",
+          "base": "Palmon [Apocalymon]"
+        },
+        {
+          "evo": "Puppetmon",
+          "base": "Palmon [Apocalymon]"
+        }
+      ],
+      "buffs": {
+        "b1": "DS +50",
+        "b2": "DS +80",
+        "b3": "AT +30",
+        "b4": "Skill Madeira +1%"
       }
     }
   ],
