@@ -490,7 +490,7 @@
       const uniqueBasesMap = {};
       let evosUnlockedCount = 0;
       let missingEvos = [];
-      let totalLevelSum = 0;
+      let  = 0;
 
       for (let req of set.requirements) {
         const digi = getResolvedDigiData(req.evo, req.base);
@@ -507,7 +507,7 @@
         }
 
         // Soma direta por cada slot desbloqueado/cadastrado
-        if (digi && digi.level) {
+        if (digi && digi.hasEvo && digi.level) {
           totalLevelSum += digi.level;
         }
 
