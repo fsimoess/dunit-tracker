@@ -51,7 +51,31 @@
     "Mastemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mastemon-icon.png",
     "Ophanimon Modo Caído": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2ushe9dELCm42R7fMYzJQxFjUSvDBfH9QVITJAoe5kg&s=10",
     "Ordinemon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxBHCltednfbLtyryeusbbBgW_WLSdAtUXL7LtYnWJ5g&s=10",
-    "Ordinemon Shin": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxBHCltednfbLtyryeusbbBgW_WLSdAtUXL7LtYnWJ5g&s=10"
+    "Ordinemon Shin": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxBHCltednfbLtyryeusbbBgW_WLSdAtUXL7LtYnWJ5g&s=10",
+    "Salamon [Lilithmon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/salamon-icon.png",
+    "Mikemon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYl74FhoMSOrQliK2TqUbC4RdBcSi2LzOBlxlfv96D7A&s=10",
+    "Bastemon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ88ZU-ss9Y0ZMylLywqb8RTAsagV6OyIiX9GzyNVYSg&s",
+    "Lilithmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/lilithmon-icon.png",
+    "Salamon [BlackGatomon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/salamon-icon.png",
+    "Blackgatomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/blackgatomon-icon.png",
+    "LadyDevimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/ladydevimon-icon.png",
+    "Minervamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/minervamon-icon.png",
+    "Mervamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mervamon-icon.png",
+    "JetMervamon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf_IfGfRY16PaJLfWQ1jXI3U8_73uJNT4TntSiS33uwg&s",
+    "Xros Up Mervamon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU0Kg6EUJ8Z_dz_oDAFaygxkz43HAqdWmopxRn-WJWVA&s=10",
+    "Silphymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/silphymon-icon.png",
+    "Valkyrimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/valkyrimon-icon.png",
+    "Salamon [Silphymon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/salamon-icon.png",
+    "Goatmon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzGEbRE0L4Ksqn8edmnGp-nnrzhhdqqxf5GhlXjpdDng&s=10",
+    "Patamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/patamon-icon.png",
+    "Angemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/angemon-icon.png",
+    "HolyAngemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/magnaangemon-icon.png",
+    "Seraphimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/seraphimon-icon.png",
+    "ShadowSeraphimon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrl7dkXe8eGHskWm47KHdqbvlqOaMThDBywNwwR_8gRQ&s=10",
+    "Pegasusmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/pegasusmon-icon.png",
+    "Shakkoumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/shakkoumon-icon.png",
+    "SlashAngemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/slashangemon-icon.png",
+    "Patamon [Shakkoumon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/patamon-icon.png"
   },
   "setsDB": [
     {
@@ -729,6 +753,250 @@
         "b3": "CT +0.3%",
         "b4": "Skill Unknown +2%"
       }
+    },
+    {
+      "id": "set-1785186418044",
+      "name": "Salamon [Lilithmon]",
+      "reqLvl2": 440,
+      "reqLvl4": 560,
+      "requirements": [
+        {
+          "evo": "Salamon [Lilithmon]",
+          "base": "Salamon [Lilithmon]"
+        },
+        {
+          "evo": "Mikemon",
+          "base": "Salamon [Lilithmon]"
+        },
+        {
+          "evo": "Bastemon",
+          "base": "Salamon [Lilithmon]"
+        },
+        {
+          "evo": "Lilithmon",
+          "base": "Salamon [Lilithmon]"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "DE +50",
+        "b3": "AT +50",
+        "b4": "Skill Vírus +1%"
+      }
+    },
+    {
+      "id": "set-1785186779010",
+      "name": "Salamon [BlackGatomon]",
+      "reqLvl2": 840,
+      "reqLvl4": 1050,
+      "requirements": [
+        {
+          "evo": "Salamon [BlackGatomon]",
+          "base": "Salamon [BlackGatomon]"
+        },
+        {
+          "evo": "Blackgatomon",
+          "base": "Salamon [BlackGatomon]"
+        },
+        {
+          "evo": "LadyDevimon",
+          "base": "Salamon [BlackGatomon]"
+        },
+        {
+          "evo": "Minervamon",
+          "base": "Salamon [BlackGatomon]"
+        },
+        {
+          "evo": "Mervamon",
+          "base": "Salamon [BlackGatomon]"
+        },
+        {
+          "evo": "JetMervamon",
+          "base": "Salamon [BlackGatomon]"
+        },
+        {
+          "evo": "Xros Up Mervamon",
+          "base": "Salamon [BlackGatomon]"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "CT +0.3%",
+        "b3": "AT +50",
+        "b4": "Skill Vírus +1%"
+      }
+    },
+    {
+      "id": "set-1785186868066",
+      "name": "Salamon [BlackGatomon]",
+      "reqLvl2": 960,
+      "reqLvl4": 1200,
+      "requirements": [
+        {
+          "evo": "Salamon [BlackGatomon]",
+          "base": "Salamon [BlackGatomon]"
+        },
+        {
+          "evo": "Blackgatomon",
+          "base": "Salamon [BlackGatomon]"
+        },
+        {
+          "evo": "LadyDevimon",
+          "base": "Salamon [BlackGatomon]"
+        },
+        {
+          "evo": "Minervamon",
+          "base": "Salamon [BlackGatomon]"
+        },
+        {
+          "evo": "Mastemon",
+          "base": "Salamon [BlackGatomon]"
+        },
+        {
+          "evo": "Mervamon",
+          "base": "Salamon [BlackGatomon]"
+        },
+        {
+          "evo": "JetMervamon",
+          "base": "Salamon [BlackGatomon]"
+        },
+        {
+          "evo": "Xros Up Mervamon",
+          "base": "Salamon [BlackGatomon]"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +50",
+        "b2": "EXP +20%",
+        "b3": "BL +0.2%",
+        "b4": "EXP +30%"
+      }
+    },
+    {
+      "id": "set-1785187107665",
+      "name": "Salamon [Silphymon]",
+      "reqLvl2": 880,
+      "reqLvl4": 1120,
+      "requirements": [
+        {
+          "evo": "Salamon [Silphymon]",
+          "base": "Salamon [Silphymon]"
+        },
+        {
+          "evo": "Tailmon",
+          "base": "Salamon [Silphymon]"
+        },
+        {
+          "evo": "Silphymon",
+          "base": "Salamon [Silphymon]"
+        },
+        {
+          "evo": "Angewomon",
+          "base": "Salamon [Silphymon]"
+        },
+        {
+          "evo": "Holydramon",
+          "base": "Salamon [Silphymon]"
+        },
+        {
+          "evo": "Ophanimon",
+          "base": "Salamon [Silphymon]"
+        },
+        {
+          "evo": "Goatmon",
+          "base": "Salamon [Silphymon]"
+        },
+        {
+          "evo": "Valkyrimon",
+          "base": "Salamon [Silphymon]"
+        }
+      ],
+      "buffs": {
+        "b1": "DS +80",
+        "b2": "DS +120",
+        "b3": "CT +0.3%",
+        "b4": "Skill Gelo +1%"
+      }
+    },
+    {
+      "id": "set-1785187387925",
+      "name": "Patamon",
+      "reqLvl2": 660,
+      "reqLvl4": 840,
+      "requirements": [
+        {
+          "evo": "Patamon",
+          "base": "Patamon"
+        },
+        {
+          "evo": "Angemon",
+          "base": "Patamon"
+        },
+        {
+          "evo": "HolyAngemon",
+          "base": "Patamon"
+        },
+        {
+          "evo": "Seraphimon",
+          "base": "Patamon"
+        },
+        {
+          "evo": "ShadowSeraphimon",
+          "base": "Patamon"
+        },
+        {
+          "evo": "Pegasusmon",
+          "base": "Patamon"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "DE +50",
+        "b3": "CT +0.5%",
+        "b4": "Skill Vento +1%"
+      }
+    },
+    {
+      "id": "set-1785187651530",
+      "name": "Patamon [Shakkoumon]",
+      "reqLvl2": 770,
+      "reqLvl4": 980,
+      "requirements": [
+        {
+          "evo": "Patamon [Shakkoumon]",
+          "base": "Patamon [Shakkoumon]"
+        },
+        {
+          "evo": "Angemon",
+          "base": "Patamon [Shakkoumon]"
+        },
+        {
+          "evo": "HolyAngemon",
+          "base": "Patamon [Shakkoumon]"
+        },
+        {
+          "evo": "Shakkoumon",
+          "base": "Patamon [Shakkoumon]"
+        },
+        {
+          "evo": "Seraphimon",
+          "base": "Patamon [Shakkoumon]"
+        },
+        {
+          "evo": "ShadowSeraphimon",
+          "base": "Patamon [Shakkoumon]"
+        },
+        {
+          "evo": "SlashAngemon",
+          "base": "Patamon [Shakkoumon]"
+        }
+      ],
+      "buffs": {
+        "b1": "EV +0.3%",
+        "b2": "EV +0.7%",
+        "b3": "HT +30",
+        "b4": "Skill Vento +1%"
+      }
     }
   ],
   "jogressDB": {
@@ -763,6 +1031,26 @@
     "Omegamon Alter-B": [
       "Agumon Black [BlitzGreymon]",
       "Gabumon [CresGarurumon]"
+    ],
+    "Mastemon": [
+      "Salamon",
+      "Salamon [Blackgatomon]"
+    ],
+    "Silphymon": [
+      "Salamon [Silphymon]",
+      "Hawkmon [Silphymon]"
+    ],
+    "Valkyrimon": [
+      "Salamon [Silphymon]",
+      "Hawkmon [Silphymon]"
+    ],
+    "Shakkoumon": [
+      "Patamon [Shakkoumon]",
+      "Armadimon [Shakkoumon]"
+    ],
+    "SlashAngemon": [
+      "Patamon [Shakkoumon]",
+      "Armadimon [Shakkoumon]"
     ]
   }
 }
