@@ -1,0 +1,24 @@
+{
+  "imagesDB": {
+    "Agumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/agumon-icon.png",
+    "Greymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/greymon-icon.png"
+  },
+  "setsDB": [
+    {
+      "id": "set-1",
+      "name": "Dragon's Heritage",
+      "reqLvl2": 110,
+      "reqLvl4": 140,
+      "requirements": [
+        { "evo": "Greymon", "base": "Agumon" }
+        { "evo": "Garurumon", "base": "Gabumon" }
+      ],
+      "buffs": {
+        "b1": "AT +100",
+        "b2": "Max HP +500",
+        "b3": "Critical +5%",
+        "b4": "Skill Damage +8%"
+      }
+    }
+  ]
+}
