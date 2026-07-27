@@ -21,7 +21,7 @@
     "BlitzGreymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/blitzgreymon-icon.png",
     "Omegamon Alter-S": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-alter-s-icon.png",
     "Omegamon Alter-B": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-alter-b-icon.png",
-    "Agumon (Black) [Millenniumon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/agumon-black-icon.png",
+    "Agumon Black [Millenniumon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/agumon-black-icon.png",
     "DarkTyrannomon": "https://i.redd.it/darktyrannomon-preference-three-vs-two-fingers-v0-dcfeho1s6lt81.png?width=595&format=png&auto=webp&s=6d60623fa274925ee9e23cb72b5946edde5f98ac",
     "MetalTyranomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/metaltyrannomon-icon.png",
     "MugenDramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/machinedramon-icon.png",
@@ -273,32 +273,32 @@
       "reqLvl4": 1050,
       "requirements": [
         {
-          "evo": "Agumon (Black) [Millenniumon]",
-          "base": "Agumon (Black) [Millenniumon]"
+          "evo": "Agumon Black [Millenniumon]",
+          "base": "Agumon Black [Millenniumon]"
         },
         {
           "evo": "DarkTyrannomon",
-          "base": "Agumon (Black) [Millenniumon]"
+          "base": "Agumon Black [Millenniumon]"
         },
         {
           "evo": "MetalTyranomon",
-          "base": "Agumon (Black) [Millenniumon]"
+          "base": "Agumon Black [Millenniumon]"
         },
         {
           "evo": "MugenDramon",
-          "base": "Agumon (Black) [Millenniumon]"
+          "base": "Agumon Black [Millenniumon]"
         },
         {
           "evo": "Millenniumon",
-          "base": "Agumon (Black) [Millenniumon]"
+          "base": "Agumon Black [Millenniumon]"
         },
         {
           "evo": "MoonMillenniunmon",
-          "base": "Agumon (Black) [Millenniumon]"
+          "base": "Agumon Black [Millenniumon]"
         },
         {
           "evo": "ZeedMillenniunmon",
-          "base": "Agumon (Black) [Millenniumon]"
+          "base": "Agumon Black [Millenniumon]"
         }
       ],
       "buffs": {
