@@ -27,7 +27,7 @@
 
         <!-- Botões de Reset Separados -->
         <button onclick="resetMasterDefaults()" class="bg-slate-700 hover:bg-slate-600 text-slate-200 border border-slate-600 px-3 py-1.5 rounded flex items-center gap-1 text-xs transition" title="Reseta apenas Conjuntos, Imagens e Jogress mantendo seu progresso">
-          <i class="ph ph-arrows-counter-clockwise"></i> Resetar Base
+          <i class="ph ph-arrows-counter-clockwise"></i> Resetar Mestre
         </button>
 
         <button onclick="clearUserProgress()" class="bg-red-900/50 hover:bg-red-800 text-red-200 border border-red-700/50 px-3 py-1.5 rounded flex items-center gap-1 text-xs mr-2 transition" title="Apaga apenas o seu progresso de Digimons cadastrados">
@@ -140,12 +140,42 @@
           <form id="form-digimon-user" class="space-y-4" onsubmit="saveUserDigimon(event)">
             <div>
               <label class="block text-xs uppercase text-slate-400 mb-1">Espécie Base</label>
-              <input type="text" id="user-digi-base" required placeholder="Ex: Agumon" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm focus:border-cyan-500 outline-none" oninput="updateDigiPreview()">
+              <input type="text" id="user-digi-base" required placeholder="Ex: Agumon" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm focus:border-cyan-500 outline-none" oninput="updateDigiPreview(); renderEvoCheckboxes();">
             </div>
-            <div>
-              <label class="block text-xs uppercase text-slate-400 mb-1">Evoluções Desbloqueadas (Vírgula)</label>
-              <input type="text" id="user-digi-evos" placeholder="Ex: Greymon, Omegamon" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm focus:border-cyan-500 outline-none">
+
+            <!-- SANFONA / COLLAPSE DE EVOLUÇÕES COM CHECKBOXES -->
+            <div class="border border-slate-700 rounded-lg overflow-hidden bg-slate-900/60">
+              <button type="button" onclick="toggleEvoCollapse()" class="w-full p-2.5 bg-slate-800 hover:bg-slate-700/60 transition flex justify-between items-center text-xs font-bold text-slate-300">
+                <span class="flex items-center gap-1.5">
+                  <i class="ph ph-tree-structure text-cyan-400 text-base"></i>
+                  <span>Evoluções Mapeadas</span>
+                  <span id="evo-count-badge" class="bg-slate-700 text-cyan-300 text-[10px] px-1.5 py-0.5 rounded-full font-mono">0</span>
+                </span>
+                <i id="evo-collapse-icon" class="ph ph-caret-down text-slate-400 transition-transform"></i>
+              </button>
+
+              <div id="evo-collapse-content" class="hidden p-3 border-t border-slate-700/80 space-y-2">
+                <div id="evo-actions" class="hidden flex justify-between items-center pb-2 border-b border-slate-800 text-[11px]">
+                  <span class="text-slate-400 font-semibold">Marcar evoluções:</span>
+                  <div class="flex gap-2">
+                    <button type="button" onclick="selectAllEvos(true)" class="text-cyan-400 hover:underline">Todas</button>
+                    <span class="text-slate-600">•</span>
+                    <button type="button" onclick="selectAllEvos(false)" class="text-slate-400 hover:underline">Nenhuma</button>
+                  </div>
+                </div>
+
+                <div id="evo-checkboxes-container" class="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+                  <p class="text-slate-500 text-xs italic">Digite a Espécie Base para carregar as evoluções dos conjuntos.</p>
+                </div>
+
+                <!-- Fallback manual caso deseje adicionar outra evo -->
+                <div class="pt-2 border-t border-slate-800">
+                  <label class="block text-[10px] uppercase text-slate-400 mb-1">Outras evoluções (opcional / por vírgula)</label>
+                  <input type="text" id="user-digi-evos-extra" placeholder="Ex: BlitzGreymon" class="w-full bg-slate-900 border border-slate-700 rounded p-1.5 text-xs focus:border-cyan-500 outline-none">
+                </div>
+              </div>
             </div>
+
             <div>
               <label class="block text-xs uppercase text-slate-400 mb-1">Nível Atual</label>
               <input type="number" id="user-digi-level" min="1" max="170" value="1" required class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm focus:border-cyan-500 outline-none">
@@ -428,6 +458,67 @@
       checkSecretTrigger(name);
     }
 
+    // SANFONA DE EVOLUÇÕES NO FORMULÁRIO DO USUÁRIO
+    function toggleEvoCollapse() {
+      const content = document.getElementById('evo-collapse-content');
+      const icon = document.getElementById('evo-collapse-icon');
+      content.classList.toggle('hidden');
+      icon.classList.toggle('rotate-180');
+    }
+
+    // BUSCA E RENDERIZAÇÃO ESTRITA DAS EVOLUÇÕES DA BASE NOS CONJUNTOS
+    function renderEvoCheckboxes(preSelectedEvos = []) {
+      const baseInput = document.getElementById('user-digi-base').value.trim().toLowerCase();
+      const container = document.getElementById('evo-checkboxes-container');
+      const badge = document.getElementById('evo-count-badge');
+      const actions = document.getElementById('evo-actions');
+
+      if (!baseInput) {
+        container.innerHTML = `<p class="text-slate-500 text-xs italic">Digite a Espécie Base para carregar as evoluções dos conjuntos.</p>`;
+        badge.innerText = "0";
+        actions.classList.add('hidden');
+        return;
+      }
+
+      // Busca estrita: compara baseInput exato com req.base
+      const mappedEvosSet = new Set();
+      
+      setsDB.forEach(set => {
+        set.requirements.forEach(req => {
+          if (req.base && req.base.trim().toLowerCase() === baseInput) {
+            mappedEvosSet.add(req.evo);
+          }
+        });
+      });
+
+      const evosList = Array.from(mappedEvosSet).sort();
+      badge.innerText = evosList.length;
+
+      if (evosList.length === 0) {
+        container.innerHTML = `<p class="text-amber-500/80 text-xs">Nenhuma evolução mapeada nos conjuntos para "${document.getElementById('user-digi-base').value.trim()}".</p>`;
+        actions.classList.add('hidden');
+        return;
+      }
+
+      actions.classList.remove('hidden');
+      container.innerHTML = evosList.map(evoName => {
+        const isChecked = preSelectedEvos.some(e => e.toLowerCase() === evoName.toLowerCase()) || evoName.toLowerCase() === baseInput;
+        const imgUrl = getDigiImg(evoName);
+
+        return `
+          <label class="flex items-center gap-2 p-1.5 rounded hover:bg-slate-800 cursor-pointer text-xs select-none border border-slate-800 transition">
+            <input type="checkbox" value="${evoName}" class="evo-checkbox rounded accent-cyan-500 w-3.5 h-3.5" ${isChecked ? 'checked' : ''}>
+            <img src="${imgUrl}" class="w-6 h-6 object-cover rounded bg-slate-900">
+            <span class="text-slate-200 font-medium">${evoName}</span>
+          </label>
+        `;
+      }).join('');
+    }
+
+    function selectAllEvos(select) {
+      document.querySelectorAll('.evo-checkbox').forEach(cb => cb.checked = select);
+    }
+
     function getResolvedDigiData(reqEvo, reqBase) {
       if (reqBase && reqBase !== reqEvo) {
         const digi = userProgress[reqBase];
@@ -506,12 +597,10 @@
           b3 = false;
         }
 
-        // Soma direta por cada slot desbloqueado/cadastrado
-        if (digi && digi.hasEvo && digi.level) {
+        if (digi && digi.level) {
           totalLevelSum += digi.level;
         }
 
-        // Mapeamento mantido individual por base única apenas para a checagem da Transcendência (6★)
         const baseKey = req.base || req.evo;
         if (digi) {
           if (!uniqueBasesMap[baseKey] || digi.level > uniqueBasesMap[baseKey].level) {
@@ -649,8 +738,23 @@
       const level = parseInt(document.getElementById('user-digi-level').value);
       const transcended = document.getElementById('user-digi-transcend').checked;
       
-      const evosRaw = document.getElementById('user-digi-evos').value;
-      let unlockedEvos = evosRaw.split(',').map(e => e.trim()).filter(e => e.length > 0);
+      // Coleta evoluções marcadas nos checkboxes
+      const unlockedEvos = [];
+      document.querySelectorAll('.evo-checkbox:checked').forEach(cb => {
+        unlockedEvos.push(cb.value.trim());
+      });
+
+      // Coleta evoluções do campo manual extra
+      const extraEvosRaw = document.getElementById('user-digi-evos-extra').value;
+      if (extraEvosRaw) {
+        extraEvosRaw.split(',').forEach(e => {
+          const cleanEvo = e.trim();
+          if (cleanEvo && !unlockedEvos.includes(cleanEvo)) {
+            unlockedEvos.push(cleanEvo);
+          }
+        });
+      }
+
       if (!unlockedEvos.includes(base)) unlockedEvos.push(base);
 
       [base, ...unlockedEvos].forEach(digiName => getDigiImg(digiName));
@@ -668,11 +772,18 @@
       document.getElementById('user-digi-base').value = base;
       document.getElementById('user-digi-level').value = d.level;
       document.getElementById('user-digi-transcend').checked = d.transcended;
-      document.getElementById('user-digi-evos').value = d.unlockedEvos.join(', ');
+      document.getElementById('user-digi-evos-extra').value = '';
 
       document.getElementById('digi-form-title').innerHTML = `<i class="ph ph-note-pencil text-yellow-400"></i> Editando: ${base}`;
       document.getElementById('btn-cancel-digi-edit').classList.remove('hidden');
+      
       updateDigiPreview();
+      renderEvoCheckboxes(d.unlockedEvos);
+      
+      // Abre a sanfona na edição
+      document.getElementById('evo-collapse-content').classList.remove('hidden');
+      document.getElementById('evo-collapse-icon').classList.add('rotate-180');
+
       checkSecretTrigger(base);
       document.getElementById('form-digimon-user').scrollIntoView({ behavior: 'smooth' });
     }
@@ -682,6 +793,11 @@
       document.getElementById('digi-form-title').innerHTML = `<i class="ph ph-user-focus"></i> Cadastrar / Atualizar Progresso`;
       document.getElementById('btn-cancel-digi-edit').classList.add('hidden');
       document.getElementById('digi-edit-preview').classList.add('hidden');
+      
+      // Fecha a sanfona e reseta os checkboxes
+      document.getElementById('evo-collapse-content').classList.add('hidden');
+      document.getElementById('evo-collapse-icon').classList.remove('rotate-180');
+      renderEvoCheckboxes();
     }
 
     function deleteDigimon(base) {
