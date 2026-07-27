@@ -41,7 +41,17 @@
     "Garurumon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/garurumon-black-icon.png",
     "WereGarurumon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/weregarurumon-black-icon.png",
     "MetalGarurumon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/metalgarurumon-black-icon.png",
-    "Gabumon [CresGarurumon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gabumon-icon.png"
+    "Gabumon [CresGarurumon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gabumon-icon.png",
+    "Salamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/salamon-icon.png",
+    "Tailmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gatomon-icon.png",
+    "Angewomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/angewomon-icon.png",
+    "Holydramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/magnadramon-icon.png",
+    "Ophanimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/ophanimon-icon.png",
+    "Nefertimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/nefertimon-icon.png",
+    "Mastemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mastemon-icon.png",
+    "Ophanimon Modo Caído": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2ushe9dELCm42R7fMYzJQxFjUSvDBfH9QVITJAoe5kg&s=10",
+    "Ordinemon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxBHCltednfbLtyryeusbbBgW_WLSdAtUXL7LtYnWJ5g&s=10",
+    "Ordinemon Shin": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxBHCltednfbLtyryeusbbBgW_WLSdAtUXL7LtYnWJ5g&s=10"
   },
   "setsDB": [
     {
@@ -580,6 +590,144 @@
         "b2": "HT +30",
         "b3": "Skill Vacina +2%",
         "b4": "Skill Vírus +1%"
+      }
+    },
+    {
+      "id": "set-1785185790804",
+      "name": "Salamon [Gatomon]",
+      "reqLvl2": 880,
+      "reqLvl4": 1120,
+      "requirements": [
+        {
+          "evo": "Salamon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Tailmon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Angewomon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Holydramon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Ophanimon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Nefertimon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Mastemon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Ophanimon Modo Caído",
+          "base": "Salamon"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "CT +0.2%",
+        "b3": "Skill Vacina +1%",
+        "b4": "Skill Trevas +1%"
+      }
+    },
+    {
+      "id": "set-1785185916018",
+      "name": "Salamon [Gatomon]",
+      "reqLvl2": 960,
+      "reqLvl4": 1200,
+      "requirements": [
+        {
+          "evo": "Salamon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Tailmon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Angewomon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Holydramon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Ophanimon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Nefertimon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Ophanimon Modo Caído",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Ordinemon",
+          "base": "Salamon"
+        }
+      ],
+      "buffs": {
+        "b1": "HP +50",
+        "b2": "AT +30",
+        "b3": "CT +0.2%",
+        "b4": "Skill Unknown +1%"
+      }
+    },
+    {
+      "id": "set-1785185980678",
+      "name": "Salamon [Gatomon]",
+      "reqLvl2": 960,
+      "reqLvl4": 1200,
+      "requirements": [
+        {
+          "evo": "Salamon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Tailmon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Angewomon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Holydramon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Ophanimon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Nefertimon",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Ophanimon Modo Caído",
+          "base": "Salamon"
+        },
+        {
+          "evo": "Ordinemon Shin",
+          "base": "Salamon"
+        }
+      ],
+      "buffs": {
+        "b1": "HP +100",
+        "b2": "AT +50",
+        "b3": "CT +0.3%",
+        "b4": "Skill Unknown +2%"
       }
     }
   ],
