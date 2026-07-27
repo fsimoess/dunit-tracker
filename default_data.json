@@ -51,7 +51,7 @@
     "Mastemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mastemon-icon.png",
     "Ophanimon Modo Caído": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2ushe9dELCm42R7fMYzJQxFjUSvDBfH9QVITJAoe5kg&s=10",
     "Ordinemon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxBHCltednfbLtyryeusbbBgW_WLSdAtUXL7LtYnWJ5g&s=10",
-    "Ordinemon Shin": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxBHCltednfbLtyryeusbbBgW_WLSdAtUXL7LtYnWJ5g&s=10",
+    "Ordinemon [Shin]": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxBHCltednfbLtyryeusbbBgW_WLSdAtUXL7LtYnWJ5g&s=10",
     "Salamon [Lilithmon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/salamon-icon.png",
     "Mikemon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYl74FhoMSOrQliK2TqUbC4RdBcSi2LzOBlxlfv96D7A&s=10",
     "Bastemon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ88ZU-ss9Y0ZMylLywqb8RTAsagV6OyIiX9GzyNVYSg&s",
@@ -89,7 +89,53 @@
     "Apocalymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/apocalymon-icon.png",
     "Palmon [Togemon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/palmon-icon.png",
     "MarineAngemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/marineangemon-icon.png",
-    "Palmon [Apocalymon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/palmon-icon.png"
+    "Palmon [Apocalymon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/palmon-icon.png",
+    "Piyomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/biyomon-icon.png",
+    "Birdramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/birdramon-icon.png",
+    "Garudamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/garudamon-icon.png",
+    "Phoenixmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/phoenixmon-icon.png",
+    "Ornismon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFVtUgSZjFoB0psHf_VkW8QvjrREoOm5Mi59CEj1TgMA&s=10",
+    "Gomamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gomamon-icon.png",
+    "Ikkakumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/ikkakumon-icon.png",
+    "Zudomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/zudomon-icon.png",
+    "Vikemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/vikemon-icon.png",
+    "Plesiomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/plesiomon-icon.png",
+    "Aegisdramon": "https://static.wikia.nocookie.net/digimonat/images/2/20/Aegisdramon_%28Lost_Evolution%29_b.jpg/revision/latest?cb=20200508005346&path-prefix=pt",
+    "Rusttyranomon": "https://static.wikia.nocookie.net/digimonat/images/c/c1/RustTyranomon_b.jpg/revision/latest?cb=20230207171810&path-prefix=pt",
+    "Gomamon [Jijimon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gomamon-icon.png",
+    "Mojyamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/mojyamon-icon.png",
+    "Piximon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/piximon-icon.png",
+    "Jijimon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfRsRgoV7JjvhBmttNZC_NNutk3nYtSqcOQuaOAvS-Rw&s=10",
+    "Tentomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/tentomon-icon.png",
+    "Kabuterimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/kabuterimon-icon.png",
+    "MegaKabuterimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/megakabuterimon-icon.png",
+    "HerculesKabuterimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/herculeskabuterimon-icon.png",
+    "TyrantKabuterimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/tyrantkabuterimon-icon.png",
+    "Veedramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/veedramon-icon.png",
+    "Flamedramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/flamedramon-icon.png",
+    "Magnamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/magnamon-icon.png",
+    "Gargomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gargomon-icon.png",
+    "AeroVeedramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/aeroveedramon-icon.png",
+    "UlforceVeedramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/ulforceveedramon-icon.png",
+    "Veemon [Veedramon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/veemon-icon.png",
+    "V-mon [Veedramon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/veemon-icon.png",
+    "Galgomon": "https://static.wikia.nocookie.net/digimonat/images/3/3d/Gargomon_b.jpg/revision/latest?cb=20250828164724&path-prefix=pt",
+    "Paildramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/paildramon-icon.png",
+    "ImperialDramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/imperialdramon-dm-icon.png",
+    "ImperialDramon Fighter Mode": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/imperialdramon-fm-icon.png",
+    "ImperialDramon Paladin Mode": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/imperialdramon-pm-icon.png",
+    "ImperialDramon Fighter Mode [Shin]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/imperialdramon-fm-icon.png",
+    "ImperialDramon Paladin Mode [Shin]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/imperialdramon-pm-icon.png",
+    "V-mon [Imperialdramon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/veemon-icon.png",
+    "ExVeemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/exveemon-icon.png",
+    "V-mon [ExV-mon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/veemon-icon.png",
+    "Lighdramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/lighdramon-icon.png",
+    "Yaksamon": "https://static.wikia.nocookie.net/digimonat/images/3/30/Yaksamon_b.jpg/revision/latest?cb=20250820012506&path-prefix=pt",
+    "Wormmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/wormmon-icon.png",
+    "Stingmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/stingmon-icon.png",
+    "JewelBeemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/jewelbeemon-icon.png",
+    "GrandisKuwagamon": "https://static.wikia.nocookie.net/digimonat/images/d/d6/GrandisKuwagamon_b.jpg/revision/latest?cb=20190724231715&path-prefix=pt",
+    "Wormmon [Imperialdramon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/wormmon-icon.png"
   },
   "setsDB": [
     {
@@ -314,7 +360,7 @@
         }
       ],
       "buffs": {
-        "b1": "CT +0.2%",
+        "b1": "CT +20",
         "b2": "AT +20",
         "b3": "EXP +30%",
         "b4": "Skill Vírus +1%"
@@ -384,7 +430,7 @@
       "buffs": {
         "b1": "DE +30",
         "b2": "DE +50",
-        "b3": "CT +0.2%",
+        "b3": "CT +20",
         "b4": "Skill Fogo +1%"
       }
     },
@@ -406,7 +452,7 @@
       "buffs": {
         "b1": "DE +30",
         "b2": "DE +50",
-        "b3": "CT +0.2%",
+        "b3": "CT +20",
         "b4": "Skill Fogo +1%"
       }
     },
@@ -488,7 +534,7 @@
         }
       ],
       "buffs": {
-        "b1": "CT +0.3%",
+        "b1": "CT +30",
         "b2": "HT +50",
         "b3": "Skill +1%",
         "b4": "Skill Vacina +1%"
@@ -523,7 +569,7 @@
       ],
       "buffs": {
         "b1": "HP +50",
-        "b2": "BL +0.2%",
+        "b2": "BL +20",
         "b3": "HP +100",
         "b4": "Skill Vírus +1%"
       }
@@ -556,7 +602,7 @@
         }
       ],
       "buffs": {
-        "b1": "CT +0.2%",
+        "b1": "CT +20",
         "b2": "AT +20",
         "b3": "EXP +30%",
         "b4": "Skill Vírus +1%"
@@ -592,7 +638,7 @@
       "buffs": {
         "b1": "DE +30",
         "b2": "DE +50",
-        "b3": "CT +0.5%",
+        "b3": "CT +50",
         "b4": "Skill Vírus +1%"
       }
     },
@@ -671,7 +717,7 @@
       ],
       "buffs": {
         "b1": "DE +30",
-        "b2": "CT +0.2%",
+        "b2": "CT +20",
         "b3": "Skill Vacina +1%",
         "b4": "Skill Trevas +1%"
       }
@@ -718,7 +764,7 @@
       "buffs": {
         "b1": "HP +50",
         "b2": "AT +30",
-        "b3": "CT +0.2%",
+        "b3": "CT +20",
         "b4": "Skill Unknown +1%"
       }
     },
@@ -757,14 +803,14 @@
           "base": "Salamon"
         },
         {
-          "evo": "Ordinemon Shin",
+          "evo": "Ordinemon [Shin]",
           "base": "Salamon"
         }
       ],
       "buffs": {
         "b1": "HP +100",
         "b2": "AT +50",
-        "b3": "CT +0.3%",
+        "b3": "CT +30",
         "b4": "Skill Unknown +2%"
       }
     },
@@ -835,7 +881,7 @@
       ],
       "buffs": {
         "b1": "DE +30",
-        "b2": "CT +0.3%",
+        "b2": "CT +30",
         "b3": "AT +50",
         "b4": "Skill Vírus +1%"
       }
@@ -882,7 +928,7 @@
       "buffs": {
         "b1": "DE +50",
         "b2": "EXP +20%",
-        "b3": "BL +0.2%",
+        "b3": "BL +20",
         "b4": "EXP +30%"
       }
     },
@@ -928,7 +974,7 @@
       "buffs": {
         "b1": "DS +80",
         "b2": "DS +120",
-        "b3": "CT +0.3%",
+        "b3": "CT +30",
         "b4": "Skill Gelo +1%"
       }
     },
@@ -966,7 +1012,7 @@
       "buffs": {
         "b1": "DE +30",
         "b2": "DE +50",
-        "b3": "CT +0.5%",
+        "b3": "CT +50",
         "b4": "Skill Vento +1%"
       }
     },
@@ -1006,8 +1052,8 @@
         }
       ],
       "buffs": {
-        "b1": "EV +0.3%",
-        "b2": "EV +0.7%",
+        "b1": "EV +30",
+        "b2": "EV +70",
         "b3": "HT +30",
         "b4": "Skill Vento +1%"
       }
@@ -1040,8 +1086,8 @@
         }
       ],
       "buffs": {
-        "b1": "BL +0.2%",
-        "b2": "BL +0.3%",
+        "b1": "BL +20",
+        "b2": "BL +30",
         "b3": "HT +50",
         "b4": "Skill Madeira +1%"
       }
@@ -1078,8 +1124,8 @@
         }
       ],
       "buffs": {
-        "b1": "EV +0.3%",
-        "b2": "EV +0.7%",
+        "b1": "EV +30",
+        "b2": "EV +70",
         "b3": "HT +30",
         "b4": "Skill Madeira +1%"
       }
@@ -1108,8 +1154,8 @@
         }
       ],
       "buffs": {
-        "b1": "BL +0.2%",
-        "b2": "BL +0.3%",
+        "b1": "BL +20",
+        "b2": "BL +30",
         "b3": "HT +30",
         "b4": "Skill Água +1%"
       }
@@ -1142,6 +1188,382 @@
         "b2": "DS +80",
         "b3": "AT +30",
         "b4": "Skill Madeira +1%"
+      }
+    },
+    {
+      "id": "set-1785188605407",
+      "name": "Piyomon",
+      "reqLvl2": 550,
+      "reqLvl4": 700,
+      "requirements": [
+        {
+          "evo": "Piyomon",
+          "base": "Piyomon"
+        },
+        {
+          "evo": "Birdramon",
+          "base": "Piyomon"
+        },
+        {
+          "evo": "Garudamon",
+          "base": "Piyomon"
+        },
+        {
+          "evo": "Phoenixmon",
+          "base": "Piyomon"
+        },
+        {
+          "evo": "Ornismon",
+          "base": "Piyomon"
+        }
+      ],
+      "buffs": {
+        "b1": "BL +20",
+        "b2": "BL +30",
+        "b3": "HT +30",
+        "b4": "Skill Fogo +1%"
+      }
+    },
+    {
+      "id": "set-1785188817529",
+      "name": "Gomamon",
+      "reqLvl2": 660,
+      "reqLvl4": 840,
+      "requirements": [
+        {
+          "evo": "Gomamon",
+          "base": "Gomamon"
+        },
+        {
+          "evo": "Ikkakumon",
+          "base": "Gomamon"
+        },
+        {
+          "evo": "Zudomon",
+          "base": "Gomamon"
+        },
+        {
+          "evo": "Vikemon",
+          "base": "Gomamon"
+        },
+        {
+          "evo": "Plesiomon",
+          "base": "Gomamon"
+        },
+        {
+          "evo": "Aegisdramon",
+          "base": "Gomamon"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "DS +50",
+        "b3": "EXP +20%",
+        "b4": "Skill Água +1%"
+      }
+    },
+    {
+      "id": "set-1785188878352",
+      "name": "Gomamon",
+      "reqLvl2": 660,
+      "reqLvl4": 840,
+      "requirements": [
+        {
+          "evo": "Gomamon",
+          "base": "Gomamon"
+        },
+        {
+          "evo": "Ikkakumon",
+          "base": "Gomamon"
+        },
+        {
+          "evo": "Zudomon",
+          "base": "Gomamon"
+        },
+        {
+          "evo": "Vikemon",
+          "base": "Gomamon"
+        },
+        {
+          "evo": "Plesiomon",
+          "base": "Gomamon"
+        },
+        {
+          "evo": "Rusttyranomon",
+          "base": "Gomamon"
+        }
+      ],
+      "buffs": {
+        "b1": "BL +20",
+        "b2": "EV +30",
+        "b3": "HP +50",
+        "b4": "Skill Aço +1%"
+      }
+    },
+    {
+      "id": "set-1785189013421",
+      "name": "Gomamon [Jijimon]",
+      "reqLvl2": 440,
+      "reqLvl4": 560,
+      "requirements": [
+        {
+          "evo": "Gomamon [Jijimon]",
+          "base": "Gomamon [Jijimon]"
+        },
+        {
+          "evo": "Mojyamon",
+          "base": "Gomamon [Jijimon]"
+        },
+        {
+          "evo": "Piximon",
+          "base": "Gomamon [Jijimon]"
+        },
+        {
+          "evo": "Jijimon",
+          "base": "Gomamon [Jijimon]"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "DE +50",
+        "b3": "CT +20",
+        "b4": "Skill Água +1%"
+      }
+    },
+    {
+      "id": "set-1785189114910",
+      "name": "Tentomon",
+      "reqLvl2": 550,
+      "reqLvl4": 700,
+      "requirements": [
+        {
+          "evo": "Tentomon",
+          "base": "Tentomon"
+        },
+        {
+          "evo": "Kabuterimon",
+          "base": "Tentomon"
+        },
+        {
+          "evo": "MegaKabuterimon",
+          "base": "Tentomon"
+        },
+        {
+          "evo": "HerculesKabuterimon",
+          "base": "Tentomon"
+        },
+        {
+          "evo": "TyrantKabuterimon",
+          "base": "Tentomon"
+        }
+      ],
+      "buffs": {
+        "b1": "EXP +20%",
+        "b2": "EXP +20%",
+        "b3": "EXP +30%",
+        "b4": "Skill Trevas +1%"
+      }
+    },
+    {
+      "id": "set-1785189235919",
+      "name": "V-mon [Veedramon]",
+      "reqLvl2": 770,
+      "reqLvl4": 980,
+      "requirements": [
+        {
+          "evo": "V-mon [Veedramon]",
+          "base": "V-mon [Veedramon]"
+        },
+        {
+          "evo": "Veedramon",
+          "base": "V-mon [Veedramon]"
+        },
+        {
+          "evo": "AeroVeedramon",
+          "base": "V-mon [Veedramon]"
+        },
+        {
+          "evo": "UlforceVeedramon",
+          "base": "V-mon [Veedramon]"
+        },
+        {
+          "evo": "Flamedramon",
+          "base": "V-mon [Veedramon]"
+        },
+        {
+          "evo": "Magnamon",
+          "base": "V-mon [Veedramon]"
+        },
+        {
+          "evo": "Galgomon",
+          "base": "V-mon [Veedramon]"
+        }
+      ],
+      "buffs": {
+        "b1": "EV +30",
+        "b2": "DE +100",
+        "b3": "Skill Vacina +1%",
+        "b4": "Skill Fogo +1%"
+      }
+    },
+    {
+      "id": "set-1785189727849",
+      "name": "V-mon [Imperialdramon]",
+      "reqLvl2": 840,
+      "reqLvl4": 1050,
+      "requirements": [
+        {
+          "evo": "V-mon [Imperialdramon]",
+          "base": "V-mon [Imperialdramon]"
+        },
+        {
+          "evo": "ExVeemon",
+          "base": "V-mon [Imperialdramon]"
+        },
+        {
+          "evo": "Paildramon",
+          "base": "V-mon [Imperialdramon]"
+        },
+        {
+          "evo": "ImperialDramon",
+          "base": "V-mon [Imperialdramon]"
+        },
+        {
+          "evo": "ImperialDramon Fighter Mode",
+          "base": "V-mon [Imperialdramon]"
+        },
+        {
+          "evo": "ImperialDramon Paladin Mode",
+          "base": "V-mon [Imperialdramon]"
+        },
+        {
+          "evo": "ImperialDramon Fighter Mode [Shin]",
+          "base": "V-mon [Imperialdramon]"
+        }
+      ],
+      "buffs": {
+        "b1": "EV +30",
+        "b2": "DE +100",
+        "b3": "AT +70",
+        "b4": "Skill Vacina +1%"
+      }
+    },
+    {
+      "id": "set-1785189853756",
+      "name": "V-mon [ExV-mon]",
+      "reqLvl2": 880,
+      "reqLvl4": 1120,
+      "requirements": [
+        {
+          "evo": "V-mon [ExV-mon]",
+          "base": "V-mon [ExV-mon]"
+        },
+        {
+          "evo": "ExVeemon",
+          "base": "V-mon [ExV-mon]"
+        },
+        {
+          "evo": "Paildramon",
+          "base": "V-mon [ExV-mon]"
+        },
+        {
+          "evo": "ImperialDramon",
+          "base": "V-mon [ExV-mon]"
+        },
+        {
+          "evo": "ImperialDramon Fighter Mode",
+          "base": "V-mon [ExV-mon]"
+        },
+        {
+          "evo": "ImperialDramon Paladin Mode",
+          "base": "V-mon [ExV-mon]"
+        },
+        {
+          "evo": "Lighdramon",
+          "base": "V-mon [ExV-mon]"
+        },
+        {
+          "evo": "Yaksamon",
+          "base": "V-mon [ExV-mon]"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "CT +30",
+        "b3": "AT +70",
+        "b4": "Skill Madeira +1%"
+      }
+    },
+    {
+      "id": "set-1785190064388",
+      "name": "Wormmon",
+      "reqLvl2": 440,
+      "reqLvl4": 560,
+      "requirements": [
+        {
+          "evo": "Wormmon",
+          "base": "Wormmon"
+        },
+        {
+          "evo": "Stingmon",
+          "base": "Wormmon"
+        },
+        {
+          "evo": "JewelBeemon",
+          "base": "Wormmon"
+        },
+        {
+          "evo": "GrandisKuwagamon",
+          "base": "Wormmon"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "DE +50",
+        "b3": "CT +50",
+        "b4": "Skill Aço +1%"
+      }
+    },
+    {
+      "id": "set-1785190187923",
+      "name": "Wormmon [Imperialdramon]",
+      "reqLvl2": 840,
+      "reqLvl4": 1050,
+      "requirements": [
+        {
+          "evo": "Wormmon [Imperialdramon]",
+          "base": "Wormmon [Imperialdramon]"
+        },
+        {
+          "evo": "Stingmon",
+          "base": "Wormmon [Imperialdramon]"
+        },
+        {
+          "evo": "Paildramon",
+          "base": "Wormmon [Imperialdramon]"
+        },
+        {
+          "evo": "ImperialDramon",
+          "base": "Wormmon [Imperialdramon]"
+        },
+        {
+          "evo": "ImperialDramon Fighter Mode",
+          "base": "Wormmon [Imperialdramon]"
+        },
+        {
+          "evo": "ImperialDramon Paladin Mode",
+          "base": "Wormmon [Imperialdramon]"
+        },
+        {
+          "evo": "ImperialDramon Fighter Mode [Shin]",
+          "base": "Wormmon [Imperialdramon]"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "CT +30",
+        "b3": "AT +70",
+        "b4": "Skill Luz +1%"
       }
     }
   ],
@@ -1197,6 +1619,30 @@
     "SlashAngemon": [
       "Patamon [Shakkoumon]",
       "Armadimon [Shakkoumon]"
+    ],
+    "Paildramon": [
+      "Veemon [Imperialdramon]",
+      "Wormmon [Imperialdramon]"
+    ],
+    "ImperialDramon": [
+      "Veemon [Imperialdramon]",
+      "Wormmon [Imperialdramon]"
+    ],
+    "ImperialDramon Fighter Mode": [
+      "Veemon [Imperialdramon]",
+      "Wormmon [Imperialdramon]"
+    ],
+    "ImperialDramon Paladin Mode": [
+      "Veemon [Imperialdramon]",
+      "Wormmon [Imperialdramon]"
+    ],
+    "ImperialDramon Fighter Mode [Shin]": [
+      "Veemon [Imperialdramon]",
+      "Wormmon [Imperialdramon]"
+    ],
+    "ImperialDramon Paladin Mode [Shin]": [
+      "Veemon [Imperialdramon]",
+      "Wormmon [Imperialdramon]"
     ]
   }
 }
