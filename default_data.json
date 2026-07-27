@@ -197,7 +197,23 @@
     "Grademon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/grademon-icon.png",
     "Alphamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/alphamon-icon.png",
     "Alphamon Ouryuken": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/alphamon-ouryuken-icon.png",
-    "Alphamon Ouryuken [Shin]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/alphamon-ouryuken-icon.png"
+    "Alphamon Ouryuken [Shin]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/alphamon-ouryuken-icon.png",
+    "PicoDevimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/demidevimon-icon.png",
+    "Bakemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/bakemon-icon.png",
+    "Pumpkinmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/pumpkinmon-icon.png",
+    "Boltmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/boltmon-icon.png",
+    "PicoDevimon [Soulmon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/demidevimon-icon.png",
+    "Soulmon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrvrCZ70grz7PlTApxyMW0P8RwJ4I7DF6hOSE5E_DTGA&s=10",
+    "Phantomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/phantomon-icon.png",
+    "Piedmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/piedmon-icon.png",
+    "ChaosPiedmon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4NsovQO7_4PJzRkN2G9f72nu_ZHxBfQYDUQcds0TKyQ&s=10",
+    "Boltboutamon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_n-yJ7Zh-AKQbDQqp0CPpGARlPYjF9judXn1ubMAolQ&s=10",
+    "PicoDevimon [Myotismon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/demidevimon-icon.png",
+    "Devimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/devimon-icon.png",
+    "Myotismon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/myotismon-icon.png",
+    "VenomMyotismon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/venommyotismon-icon.png",
+    "MaloMyotismon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/malomyotismon-icon.png",
+    "PicoDevimon [Apocalymon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/demidevimon-icon.png"
   },
   "setsDB": [
     {
@@ -2202,6 +2218,218 @@
         "b2": "EV +100",
         "b3": "Skill Vacina +1%",
         "b4": "Skill Luz +1%"
+      }
+    },
+    {
+      "id": "set-1785194202670",
+      "name": "PicoDevimon",
+      "reqLvl2": 440,
+      "reqLvl4": 560,
+      "requirements": [
+        {
+          "evo": "PicoDevimon",
+          "base": "PicoDevimon"
+        },
+        {
+          "evo": "Bakemon",
+          "base": "PicoDevimon"
+        },
+        {
+          "evo": "Pumpkinmon",
+          "base": "PicoDevimon"
+        },
+        {
+          "evo": "Boltmon",
+          "base": "PicoDevimon"
+        }
+      ],
+      "buffs": {
+        "b1": "BL +20",
+        "b2": "BL +30",
+        "b3": "HT +30",
+        "b4": "Skill Aço +1%"
+      }
+    },
+    {
+      "id": "set-1785194346807",
+      "name": "PicoDevimon [Soulmon]",
+      "reqLvl2": 660,
+      "reqLvl4": 840,
+      "requirements": [
+        {
+          "evo": "PicoDevimon [Soulmon]",
+          "base": "PicoDevimon [Soulmon]"
+        },
+        {
+          "evo": "Soulmon",
+          "base": "PicoDevimon [Soulmon]"
+        },
+        {
+          "evo": "Phantomon",
+          "base": "PicoDevimon [Soulmon]"
+        },
+        {
+          "evo": "Piedmon",
+          "base": "PicoDevimon [Soulmon]"
+        },
+        {
+          "evo": "ChaosPiedmon",
+          "base": "PicoDevimon [Soulmon]"
+        },
+        {
+          "evo": "Apocalymon",
+          "base": "PicoDevimon [Soulmon]"
+        }
+      ],
+      "buffs": {
+        "b1": "HP +50",
+        "b2": "HP +100",
+        "b3": "HP +200",
+        "b4": "Skill Elétrico +1%"
+      }
+    },
+    {
+      "id": "set-1785194490351",
+      "name": "PicoDevimon [Soulmon]",
+      "reqLvl2": 770,
+      "reqLvl4": 980,
+      "requirements": [
+        {
+          "evo": "PicoDevimon [Soulmon]",
+          "base": "PicoDevimon [Soulmon]"
+        },
+        {
+          "evo": "Soulmon",
+          "base": "PicoDevimon [Soulmon]"
+        },
+        {
+          "evo": "Phantomon",
+          "base": "PicoDevimon [Soulmon]"
+        },
+        {
+          "evo": "Piedmon",
+          "base": "PicoDevimon [Soulmon]"
+        },
+        {
+          "evo": "ChaosPiedmon",
+          "base": "PicoDevimon [Soulmon]"
+        },
+        {
+          "evo": "Apocalymon",
+          "base": "PicoDevimon [Soulmon]"
+        },
+        {
+          "evo": "Boltboutamon",
+          "base": "PicoDevimon [Soulmon]"
+        }
+      ],
+      "buffs": {
+        "b1": "EV +30",
+        "b2": "BL +20",
+        "b3": "DE +100",
+        "b4": "Skill Vírus +1%"
+      }
+    },
+    {
+      "id": "set-1785194633244",
+      "name": "PicoDevimon [Myotismon]",
+      "reqLvl2": 550,
+      "reqLvl4": 700,
+      "requirements": [
+        {
+          "evo": "PicoDevimon [Myotismon]",
+          "base": "PicoDevimon [Myotismon]"
+        },
+        {
+          "evo": "Devimon",
+          "base": "PicoDevimon [Myotismon]"
+        },
+        {
+          "evo": "Myotismon",
+          "base": "PicoDevimon [Myotismon]"
+        },
+        {
+          "evo": "VenomMyotismon",
+          "base": "PicoDevimon [Myotismon]"
+        },
+        {
+          "evo": "MaloMyotismon",
+          "base": "PicoDevimon [Myotismon]"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "EV +70",
+        "b3": "CT +30",
+        "b4": "Skill Terra +1%"
+      }
+    },
+    {
+      "id": "set-1785194683802",
+      "name": "PicoDevimon [Myotismon]",
+      "reqLvl2": 660,
+      "reqLvl4": 840,
+      "requirements": [
+        {
+          "evo": "PicoDevimon [Myotismon]",
+          "base": "PicoDevimon [Myotismon]"
+        },
+        {
+          "evo": "Devimon",
+          "base": "PicoDevimon [Myotismon]"
+        },
+        {
+          "evo": "Myotismon",
+          "base": "PicoDevimon [Myotismon]"
+        },
+        {
+          "evo": "VenomMyotismon",
+          "base": "PicoDevimon [Myotismon]"
+        },
+        {
+          "evo": "MaloMyotismon",
+          "base": "PicoDevimon [Myotismon]"
+        },
+        {
+          "evo": "Boltboutamon",
+          "base": "PicoDevimon [Myotismon]"
+        }
+      ],
+      "buffs": {
+        "b1": "EV +30",
+        "b2": "BL +20",
+        "b3": "DE +100",
+        "b4": "Skill Vírus +1%"
+      }
+    },
+    {
+      "id": "set-1785194740587",
+      "name": "PicoDevimon [Apocalymon]",
+      "reqLvl2": 440,
+      "reqLvl4": 560,
+      "requirements": [
+        {
+          "evo": "PicoDevimon [Apocalymon]",
+          "base": "PicoDevimon [Apocalymon]"
+        },
+        {
+          "evo": "Soulmon",
+          "base": "PicoDevimon [Apocalymon]"
+        },
+        {
+          "evo": "Phantomon",
+          "base": "PicoDevimon [Apocalymon]"
+        },
+        {
+          "evo": "Piedmon",
+          "base": "PicoDevimon [Apocalymon]"
+        }
+      ],
+      "buffs": {
+        "b1": "EV +30",
+        "b2": "BL +50",
+        "b3": "AT +50",
+        "b4": "Skill Elétrico +1%"
       }
     }
   ],
