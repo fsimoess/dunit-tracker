@@ -68,7 +68,7 @@
       <button onclick="toggleSection('focus-content', 'focus-icon')" class="w-full p-4 text-left font-bold text-slate-200 flex justify-between items-center hover:bg-slate-700/50 transition">
         <span class="flex items-center gap-2">
           <i class="ph ph-target text-yellow-400 text-xl"></i> 
-          Próximos Digimons para Focar <span class="text-xs text-slate-400 font-normal">(Top 5 por presença em conjuntos)</span>
+          Próximos Digimons para Focar <span class="text-xs text-slate-400 font-normal">(Top 5 bases não obtidas por presença em conjuntos)</span>
         </span>
         <i id="focus-icon" class="ph ph-caret-down text-lg text-slate-400 transition-transform"></i>
       </button>
@@ -250,14 +250,23 @@
 
       <!-- Visualizador de Conjuntos -->
       <section class="lg:col-span-2 space-y-6">
-        <div class="flex justify-between items-center">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
             <i class="ph ph-squares-four text-cyan-400"></i> Conjuntos Cadastrados
           </h2>
-          <div class="flex gap-2 text-xs">
-            <button onclick="toggleAllSets(true)" class="text-slate-400 hover:text-cyan-400 underline">Expandir Todos</button>
-            <span class="text-slate-600">•</span>
-            <button onclick="toggleAllSets(false)" class="text-slate-400 hover:text-cyan-400 underline">Recolher Todos</button>
+          
+          <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+            <!-- Filtro por texto em Membros e Conjuntos -->
+            <div class="relative flex-1 sm:w-64">
+              <i class="ph ph-magnifying-glass absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+              <input type="text" id="set-search-input" oninput="render()" placeholder="Buscar conjunto ou membro..." class="w-full bg-slate-800 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:border-cyan-500 outline-none transition">
+            </div>
+
+            <div class="flex gap-2 text-xs">
+              <button onclick="toggleAllSets(true)" class="text-slate-400 hover:text-cyan-400 underline">Expandir Todos</button>
+              <span class="text-slate-600">•</span>
+              <button onclick="toggleAllSets(false)" class="text-slate-400 hover:text-cyan-400 underline">Recolher Todos</button>
+            </div>
           </div>
         </div>
 
@@ -569,10 +578,10 @@
       saveStorage();
     }
 
-    // CHECK BUFFS STATUS (COM CORREÇÃO NA TRANSCENDÊNCIA DE 6★)
+    // CHECK BUFFS STATUS (COM CORREÇÃO NA SOMA DE NÍVEL E TRANSCENDÊNCIA)
     function checkBuffsStatus(set) {
       let b1 = true;
-      let b3 = true; // Só será verdadeiro se TODAS as evoluções estiverem presentes E forem 6*
+      let b3 = true;
       
       const uniqueBasesMap = {};
       let evosUnlockedCount = 0;
@@ -591,11 +600,11 @@
         }
 
         // Validação de Transcendência (Nível 3)
-        // EXIGÊNCIA: O Digimon deve ter sido cadastrado, POSSUIR a evolução e ser 6*
         if (!digi || !digi.hasEvo || !digi.transcended) {
           b3 = false;
         }
 
+        // ALTERAÇÃO SOLICITADA: Adicionado digi.hasEvo na verificação de soma de nível
         if (digi && digi.hasEvo && digi.level) {
           totalLevelSum += digi.level;
         }
@@ -605,7 +614,6 @@
           if (!uniqueBasesMap[baseKey] || digi.level > uniqueBasesMap[baseKey].level) {
             uniqueBasesMap[baseKey] = {
               level: digi.level,
-              // Uma base só conta como válida no card se tiver todas as evoluções ou se for 6*
               transcended: digi.transcended && digi.hasEvo
             };
           }
@@ -644,20 +652,26 @@
       };
     }
 
+    // ALTERAÇÃO SOLICITADA: Próximos Digimons apenas para bases NÃO obtidas, levando em conta evoluções soltas
     function calculateFocusDigimons() {
       const counts = {};
+
       setsDB.forEach(set => {
         const status = checkBuffsStatus(set);
         if (!status.isFullCompleted) {
           const setBasesNeedingFocus = new Set();
+          
           set.requirements.forEach(req => {
             const base = req.base;
             const digi = getResolvedDigiData(req.evo, req.base);
             const isMaxed = digi && digi.transcended && digi.hasEvo;
-            if (!isMaxed && base) {
+
+            // Filtra se não estiver completo e se a BASE AINDA NÃO FOI CADASTRADA/OBTIDA na coleção
+            if (!isMaxed && base && !userProgress[base]) {
               setBasesNeedingFocus.add(base);
             }
           });
+
           setBasesNeedingFocus.forEach(base => {
             counts[base] = (counts[base] || 0) + 1;
           });
@@ -938,17 +952,16 @@
       const focusList = calculateFocusDigimons();
 
       if (focusList.length === 0) {
-        focusContainer.innerHTML = `<p class="col-span-full text-center text-slate-500 py-2 text-xs">Todos os conjuntos cadastrados já estão 100% concluídos!</p>`;
+        focusContainer.innerHTML = `<p class="col-span-full text-center text-slate-500 py-2 text-xs">Não há bases pendentes ou todos os conjuntos já foram totalmente concluídos!</p>`;
       } else {
         focusContainer.innerHTML = focusList.map((item, index) => {
-          const d = userProgress[item.base];
           return `
             <div class="bg-slate-800 p-3 rounded-lg border border-yellow-500/30 flex items-center gap-3 relative overflow-hidden">
               <span class="absolute top-0 right-0 bg-yellow-500/20 text-yellow-300 font-bold text-[10px] px-1.5 py-0.5 rounded-bl">#${index + 1}</span>
               <img src="${getDigiImg(item.base)}" class="w-10 h-10 object-cover rounded bg-slate-900">
               <div class="text-xs overflow-hidden">
                 <p class="font-bold text-slate-100 truncate">${item.base} <span class="text-yellow-400 font-semibold">(${item.count})</span></p>
-                <p class="text-slate-400 text-[11px]">${d ? `Lv. ${d.level} ${d.transcended ? '• 6★' : ''}` : '<span class="text-red-400">Não Obtido</span>'}</p>
+                <p class="text-red-400 text-[11px] font-semibold">Não Obtido</p>
               </div>
             </div>
           `;
@@ -972,14 +985,27 @@
         }).join('');
       }
 
-      // 5. Lista de Conjuntos
+      // 5. Lista de Conjuntos (COM FILTRO POR TEXTO / MEMBROS)
       const container = document.getElementById('sets-container');
       container.innerHTML = '';
 
-      if (setsDB.length === 0) {
-        container.innerHTML = `<div class="bg-slate-800 p-8 rounded-xl text-center text-slate-500">Nenhum conjunto cadastrado.</div>`;
+      const searchInput = (document.getElementById('set-search-input')?.value || '').trim().toLowerCase();
+
+      // Filtra os conjuntos com base no nome do conjunto ou membros (Evo ou Base)
+      const filteredSets = setsDB.filter(set => {
+        if (!searchInput) return true;
+        const nameMatch = set.name.toLowerCase().includes(searchInput);
+        const reqMatch = set.requirements.some(r => 
+          (r.evo && r.evo.toLowerCase().includes(searchInput)) || 
+          (r.base && r.base.toLowerCase().includes(searchInput))
+        );
+        return nameMatch || reqMatch;
+      });
+
+      if (filteredSets.length === 0) {
+        container.innerHTML = `<div class="bg-slate-800 p-8 rounded-xl text-center text-slate-500">Nenhum conjunto encontrado para a busca.</div>`;
       } else {
-        setsDB.forEach(set => {
+        filteredSets.forEach(set => {
           const status = checkBuffsStatus(set);
           const isCollapsed = !!collapsedSets[set.id];
 
