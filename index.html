@@ -21,6 +21,11 @@
 
       <!-- Actions -->
       <div class="flex flex-wrap items-center gap-2 text-sm">
+        <!-- Botão Secreto Mugiwaraya (Oculto por Padrão) -->
+        <button id="btn-secret-export-default" onclick="exportDefaultDataJSON()" class="hidden bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-3 py-1.5 rounded flex items-center gap-1.5 text-xs animate-bounce shadow-lg shadow-amber-500/20 mr-2">
+          <i class="ph ph-crown text-base"></i> Exportar default_data.json
+        </button>
+
         <button onclick="resetToDefaults()" class="bg-red-900/50 hover:bg-red-800 text-red-200 border border-red-700/50 px-3 py-1.5 rounded flex items-center gap-1 text-xs mr-2 transition">
           <i class="ph ph-arrows-counter-clockwise"></i> Resetar Padrão
         </button>
@@ -268,22 +273,24 @@
       return `https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/${cleanName}-icon.png`;
     }
 
+    // Variáveis vazias. NENHUM DADO MESTRE CARREGADO NO JS!
     let imagesDB = {};
     let setsDB = [];
     let userProgress = {};
-    let jogressDB = { "Omegamon": ["Agumon", "Gabumon"] };
+    let jogressDB = {};
     let editingImageName = null;
 
     async function initAppData() {
-      const storedImages = localStorage.getItem('dmo_dunit_images');
-      const storedSets = localStorage.getItem('dmo_dunit_sets');
+      // Tenta ler da Sessão ou LocalStorage
+      const storedImages = localStorage.getItem('dmo_dunit_images') || sessionStorage.getItem('dmo_dunit_images');
+      const storedSets = localStorage.getItem('dmo_dunit_sets') || sessionStorage.getItem('dmo_dunit_sets');
       const storedProgress = localStorage.getItem('dmo_dunit_progress');
-      const storedJogress = localStorage.getItem('dmo_dunit_jogress');
+      const storedJogress = localStorage.getItem('dmo_dunit_jogress') || sessionStorage.getItem('dmo_dunit_jogress');
 
-      if (storedImages && storedSets && storedProgress) {
+      if (storedImages && storedSets) {
         imagesDB = JSON.parse(storedImages);
         setsDB = JSON.parse(storedSets);
-        userProgress = JSON.parse(storedProgress);
+        if (storedProgress) userProgress = JSON.parse(storedProgress);
         if (storedJogress) jogressDB = JSON.parse(storedJogress);
         syncSetImagesToDB();
         render();
@@ -299,11 +306,12 @@
         const data = await response.json();
         imagesDB = data.imagesDB || {};
         setsDB = data.setsDB || [];
+        jogressDB = data.jogressDB || {};
         userProgress = {};
-        if (data.jogressDB) jogressDB = data.jogressDB;
         syncSetImagesToDB();
         saveStorage();
       } catch (err) {
+        console.warn("Aviso: default_data.json não encontrado localmente.");
         syncSetImagesToDB();
         saveStorage();
       }
@@ -312,6 +320,7 @@
     function resetToDefaults() {
       if (confirm('Deseja limpar seu progresso e recarregar os dados mestre?')) {
         localStorage.clear();
+        sessionStorage.clear();
         fetchDefaultJSON();
       }
     }
@@ -321,6 +330,11 @@
       localStorage.setItem('dmo_dunit_sets', JSON.stringify(setsDB));
       localStorage.setItem('dmo_dunit_progress', JSON.stringify(userProgress));
       localStorage.setItem('dmo_dunit_jogress', JSON.stringify(jogressDB));
+      
+      sessionStorage.setItem('dmo_dunit_images', JSON.stringify(imagesDB));
+      sessionStorage.setItem('dmo_dunit_sets', JSON.stringify(setsDB));
+      sessionStorage.setItem('dmo_dunit_jogress', JSON.stringify(jogressDB));
+
       render();
     }
 
@@ -335,6 +349,30 @@
           });
         });
       });
+    }
+
+    function checkSecretTrigger(name) {
+      if (name && name.trim().toLowerCase() === 'mugiwaraya') {
+        const btnSecret = document.getElementById('btn-secret-export-default');
+        if (btnSecret) btnSecret.classList.remove('hidden');
+      }
+    }
+
+    function exportDefaultDataJSON() {
+      // Clona e limpa completamente os dados do usuário!
+      const defaultDataClean = {
+        imagesDB: imagesDB || {},
+        setsDB: setsDB || [],
+        jogressDB: jogressDB || {}
+      };
+
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(defaultDataClean, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "default_data.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
     }
 
     function toggleSection(contentId, iconId) {
@@ -360,11 +398,10 @@
       } else {
         previewImg.classList.add('hidden');
       }
+      checkSecretTrigger(name);
     }
 
-    // --- LÓGICA DE RESOLUÇÃO DE DIGIMON (NORMAL VS JOGRESS) ---
     function getResolvedDigiData(reqEvo, reqBase) {
-      // Caso 1: Lado Específico da Jogress ou Digimon Normal
       if (reqBase && reqBase !== reqEvo) {
         const digi = userProgress[reqBase];
         if (!digi) return null;
@@ -372,11 +409,10 @@
         return { level: digi.level, transcended: digi.transcended, hasEvo };
       }
 
-      // Caso 2: Apontamento direto por Nome (Pode ser Jogress sem especificar base)
-      const jogressBases = Object.keys(jogressDB).find(k => k.toLowerCase() === reqEvo.toLowerCase());
+      const jogressKey = Object.keys(jogressDB).find(k => k.toLowerCase() === reqEvo.toLowerCase());
 
-      if (jogressBases && jogressDB[jogressBases].length > 0) {
-        const bases = jogressDB[jogressBases];
+      if (jogressKey && jogressDB[jogressKey].length > 0) {
+        const bases = jogressDB[jogressKey];
         let maxLvl = 0;
         let isTranscended = false;
         let anyEvoUnlocked = false;
@@ -394,14 +430,12 @@
         return { level: maxLvl, transcended: isTranscended, hasEvo: anyEvoUnlocked };
       }
 
-      // Se não for Jogress, busca direto no progresso
       const digi = userProgress[reqEvo];
       if (!digi) return null;
       const hasEvo = digi.unlockedEvos.some(e => e.toLowerCase() === reqEvo.toLowerCase());
       return { level: digi.level, transcended: digi.transcended, hasEvo };
     }
 
-    // --- CADASTRO JOGRESS ---
     function saveJogress(e) {
       e.preventDefault();
       const name = document.getElementById('jogress-name').value.trim();
@@ -410,7 +444,7 @@
 
       if (name && bases.length > 0) {
         jogressDB[name] = bases;
-        getDigiImg(name); // Auto-cadastra imagem do ícone da Jogress
+        getDigiImg(name);
         document.getElementById('form-jogress').reset();
         saveStorage();
       }
@@ -421,7 +455,6 @@
       saveStorage();
     }
 
-    // --- D-UNIT CALCULATIONS ---
     function checkBuffsStatus(set) {
       let b1 = true, b2 = true, b3 = true, b4 = true; 
 
@@ -484,7 +517,6 @@
       return totals;
     }
 
-    // --- FORMULÁRIOS E AÇÕES ---
     function saveImageEntry(e) {
       e.preventDefault();
       const name = document.getElementById('img-digi-name').value.trim();
@@ -531,6 +563,7 @@
       [base, ...unlockedEvos].forEach(digiName => getDigiImg(digiName));
 
       userProgress[base] = { level, transcended, unlockedEvos };
+      checkSecretTrigger(base);
       cancelDigiEdit();
       saveStorage();
     }
@@ -547,6 +580,7 @@
       document.getElementById('digi-form-title').innerHTML = `<i class="ph ph-note-pencil text-yellow-400"></i> Editando: ${base}`;
       document.getElementById('btn-cancel-digi-edit').classList.remove('hidden');
       updateDigiPreview();
+      checkSecretTrigger(base);
       document.getElementById('form-digimon-user').scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -639,7 +673,6 @@
       saveStorage();
     }
 
-    // --- RENDERIZAÇÃO DA INTERFACE ---
     function render() {
       // 1. Coleção
       const collectionContainer = document.getElementById('collection-content');
@@ -846,7 +879,6 @@
       }
     }
 
-    // --- IMPORT / EXPORT ---
     function exportData(type) {
       const data = type === 'sets' ? setsDB : { userProgress, imagesDB, jogressDB };
       const filename = type === 'sets' ? 'dunit_conjuntos.json' : 'dunit_progresso.json';
