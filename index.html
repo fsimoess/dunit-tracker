@@ -21,7 +21,6 @@
 
       <!-- Actions -->
       <div class="flex flex-wrap items-center gap-2 text-sm">
-        <!-- Botão Secreto Mugiwaraya (Oculto por Padrão) -->
         <button id="btn-secret-export-default" onclick="exportDefaultDataJSON()" class="hidden bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-3 py-1.5 rounded flex items-center gap-1.5 text-xs animate-bounce shadow-lg shadow-amber-500/20 mr-2">
           <i class="ph ph-crown text-base"></i> Exportar default_data.json
         </button>
@@ -183,12 +182,12 @@
 
             <div class="grid grid-cols-2 gap-2">
               <div>
-                <label class="block text-[11px] uppercase text-slate-400 mb-1">Meta Lv. Objetivo 2</label>
-                <input type="number" id="target-lvl-2" value="110" min="1" max="170" required class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
+                <label class="block text-[11px] uppercase text-slate-400 mb-1">Soma Lv. Alvo (Nv 2)</label>
+                <input type="number" id="target-lvl-2" value="600" min="1" max="5000" required class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
               </div>
               <div>
-                <label class="block text-[11px] uppercase text-slate-400 mb-1">Meta Lv. Objetivo 4</label>
-                <input type="number" id="target-lvl-4" value="140" min="1" max="170" required class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
+                <label class="block text-[11px] uppercase text-slate-400 mb-1">Soma Lv. Alvo (Nv 4)</label>
+                <input type="number" id="target-lvl-4" value="800" min="1" max="5000" required class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
               </div>
             </div>
 
@@ -196,10 +195,10 @@
             <p class="text-xs font-bold uppercase text-slate-400">Atributos / Buffs do Conjunto</p>
 
             <div class="space-y-2">
-              <input type="text" id="buff-1" placeholder="Buff Nível 1" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
-              <input type="text" id="buff-2" placeholder="Buff Nível 2" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
-              <input type="text" id="buff-3" placeholder="Buff Nível 3" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
-              <input type="text" id="buff-4" placeholder="Buff Nível 4" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
+              <input type="text" id="buff-1" placeholder="Buff Nível 1 (Evoluções)" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
+              <input type="text" id="buff-2" placeholder="Buff Nível 2 (Soma Nível)" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
+              <input type="text" id="buff-3" placeholder="Buff Nível 3 (Transcendências)" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
+              <input type="text" id="buff-4" placeholder="Buff Nível 4 (Soma Nível)" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
             </div>
 
             <div class="flex gap-2">
@@ -217,9 +216,16 @@
 
       <!-- Visualizador de Conjuntos -->
       <section class="lg:col-span-2 space-y-6">
-        <h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
-          <i class="ph ph-squares-four text-cyan-400"></i> Conjuntos Cadastrados
-        </h2>
+        <div class="flex justify-between items-center">
+          <h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
+            <i class="ph ph-squares-four text-cyan-400"></i> Conjuntos Cadastrados
+          </h2>
+          <div class="flex gap-2 text-xs">
+            <button onclick="toggleAllSets(true)" class="text-slate-400 hover:text-cyan-400 underline">Expandir Todos</button>
+            <span class="text-slate-600">•</span>
+            <button onclick="toggleAllSets(false)" class="text-slate-400 hover:text-cyan-400 underline">Recolher Todos</button>
+          </div>
+        </div>
 
         <div id="sets-container" class="space-y-4"></div>
       </section>
@@ -273,15 +279,14 @@
       return `https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/${cleanName}-icon.png`;
     }
 
-    // Variáveis vazias. NENHUM DADO MESTRE CARREGADO NO JS!
     let imagesDB = {};
     let setsDB = [];
     let userProgress = {};
     let jogressDB = {};
+    let collapsedSets = {}; // Armazena estado recolhido/expandido dos conjuntos
     let editingImageName = null;
 
     async function initAppData() {
-      // Tenta ler da Sessão ou LocalStorage
       const storedImages = localStorage.getItem('dmo_dunit_images') || sessionStorage.getItem('dmo_dunit_images');
       const storedSets = localStorage.getItem('dmo_dunit_sets') || sessionStorage.getItem('dmo_dunit_sets');
       const storedProgress = localStorage.getItem('dmo_dunit_progress');
@@ -359,7 +364,6 @@
     }
 
     function exportDefaultDataJSON() {
-      // Clona e limpa completamente os dados do usuário!
       const defaultDataClean = {
         imagesDB: imagesDB || {},
         setsDB: setsDB || [],
@@ -378,6 +382,16 @@
     function toggleSection(contentId, iconId) {
       document.getElementById(contentId).classList.toggle('hidden');
       document.getElementById(iconId).classList.toggle('rotate-180');
+    }
+
+    function toggleSetCollapse(setId) {
+      collapsedSets[setId] = !collapsedSets[setId];
+      render();
+    }
+
+    function toggleAllSets(expand) {
+      setsDB.forEach(s => collapsedSets[s.id] = !expand);
+      render();
     }
 
     function getDigiImg(name) {
@@ -406,7 +420,7 @@
         const digi = userProgress[reqBase];
         if (!digi) return null;
         const hasEvo = digi.unlockedEvos.some(e => e.toLowerCase() === reqEvo.toLowerCase());
-        return { level: digi.level, transcended: digi.transcended, hasEvo };
+        return { level: digi.level, transcended: digi.transcended, hasEvo, base: reqBase };
       }
 
       const jogressKey = Object.keys(jogressDB).find(k => k.toLowerCase() === reqEvo.toLowerCase());
@@ -427,13 +441,13 @@
         });
 
         if (maxLvl === 0 && !anyEvoUnlocked) return null;
-        return { level: maxLvl, transcended: isTranscended, hasEvo: anyEvoUnlocked };
+        return { level: maxLvl, transcended: isTranscended, hasEvo: anyEvoUnlocked, base: bases[0] };
       }
 
       const digi = userProgress[reqEvo];
       if (!digi) return null;
       const hasEvo = digi.unlockedEvos.some(e => e.toLowerCase() === reqEvo.toLowerCase());
-      return { level: digi.level, transcended: digi.transcended, hasEvo };
+      return { level: digi.level, transcended: digi.transcended, hasEvo, base: reqEvo };
     }
 
     function saveJogress(e) {
@@ -455,31 +469,92 @@
       saveStorage();
     }
 
+    // AVALIAÇÃO DE STATUS DO CONJUNTO (Soma de níveis + Verificações)
     function checkBuffsStatus(set) {
-      let b1 = true, b2 = true, b3 = true, b4 = true; 
+      let b1 = true; // Evoluções
+      let b3 = true; // Transcendências
+      
+      const uniqueBasesMap = {}; // Armazena maior nível e transcendência por base única
+      let evosUnlockedCount = 0;
+      let missingEvos = [];
 
       for (let req of set.requirements) {
         const digi = getResolvedDigiData(req.evo, req.base);
-        if (!digi) return { b1: false, b2: false, b3: false, b4: false };
+        if (!digi || !digi.hasEvo) {
+          b1 = false;
+          missingEvos.push(req.evo);
+        } else {
+          evosUnlockedCount++;
+        }
 
-        if (!digi.hasEvo) b1 = false;
-        if (digi.level < (set.reqLvl2 || 110)) b2 = false;
-        if (!digi.transcended) b3 = false;
-        if (digi.level < (set.reqLvl4 || 140)) b4 = false;
+        if (!digi || !digi.transcended) {
+          b3 = false;
+        }
+
+        const baseKey = req.base || req.evo;
+        if (digi) {
+          if (!uniqueBasesMap[baseKey] || digi.level > uniqueBasesMap[baseKey].level) {
+            uniqueBasesMap[baseKey] = {
+              level: digi.level,
+              transcended: digi.transcended
+            };
+          }
+        } else {
+          if (!uniqueBasesMap[baseKey]) {
+            uniqueBasesMap[baseKey] = { level: 0, transcended: false };
+          }
+        }
       }
 
-      return { b1, b2, b3, b4 };
+      // Soma dos níveis das bases únicas
+      let totalLevelSum = 0;
+      let totalTranscendCount = 0;
+      const baseKeys = Object.keys(uniqueBasesMap);
+
+      baseKeys.forEach(k => {
+        totalLevelSum += uniqueBasesMap[k].level;
+        if (uniqueBasesMap[k].transcended) totalTranscendCount++;
+      });
+
+      const reqLvl2 = set.reqLvl2 || 600;
+      const reqLvl4 = set.reqLvl4 || 800;
+
+      const b2 = totalLevelSum >= reqLvl2;
+      const b4 = totalLevelSum >= reqLvl4;
+
+      const totalReqsCount = set.requirements.length;
+      const isFullCompleted = b1 && b2 && b3 && b4;
+
+      return {
+        b1, b2, b3, b4,
+        totalLevelSum,
+        totalTranscendCount,
+        uniqueBasesCount: baseKeys.length,
+        evosUnlockedCount,
+        totalReqsCount,
+        missingEvos,
+        isFullCompleted
+      };
     }
 
     function calculateFocusDigimons() {
       const counts = {};
       setsDB.forEach(set => {
-        set.requirements.forEach(req => {
-          const base = req.base;
-          const digi = getResolvedDigiData(req.evo, req.base);
-          const isMaxed = digi && digi.level >= 140 && digi.transcended;
-          if (!isMaxed) counts[base] = (counts[base] || 0) + 1;
-        });
+        const status = checkBuffsStatus(set);
+        if (!status.isFullCompleted) {
+          const setBasesNeedingFocus = new Set();
+          set.requirements.forEach(req => {
+            const base = req.base;
+            const digi = getResolvedDigiData(req.evo, req.base);
+            const isMaxed = digi && digi.transcended && digi.hasEvo;
+            if (!isMaxed && base) {
+              setBasesNeedingFocus.add(base);
+            }
+          });
+          setBasesNeedingFocus.forEach(base => {
+            counts[base] = (counts[base] || 0) + 1;
+          });
+        }
       });
 
       return Object.keys(counts)
@@ -610,8 +685,8 @@
       const editingId = document.getElementById('editing-set-id').value;
       const name = document.getElementById('set-name').value.trim();
       const digimonsStr = document.getElementById('set-digimons').value;
-      const reqLvl2 = parseInt(document.getElementById('target-lvl-2').value) || 110;
-      const reqLvl4 = parseInt(document.getElementById('target-lvl-4').value) || 140;
+      const reqLvl2 = parseInt(document.getElementById('target-lvl-2').value) || 600;
+      const reqLvl4 = parseInt(document.getElementById('target-lvl-4').value) || 800;
       
       const requirements = parseRequirementString(digimonsStr);
 
@@ -643,8 +718,8 @@
 
       document.getElementById('editing-set-id').value = set.id;
       document.getElementById('set-name').value = set.name;
-      document.getElementById('target-lvl-2').value = set.reqLvl2 || 110;
-      document.getElementById('target-lvl-4').value = set.reqLvl4 || 140;
+      document.getElementById('target-lvl-2').value = set.reqLvl2 || 600;
+      document.getElementById('target-lvl-4').value = set.reqLvl4 || 800;
 
       const reqString = set.requirements.map(r => r.evo === r.base ? r.base : `${r.evo} (${r.base})`).join(', ');
       document.getElementById('set-digimons').value = reqString;
@@ -733,7 +808,7 @@
       const focusList = calculateFocusDigimons();
 
       if (focusList.length === 0) {
-        focusContainer.innerHTML = `<p class="col-span-full text-center text-slate-500 py-2 text-xs">Todos os Digimons dos conjuntos já estão no nível máximo!</p>`;
+        focusContainer.innerHTML = `<p class="col-span-full text-center text-slate-500 py-2 text-xs">Todos os conjuntos cadastrados já estão 100% concluídos!</p>`;
       } else {
         focusContainer.innerHTML = focusList.map((item, index) => {
           const d = userProgress[item.base];
@@ -767,7 +842,7 @@
         }).join('');
       }
 
-      // 5. Lista de Conjuntos
+      // 5. Lista de Conjuntos (com Accordion & Cores Especiais)
       const container = document.getElementById('sets-container');
       container.innerHTML = '';
 
@@ -776,15 +851,26 @@
       } else {
         setsDB.forEach(set => {
           const status = checkBuffsStatus(set);
+          const isCollapsed = !!collapsedSets[set.id];
+
+          // Define Estilos do Card se Concluído
+          let cardBgClass = "bg-slate-800 border-slate-700";
+          let titleColorClass = "text-slate-100";
+          let badgeHTML = "";
+
+          if (status.isFullCompleted) {
+            cardBgClass = "bg-gradient-to-r from-emerald-950/40 via-slate-800 to-amber-950/30 border-amber-500/80 shadow-lg shadow-amber-500/10";
+            titleColorClass = "text-amber-300 font-extrabold";
+            badgeHTML = `<span class="bg-amber-500/20 text-amber-300 border border-amber-500/50 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1"><i class="ph ph-trophy"></i> 100% CONCLUÍDO</span>`;
+          }
 
           let digimonsHTML = set.requirements.map(req => {
             const data = getResolvedDigiData(req.evo, req.base);
             const imgUrl = getDigiImg(req.evo);
-            const isCompleted = data && data.hasEvo && data.level >= (set.reqLvl4 || 140) && data.transcended;
 
             return `
               <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-3 border ${data ? 'border-slate-700' : 'border-red-900/40 opacity-60'}">
-                <img src="${imgUrl}" class="w-11 h-11 object-cover rounded bg-slate-800 transition-all duration-300 ${isCompleted ? '' : 'grayscale opacity-40'}">
+                <img src="${imgUrl}" class="w-11 h-11 object-cover rounded bg-slate-800 transition-all duration-300 ${data && data.hasEvo ? '' : 'grayscale opacity-40'}">
                 <div class="text-xs overflow-hidden">
                   <p class="font-bold text-slate-200 text-sm truncate">${req.evo}</p>
                   <p class="text-slate-500 text-[11px] truncate">Base: ${req.base}</p>
@@ -800,55 +886,105 @@
             `;
           }).join('');
 
+          const missingText = status.missingEvos.length > 0 
+            ? `<span class="text-red-400 font-semibold">Faltam: ${status.missingEvos.join(', ')}</span>`
+            : `<span class="text-emerald-400 font-semibold">Todas as Evos OK</span>`;
+
           const card = document.createElement('div');
-          card.className = "bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-4";
+          card.className = `${cardBgClass} rounded-xl border p-4 transition-all duration-200 space-y-3`;
           card.innerHTML = `
-            <div class="flex justify-between items-center">
-              <h3 class="text-lg font-bold text-slate-100">${set.name}</h3>
-              <div class="flex items-center gap-2">
-                <button onclick="editSet('${set.id}')" class="text-slate-400 hover:text-yellow-400 text-sm p-1"><i class="ph ph-pencil-simple"></i></button>
-                <button onclick="deleteSet('${set.id}')" class="text-slate-400 hover:text-red-400 text-sm p-1"><i class="ph ph-trash"></i></button>
+            <!-- Cabeçalho / Resumo do Conjunto -->
+            <div class="flex flex-wrap justify-between items-center gap-2">
+              <div class="flex items-center gap-3 cursor-pointer select-none" onclick="toggleSetCollapse('${set.id}')">
+                <i class="ph ph-caret-down text-lg text-slate-400 transition-transform ${isCollapsed ? '-rotate-90' : ''}"></i>
+                <h3 class="text-base sm:text-lg font-bold ${titleColorClass}">${set.name}</h3>
+                ${badgeHTML}
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1.5">
+                  <button onclick="editSet('${set.id}')" class="text-slate-400 hover:text-yellow-400 text-sm p-1" title="Editar Conjunto"><i class="ph ph-pencil-simple"></i></button>
+                  <button onclick="deleteSet('${set.id}')" class="text-slate-400 hover:text-red-400 text-sm p-1" title="Excluir Conjunto"><i class="ph ph-trash"></i></button>
+                </div>
               </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">${digimonsHTML}</div>
+            <!-- Resumo Rápido (Visível sempre ou quando recolhido) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-slate-900/60 p-2.5 rounded-lg border border-slate-700/50">
+              <div>
+                <span class="text-[10px] uppercase font-bold text-slate-500 block">Evoluções</span>
+                <span class="font-semibold text-slate-200">${status.evosUnlockedCount}/${status.totalReqsCount}</span>
+                <p class="text-[10px] truncate">${missingText}</p>
+              </div>
 
-            <div class="border-t border-slate-700/60 pt-3">
-              <p class="text-xs text-slate-400 mb-2 font-semibold">Status do Conjunto:</p>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                
-                <div class="p-2.5 rounded flex justify-between items-center ${status.b1 ? 'bg-emerald-950/60 border border-emerald-500/40 text-emerald-200' : 'bg-slate-900 text-slate-500'}">
-                  <div>
-                    <span class="font-bold text-[10px] uppercase block ${status.b1 ? 'text-emerald-400' : 'text-slate-600'}">Nível 1 (Evoluções)</span>
-                    <span>${set.buffs.b1}</span>
-                  </div>
-                  <i class="ph ${status.b1 ? 'ph-check-circle text-emerald-400 text-lg' : 'ph-x-circle text-slate-600 text-lg'}"></i>
+              <div>
+                <span class="text-[10px] uppercase font-bold text-slate-500 block">Soma de Níveis</span>
+                <span class="font-semibold ${status.b4 ? 'text-emerald-400' : (status.b2 ? 'text-yellow-400' : 'text-cyan-400')}">
+                  ${status.totalLevelSum} / ${set.reqLvl4 || 800}
+                </span>
+                <p class="text-[10px] text-slate-400">Meta Nv2: ${set.reqLvl2 || 600}</p>
+              </div>
+
+              <div>
+                <span class="text-[10px] uppercase font-bold text-slate-500 block">Transcendência 6★</span>
+                <span class="font-semibold ${status.b3 ? 'text-purple-300' : 'text-slate-300'}">
+                  ${status.totalTranscendCount}/${status.uniqueBasesCount} Bases
+                </span>
+                <p class="text-[10px] text-slate-400">${status.b3 ? 'Todas 6★ OK' : 'Pendentes'}</p>
+              </div>
+
+              <div>
+                <span class="text-[10px] uppercase font-bold text-slate-500 block">Buffs Ativos</span>
+                <div class="flex gap-1 mt-0.5">
+                  <span class="w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-bold ${status.b1 ? 'bg-emerald-500 text-slate-950' : 'bg-slate-700 text-slate-500'}">1</span>
+                  <span class="w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-bold ${status.b2 ? 'bg-emerald-500 text-slate-950' : 'bg-slate-700 text-slate-500'}">2</span>
+                  <span class="w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-bold ${status.b3 ? 'bg-emerald-500 text-slate-950' : 'bg-slate-700 text-slate-500'}">3</span>
+                  <span class="w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-bold ${status.b4 ? 'bg-emerald-500 text-slate-950' : 'bg-slate-700 text-slate-500'}">4</span>
                 </div>
+              </div>
+            </div>
 
-                <div class="p-2.5 rounded flex justify-between items-center ${status.b2 ? 'bg-emerald-950/60 border border-emerald-500/40 text-emerald-200' : 'bg-slate-900 text-slate-500'}">
-                  <div>
-                    <span class="font-bold text-[10px] uppercase block ${status.b2 ? 'text-emerald-400' : 'text-slate-600'}">Nível 2 (Lv. ${set.reqLvl2 || 110}+)</span>
-                    <span>${set.buffs.b2}</span>
+            <!-- Conteúdo Detalhado (Apenas quando expandido) -->
+            <div class="${isCollapsed ? 'hidden' : 'space-y-4 pt-2'}">
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">${digimonsHTML}</div>
+
+              <div class="border-t border-slate-700/60 pt-3">
+                <p class="text-xs text-slate-400 mb-2 font-semibold">Status Detalhado dos Níveis de Buff:</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  
+                  <div class="p-2.5 rounded flex justify-between items-center ${status.b1 ? 'bg-emerald-950/60 border border-emerald-500/40 text-emerald-200' : 'bg-slate-900 text-slate-500'}">
+                    <div>
+                      <span class="font-bold text-[10px] uppercase block ${status.b1 ? 'text-emerald-400' : 'text-slate-600'}">Nível 1 (Evoluções)</span>
+                      <span>${set.buffs.b1}</span>
+                    </div>
+                    <i class="ph ${status.b1 ? 'ph-check-circle text-emerald-400 text-lg' : 'ph-x-circle text-slate-600 text-lg'}"></i>
                   </div>
-                  <i class="ph ${status.b2 ? 'ph-check-circle text-emerald-400 text-lg' : 'ph-x-circle text-slate-600 text-lg'}"></i>
-                </div>
 
-                <div class="p-2.5 rounded flex justify-between items-center ${status.b3 ? 'bg-emerald-950/60 border border-emerald-500/40 text-emerald-200' : 'bg-slate-900 text-slate-500'}">
-                  <div>
-                    <span class="font-bold text-[10px] uppercase block ${status.b3 ? 'text-emerald-400' : 'text-slate-600'}">Nível 3 (Transcend 6★)</span>
-                    <span>${set.buffs.b3}</span>
+                  <div class="p-2.5 rounded flex justify-between items-center ${status.b2 ? 'bg-emerald-950/60 border border-emerald-500/40 text-emerald-200' : 'bg-slate-900 text-slate-500'}">
+                    <div>
+                      <span class="font-bold text-[10px] uppercase block ${status.b2 ? 'text-emerald-400' : 'text-slate-600'}">Nível 2 (Soma Nível ${set.reqLvl2 || 600}+)</span>
+                      <span>${set.buffs.b2}</span>
+                    </div>
+                    <i class="ph ${status.b2 ? 'ph-check-circle text-emerald-400 text-lg' : 'ph-x-circle text-slate-600 text-lg'}"></i>
                   </div>
-                  <i class="ph ${status.b3 ? 'ph-check-circle text-emerald-400 text-lg' : 'ph-x-circle text-slate-600 text-lg'}"></i>
-                </div>
 
-                <div class="p-2.5 rounded flex justify-between items-center ${status.b4 ? 'bg-emerald-950/60 border border-emerald-500/40 text-emerald-200' : 'bg-slate-900 text-slate-500'}">
-                  <div>
-                    <span class="font-bold text-[10px] uppercase block ${status.b4 ? 'text-emerald-400' : 'text-slate-600'}">Nível 4 (Lv. ${set.reqLvl4 || 140}+)</span>
-                    <span>${set.buffs.b4}</span>
+                  <div class="p-2.5 rounded flex justify-between items-center ${status.b3 ? 'bg-emerald-950/60 border border-emerald-500/40 text-emerald-200' : 'bg-slate-900 text-slate-500'}">
+                    <div>
+                      <span class="font-bold text-[10px] uppercase block ${status.b3 ? 'text-emerald-400' : 'text-slate-600'}">Nível 3 (Transcend 6★)</span>
+                      <span>${set.buffs.b3}</span>
+                    </div>
+                    <i class="ph ${status.b3 ? 'ph-check-circle text-emerald-400 text-lg' : 'ph-x-circle text-slate-600 text-lg'}"></i>
                   </div>
-                  <i class="ph ${status.b4 ? 'ph-check-circle text-emerald-400 text-lg' : 'ph-x-circle text-slate-600 text-lg'}"></i>
-                </div>
 
+                  <div class="p-2.5 rounded flex justify-between items-center ${status.b4 ? 'bg-emerald-950/60 border border-emerald-500/40 text-emerald-200' : 'bg-slate-900 text-slate-500'}">
+                    <div>
+                      <span class="font-bold text-[10px] uppercase block ${status.b4 ? 'text-emerald-400' : 'text-slate-600'}">Nível 4 (Soma Nível ${set.reqLvl4 || 800}+)</span>
+                      <span>${set.buffs.b4}</span>
+                    </div>
+                    <i class="ph ${status.b4 ? 'ph-check-circle text-emerald-400 text-lg' : 'ph-x-circle text-slate-600 text-lg'}"></i>
+                  </div>
+
+                </div>
               </div>
             </div>
           `;
