@@ -19,7 +19,23 @@
     "Omegamon ZwartD": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-zwart-defeat-icon.png",
     "Agumon Black [BlitzGreymon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/agumon-black-icon.png",
     "BlitzGreymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/blitzgreymon-icon.png",
-    "Omegamon Alter-S": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-alter-s-icon.png"
+    "Omegamon Alter-S": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-alter-s-icon.png",
+    "Omegamon Alter-B": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-alter-b-icon.png",
+    "Agumon (Black) [Millenniumon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/agumon-black-icon.png",
+    "DarkTyrannomon": "https://i.redd.it/darktyrannomon-preference-three-vs-two-fingers-v0-dcfeho1s6lt81.png?width=595&format=png&auto=webp&s=6d60623fa274925ee9e23cb72b5946edde5f98ac",
+    "MetalTyranomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/metaltyrannomon-icon.png",
+    "MugenDramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/machinedramon-icon.png",
+    "Millenniumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/millenniummon-icon.png",
+    "MoonMillenniunmon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrAdnVjjCxeBhktigXrqAK_pFKom7Z1EtiIY9LRNEIzQ&s=10",
+    "ZeedMillenniunmon": "https://static.wikia.nocookie.net/antagonists/images/c/c1/Zeedmilleniumon.png/revision/latest/scale-to-width-down/310?cb=20190626165901",
+    "ToyAgumon SS+": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/toyagumon-icon.png",
+    "ToyAgumon 1": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/toyagumon-icon.png",
+    "ToyAgumon 2": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/toyagumon-icon.png",
+    "ToyAgumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/toyagumon-icon.png",
+    "WereGarurumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/weregarurumon-icon.png",
+    "MetalGarurumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/metalgarurumon-icon.png",
+    "Gabumon Laço da Amizade": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gabumon-bond-of-friendship-icon.png",
+    "ZdGarurumon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_4bwS9_k5Q42EXxxYoY70PiTKaEakkivSTicwbUoJSA&s=10"
   },
   "setsDB": [
     {
@@ -215,12 +231,202 @@
         "b3": "HP +100",
         "b4": "Skill Vírus +1%"
       }
+    },
+    {
+      "id": "set-1785182658321",
+      "name": "Agumon (Black) [BlitzGreymon]",
+      "reqLvl2": 600,
+      "reqLvl4": 750,
+      "requirements": [
+        {
+          "evo": "Agumon Black [BlitzGreymon]",
+          "base": "Agumon Black [BlitzGreymon]"
+        },
+        {
+          "evo": "Greymon Black",
+          "base": "Agumon Black [BlitzGreymon]"
+        },
+        {
+          "evo": "MetalGreymon Black",
+          "base": "Agumon Black [BlitzGreymon]"
+        },
+        {
+          "evo": "BlitzGreymon",
+          "base": "Agumon Black [BlitzGreymon]"
+        },
+        {
+          "evo": "Omegamon Alter-B",
+          "base": "Agumon Black [BlitzGreymon]"
+        }
+      ],
+      "buffs": {
+        "b1": "CT +0.2%",
+        "b2": "AT +20",
+        "b3": "EXP +30%",
+        "b4": "Skill Vírus +1%"
+      }
+    },
+    {
+      "id": "set-1785182793803",
+      "name": "Agumon (Black) [Millenniumon]",
+      "reqLvl2": 840,
+      "reqLvl4": 1050,
+      "requirements": [
+        {
+          "evo": "Agumon (Black) [Millenniumon]",
+          "base": "Agumon (Black) [Millenniumon]"
+        },
+        {
+          "evo": "DarkTyrannomon",
+          "base": "Agumon (Black) [Millenniumon]"
+        },
+        {
+          "evo": "MetalTyranomon",
+          "base": "Agumon (Black) [Millenniumon]"
+        },
+        {
+          "evo": "MugenDramon",
+          "base": "Agumon (Black) [Millenniumon]"
+        },
+        {
+          "evo": "Millenniumon",
+          "base": "Agumon (Black) [Millenniumon]"
+        },
+        {
+          "evo": "MoonMillenniunmon",
+          "base": "Agumon (Black) [Millenniumon]"
+        },
+        {
+          "evo": "ZeedMillenniunmon",
+          "base": "Agumon (Black) [Millenniumon]"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "DE +50",
+        "b3": "AT +70",
+        "b4": "Skill Fogo +1%"
+      }
+    },
+    {
+      "id": "set-1785183386044",
+      "name": "ToyAgumon",
+      "reqLvl2": 330,
+      "reqLvl4": 420,
+      "requirements": [
+        {
+          "evo": "ToyAgumon SS+",
+          "base": "ToyAgumon SS+"
+        },
+        {
+          "evo": "ToyAgumon 1",
+          "base": "ToyAgumon SS+"
+        },
+        {
+          "evo": "ToyAgumon 2",
+          "base": "ToyAgumon SS+"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "DE +50",
+        "b3": "CT +0.2%",
+        "b4": "Skill Fogo +1%"
+      }
+    },
+    {
+      "id": "set-1785183448225",
+      "name": "ToyAgumon",
+      "reqLvl2": 220,
+      "reqLvl4": 280,
+      "requirements": [
+        {
+          "evo": "ToyAgumon",
+          "base": "ToyAgumon"
+        },
+        {
+          "evo": "ToyAgumon",
+          "base": "ToyAgumon"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "DE +50",
+        "b3": "CT +0.2%",
+        "b4": "Skill Fogo +1%"
+      }
+    },
+    {
+      "id": "set-1785183704293",
+      "name": "Gabumon",
+      "reqLvl2": 840,
+      "reqLvl4": 1050,
+      "requirements": [
+        {
+          "evo": "Gabumon",
+          "base": "Gabumon"
+        },
+        {
+          "evo": "Garurumon",
+          "base": "Gabumon"
+        },
+        {
+          "evo": "WereGarurumon",
+          "base": "Gabumon"
+        },
+        {
+          "evo": "MetalGarurumon",
+          "base": "Gabumon"
+        },
+        {
+          "evo": "ZdGarurumon",
+          "base": "Gabumon"
+        },
+        {
+          "evo": "Omegamon",
+          "base": "Gabumon"
+        },
+        {
+          "evo": "Gabumon Laço da Amizade",
+          "base": "Gabumon"
+        }
+      ],
+      "buffs": {
+        "b1": "AT +50",
+        "b2": "DE +150",
+        "b3": "AT +70",
+        "b4": "Skill Luz +1%"
+      }
     }
   ],
   "jogressDB": {
     "Omegamon": [
       "Agumon",
       "Gabumon"
+    ],
+    "Omegamon ZwartD": [
+      "Agumon Black",
+      "Gabumon Black"
+    ],
+    "Omegamon Zwart": [
+      "Agumon Black",
+      "Gabumon Black"
+    ],
+    "Omegamon Alter-S": [
+      "Agumon Black [BlitzGreymon]",
+      "Gabumon [CresGarurumon]"
+    ],
+    "Millenniumon": [
+      "Agumon Black [Millenniumon]",
+      "Gazimon [Millenniunmon]"
+    ],
+    "MoonMillenniunmon": [
+      "Agumon Black [Millenniumon]",
+      "Gazimon [Millenniunmon]"
+    ],
+    "ZeedMillenniunmon": [
+      "Agumon Black [Millenniumon]",
+      "Gazimon [Millenniunmon]"
     ]
   }
 }
