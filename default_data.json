@@ -135,7 +135,69 @@
     "Stingmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/stingmon-icon.png",
     "JewelBeemon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/jewelbeemon-icon.png",
     "GrandisKuwagamon": "https://static.wikia.nocookie.net/digimonat/images/d/d6/GrandisKuwagamon_b.jpg/revision/latest?cb=20190724231715&path-prefix=pt",
-    "Wormmon [Imperialdramon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/wormmon-icon.png"
+    "Wormmon [Imperialdramon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/wormmon-icon.png",
+    "Hawkmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/hawkmon-icon.png",
+    "Aquilamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/aquilamon-icon.png",
+    "Valdurmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/varodurumon-icon.png",
+    "Holsmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/halsemon-icon.png",
+    "Toucanmon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmWuzQlfGk6uSwfsNjgc7tuz0KGbac2PCaqSVVpKlAiw&s=10",
+    "Flybeemon": "https://static.wikia.nocookie.net/digimonat/images/e/e3/Flybeemon_b.jpg/revision/latest?cb=20140509185200&path-prefix=pt",
+    "Silphimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/silphymon-icon.png",
+    "Allomon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmv-VMxs1Tw9ImTPMN9n2r0y116VC-AZiHluUd5R_UrA&s=10",
+    "Shurimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/shurimon-icon.png",
+    "Hawkmon [Silphymon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/hawkmon-icon.png",
+    "Armadimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/armadillomon-icon.png",
+    "Ankylomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/ankylomon-icon.png",
+    "Submarimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/submarimon-icon.png",
+    "Armadimon [Shakkoumon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/armadillomon-icon.png",
+    "Shakoumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/shakkoumon-icon.png",
+    "Digmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/digmon-icon.png",
+    "Guilmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/guilmon-icon.png",
+    "Growmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/growlmon-icon.png",
+    "WarGrowlmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/wargrowlmon-icon.png",
+    "Gallantmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gallantmon-icon.png",
+    "Gallantmon Crimsom Mode": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gallantmon-cm-icon.png",
+    "Gallantmon [Shin]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gallantmon-icon.png",
+    "Gallantmon Crimsom Mode [Shin]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gallantmon-cm-icon.png",
+    "MedievalGallantmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/medievalgallantmon-icon.png",
+    "Guilmon [ChaosGallantmon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/guilmon-icon.png",
+    "Chaos Gallantmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/chaosgallantmon-icon.png",
+    "Megidramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/megidramon-icon.png",
+    "Renamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/renamon-icon.png",
+    "Kyubimon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/kyubimon-icon.png",
+    "Taomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/taomon-icon.png",
+    "Sakuyamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/sakuyamon-icon.png",
+    "Kuzuhamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/kuzuhamon-icon.png",
+    "Sakuyamon [Shin]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/sakuyamon-icon.png",
+    "Kuzuhamon Miko Mode": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2Xh1taEiCRKQyq9GLWQEzthCIKt9JI6uZvZiRGgTatg&s=10",
+    "Shoutmon DX": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNeb0cGO1V3ixoBehHd7Wv0S6Nb2TVaoDYmMXAvXFilw&s=10",
+    "Shoutmon X7": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCBl7bopALIhUS4ZHiFaW23P48CeTB1o7vNHyoFmORrA&s=10",
+    "Shoutmon X7 Superior Mode": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHugEgeB2KYDooyzQTp_Z6SpZWNs_Gew6ALSNtOXhrwA&s=10",
+    "Shoutmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/shoutmon-icon.png",
+    "Shoutmon X2": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTke778PbdMwG52HriB_ckNOiYZ1zM5lDFy1thPpUq-cw&s",
+    "Shoutmon X3": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLJsV0q7ld5IJ2KkQHVfEa5S2OAe9vuy0Q4HNFyQf1mw&s=10",
+    "Shoutmon X4": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVYL0zzTGD3ptPARz4kXE45hyEqGYtchBUeOF65A_IDQ&s=10",
+    "Shoutmon X5": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLUN2K6tPzoY_70bWSS0UZH2MtSbHIoqNOzOMagAOL4g&s=10",
+    "OmegaShoutmon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnishoutmon-icon.png",
+    "MailBirdramon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwT379ZmDzzGOkaeiyQudMlxwbXLe_AAJ65SPOjV_0Cg&s=10",
+    "ZekeGreymon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJqRKQPYu97GCMFpE1gBG-0F9fyBBXuqLxXqejx0Qp7Q&s=10",
+    "MetalGreymon C": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbK9e8IjF22j5czyooXOn-0VJG3Td9xmWhfRR0RCuUEw&s=10",
+    "Greymon C": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkbcYCGXLfckQh5LWSWk9wGhb2Pv5f_-3Wpk5rhYgLsw&s=10",
+    "Dorumon [Dorugamon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/dorumon-icon.png",
+    "Dorugamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/dorugamon-icon.png",
+    "DoruGreymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/dorugreymon-icon.png",
+    "Dorugoramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/dorugoramon-icon.png",
+    "Dorumon [DexDorugamon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/dorumon-icon.png",
+    "DexDorugamon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSc-0osDPE_EID7YP_ln-LdMMB57UHN_RmtBGoibG3_A&s=10",
+    "DexDoruGreymon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMs-Gqu2Y8RrormdEVLDm69EywhOeXqBnDnQEvgXgeKQ&s=10",
+    "Death-X-DORUgoramon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlal1YyNe6ZdIQGGrzWnW5oHR8-PMviO0m5vtYBdhGhQ&s=10",
+    "Death-X-mon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0iZnCuz2iEVSlRc-ffTKue7AjEBwQyqqnm9jzO8Cddg&s=10",
+    "Dorumon [Raptordramon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/dorumon-icon.png",
+    "RaptorDramon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/raptordramon-icon.png",
+    "Grademon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/grademon-icon.png",
+    "Alphamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/alphamon-icon.png",
+    "Alphamon Ouryuken": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/alphamon-ouryuken-icon.png",
+    "Alphamon Ouryuken [Shin]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/alphamon-ouryuken-icon.png"
   },
   "setsDB": [
     {
@@ -1565,6 +1627,582 @@
         "b3": "AT +70",
         "b4": "Skill Luz +1%"
       }
+    },
+    {
+      "id": "set-1785191515513",
+      "name": "Hawkmon",
+      "reqLvl2": 880,
+      "reqLvl4": 1120,
+      "requirements": [
+        {
+          "evo": "Hawkmon",
+          "base": "Hawkmon"
+        },
+        {
+          "evo": "Aquilamon",
+          "base": "Hawkmon"
+        },
+        {
+          "evo": "Silphymon",
+          "base": "Hawkmon"
+        },
+        {
+          "evo": "Phoenixmon",
+          "base": "Hawkmon"
+        },
+        {
+          "evo": "Valdurmon",
+          "base": "Hawkmon"
+        },
+        {
+          "evo": "Holsmon",
+          "base": "Hawkmon"
+        },
+        {
+          "evo": "Toucanmon",
+          "base": "Hawkmon"
+        },
+        {
+          "evo": "Flybeemon",
+          "base": "Hawkmon"
+        }
+      ],
+      "buffs": {
+        "b1": "DS +120",
+        "b2": "DS +150",
+        "b3": "DE +100",
+        "b4": "Skill Vento +1%"
+      }
+    },
+    {
+      "id": "set-1785191812245",
+      "name": "Hawkmon [Silphymon]",
+      "reqLvl2": 990,
+      "reqLvl4": 1260,
+      "requirements": [
+        {
+          "evo": "Hawkmon [Silphymon]",
+          "base": "Hawkmon [Silphymon]"
+        },
+        {
+          "evo": "Aquilamon",
+          "base": "Hawkmon [Silphymon]"
+        },
+        {
+          "evo": "Silphymon",
+          "base": "Hawkmon [Silphymon]"
+        },
+        {
+          "evo": "Silphimon",
+          "base": "Hawkmon [Silphymon]"
+        },
+        {
+          "evo": "Phoenixmon",
+          "base": "Hawkmon [Silphymon]"
+        },
+        {
+          "evo": "Valdurmon",
+          "base": "Hawkmon [Silphymon]"
+        },
+        {
+          "evo": "Allomon",
+          "base": "Hawkmon [Silphymon]"
+        },
+        {
+          "evo": "Shurimon",
+          "base": "Hawkmon [Silphymon]"
+        },
+        {
+          "evo": "Valkyrimon",
+          "base": "Hawkmon [Silphymon]"
+        }
+      ],
+      "buffs": {
+        "b1": "EV +30",
+        "b2": "EV +70",
+        "b3": "HT +30",
+        "b4": "Skill Vento +1%"
+      }
+    },
+    {
+      "id": "set-1785192033429",
+      "name": "Armadimon",
+      "reqLvl2": 550,
+      "reqLvl4": 700,
+      "requirements": [
+        {
+          "evo": "Armadimon",
+          "base": "Armadimon"
+        },
+        {
+          "evo": "Ankylomon",
+          "base": "Armadimon"
+        },
+        {
+          "evo": "Shakkoumon",
+          "base": "Armadimon"
+        },
+        {
+          "evo": "Vikemon",
+          "base": "Armadimon"
+        },
+        {
+          "evo": "Submarimon",
+          "base": "Armadimon"
+        }
+      ],
+      "buffs": {
+        "b1": "HP +50",
+        "b2": "HP +100",
+        "b3": "HP +200",
+        "b4": "Skill Água +1%"
+      }
+    },
+    {
+      "id": "set-1785192160534",
+      "name": "Armadimon [Shakkoumon]",
+      "reqLvl2": 770,
+      "reqLvl4": 980,
+      "requirements": [
+        {
+          "evo": "Armadimon [Shakkoumon]",
+          "base": "Armadimon [Shakkoumon]"
+        },
+        {
+          "evo": "Ankylomon",
+          "base": "Armadimon [Shakkoumon]"
+        },
+        {
+          "evo": "Shakkoumon",
+          "base": "Armadimon [Shakkoumon]"
+        },
+        {
+          "evo": "Shakoumon",
+          "base": "Armadimon [Shakkoumon]"
+        },
+        {
+          "evo": "Vikemon",
+          "base": "Armadimon [Shakkoumon]"
+        },
+        {
+          "evo": "Digmon",
+          "base": "Armadimon [Shakkoumon]"
+        },
+        {
+          "evo": "SlashAngemon",
+          "base": "Armadimon [Shakkoumon]"
+        }
+      ],
+      "buffs": {
+        "b1": "EV +30",
+        "b2": "DS +150",
+        "b3": "AT +50",
+        "b4": "Skill Terra +1%"
+      }
+    },
+    {
+      "id": "set-1785192268952",
+      "name": "Guilmon",
+      "reqLvl2": 910,
+      "reqLvl4": 1120,
+      "requirements": [
+        {
+          "evo": "Guilmon",
+          "base": "Guilmon"
+        },
+        {
+          "evo": "Growmon",
+          "base": "Guilmon"
+        },
+        {
+          "evo": "WarGrowlmon",
+          "base": "Guilmon"
+        },
+        {
+          "evo": "Gallantmon",
+          "base": "Guilmon"
+        },
+        {
+          "evo": "Gallantmon Crimsom Mode",
+          "base": "Guilmon"
+        },
+        {
+          "evo": "Gallantmon [Shin]",
+          "base": "Guilmon"
+        },
+        {
+          "evo": "Gallantmon Crimsom Mode [Shin]",
+          "base": "Guilmon"
+        }
+      ],
+      "buffs": {
+        "b1": "CT +50",
+        "b2": "HT +50",
+        "b3": "Skill Vírus +2%",
+        "b4": "Skill Luz +2%"
+      }
+    },
+    {
+      "id": "set-1785192371885",
+      "name": "Guilmon",
+      "reqLvl2": 1040,
+      "reqLvl4": 1280,
+      "requirements": [
+        {
+          "evo": "Guilmon",
+          "base": "Guilmon"
+        },
+        {
+          "evo": "Growmon",
+          "base": "Guilmon"
+        },
+        {
+          "evo": "WarGrowlmon",
+          "base": "Guilmon"
+        },
+        {
+          "evo": "Gallantmon",
+          "base": "Guilmon"
+        },
+        {
+          "evo": "Gallantmon Crimsom Mode",
+          "base": "Guilmon"
+        },
+        {
+          "evo": "Gallantmon [Shin]",
+          "base": "Guilmon"
+        },
+        {
+          "evo": "Gallantmon Crimsom Mode [Shin]",
+          "base": "Guilmon"
+        },
+        {
+          "evo": "MedievalGallantmon",
+          "base": "Guilmon"
+        }
+      ],
+      "buffs": {
+        "b1": "AT +30",
+        "b2": "HT +30",
+        "b3": "Skill +1%",
+        "b4": "Skill Vento +1%"
+      }
+    },
+    {
+      "id": "set-1785192438560",
+      "name": "Guilmon [ChaosGallantmon]",
+      "reqLvl2": 550,
+      "reqLvl4": 700,
+      "requirements": [
+        {
+          "evo": "Guilmon [ChaosGallantmon]",
+          "base": "Guilmon [ChaosGallantmon]"
+        },
+        {
+          "evo": "Growmon",
+          "base": "Guilmon [ChaosGallantmon]"
+        },
+        {
+          "evo": "WarGrowlmon",
+          "base": "Guilmon [ChaosGallantmon]"
+        },
+        {
+          "evo": "Chaos Gallantmon",
+          "base": "Guilmon [ChaosGallantmon]"
+        },
+        {
+          "evo": "Megidramon",
+          "base": "Guilmon [ChaosGallantmon]"
+        }
+      ],
+      "buffs": {
+        "b1": "EXP +20%",
+        "b2": "EXP +20%",
+        "b3": "EXP +30%",
+        "b4": "Skill Fogo +1%"
+      }
+    },
+    {
+      "id": "set-1785192565559",
+      "name": "Renamon",
+      "reqLvl2": 910,
+      "reqLvl4": 1120,
+      "requirements": [
+        {
+          "evo": "Renamon",
+          "base": "Renamon"
+        },
+        {
+          "evo": "Kyubimon",
+          "base": "Renamon"
+        },
+        {
+          "evo": "Taomon",
+          "base": "Renamon"
+        },
+        {
+          "evo": "Sakuyamon",
+          "base": "Renamon"
+        },
+        {
+          "evo": "Kuzuhamon",
+          "base": "Renamon"
+        },
+        {
+          "evo": "Sakuyamon [Shin]",
+          "base": "Renamon"
+        },
+        {
+          "evo": "Kuzuhamon Miko Mode",
+          "base": "Renamon"
+        }
+      ],
+      "buffs": {
+        "b1": "Skill Data +2%",
+        "b2": "EV +150",
+        "b3": "AT +100",
+        "b4": "Skill Trevas +2%"
+      }
+    },
+    {
+      "id": "set-1785192920327",
+      "name": "Shoutmon",
+      "reqLvl2": 1300,
+      "reqLvl4": 1600,
+      "requirements": [
+        {
+          "evo": "Shoutmon",
+          "base": "Shoutmon"
+        },
+        {
+          "evo": "Shoutmon",
+          "base": "Shoutmon"
+        },
+        {
+          "evo": "Shoutmon X2",
+          "base": "Shoutmon"
+        },
+        {
+          "evo": "Shoutmon X3",
+          "base": "Shoutmon"
+        },
+        {
+          "evo": "Shoutmon X4",
+          "base": "Shoutmon"
+        },
+        {
+          "evo": "Shoutmon X5",
+          "base": "Shoutmon"
+        },
+        {
+          "evo": "OmegaShoutmon",
+          "base": "Shoutmon"
+        },
+        {
+          "evo": "Shoutmon DX",
+          "base": "Shoutmon"
+        },
+        {
+          "evo": "Shoutmon X7",
+          "base": "Shoutmon"
+        },
+        {
+          "evo": "Shoutmon X7 Superior Mode",
+          "base": "Shoutmon"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +150",
+        "b2": "CT +30",
+        "b3": "Skill Data +1%",
+        "b4": "Skill Aço +1%"
+      }
+    },
+    {
+      "id": "set-1785193097435",
+      "name": "MailBirdramon",
+      "reqLvl2": 910,
+      "reqLvl4": 1120,
+      "requirements": [
+        {
+          "evo": "MailBirdramon",
+          "base": "MailBirdramon"
+        },
+        {
+          "evo": "MailBirdramon",
+          "base": "MailBirdramon"
+        },
+        {
+          "evo": "MetalGreymon C",
+          "base": "MailBirdramon"
+        },
+        {
+          "evo": "ZekeGreymon",
+          "base": "MailBirdramon"
+        },
+        {
+          "evo": "Shoutmon DX",
+          "base": "MailBirdramon"
+        },
+        {
+          "evo": "Shoutmon X7",
+          "base": "MailBirdramon"
+        },
+        {
+          "evo": "Shoutmon X7 Superior Mode",
+          "base": "MailBirdramon"
+        }
+      ],
+      "buffs": {
+        "b1": "HT +50",
+        "b2": "EV +150",
+        "b3": "Skill Data +1%",
+        "b4": "Skill Aço +1%"
+      }
+    },
+    {
+      "id": "set-1785193290568",
+      "name": "Greymon C",
+      "reqLvl2": 910,
+      "reqLvl4": 1120,
+      "requirements": [
+        {
+          "evo": "Greymon C",
+          "base": "Greymon C"
+        },
+        {
+          "evo": "Greymon C",
+          "base": "Greymon C"
+        },
+        {
+          "evo": "MetalGreymon C",
+          "base": "Greymon C"
+        },
+        {
+          "evo": "ZekeGreymon",
+          "base": "Greymon C"
+        },
+        {
+          "evo": "Shoutmon DX",
+          "base": "Greymon C"
+        },
+        {
+          "evo": "Shoutmon X7",
+          "base": "Greymon C"
+        },
+        {
+          "evo": "Shoutmon X7 Superior Mode",
+          "base": "Shoutmon X7 Superior Mode"
+        }
+      ],
+      "buffs": {
+        "b1": "AT +50",
+        "b2": "DS +500",
+        "b3": "Skill Data +1%",
+        "b4": "Skill Aço +1%"
+      }
+    },
+    {
+      "id": "set-1785193372354",
+      "name": "Dorumon [Dorugamon]",
+      "reqLvl2": 440,
+      "reqLvl4": 560,
+      "requirements": [
+        {
+          "evo": "Dorumon [Dorugamon]",
+          "base": "Dorumon [Dorugamon]"
+        },
+        {
+          "evo": "Dorugamon",
+          "base": "Dorumon [Dorugamon]"
+        },
+        {
+          "evo": "DoruGreymon",
+          "base": "Dorumon [Dorugamon]"
+        },
+        {
+          "evo": "Dorugoramon",
+          "base": "Dorumon [Dorugamon]"
+        }
+      ],
+      "buffs": {
+        "b1": "EXP +20%",
+        "b2": "EXP +30%",
+        "b3": "EXP +50%",
+        "b4": "Skill Aço +1%"
+      }
+    },
+    {
+      "id": "set-1785193663290",
+      "name": "Dorumon [DexDorugamon]",
+      "reqLvl2": 550,
+      "reqLvl4": 700,
+      "requirements": [
+        {
+          "evo": "Dorumon [DexDorugamon]",
+          "base": "Dorumon [DexDorugamon]"
+        },
+        {
+          "evo": "DexDorugamon",
+          "base": "Dorumon [DexDorugamon]"
+        },
+        {
+          "evo": "DexDoruGreymon",
+          "base": "Dorumon [DexDorugamon]"
+        },
+        {
+          "evo": "Death-X-DORUgoramon",
+          "base": "Dorumon [DexDorugamon]"
+        },
+        {
+          "evo": "Death-X-mon",
+          "base": "Dorumon [DexDorugamon]"
+        }
+      ],
+      "buffs": {
+        "b1": "BL +20",
+        "b2": "BL +30",
+        "b3": "HT +50",
+        "b4": "Skill Vírus +1%"
+      }
+    },
+    {
+      "id": "set-1785193853606",
+      "name": "Dorumon [Raptordramon]",
+      "reqLvl2": 720,
+      "reqLvl4": 900,
+      "requirements": [
+        {
+          "evo": "Dorumon [Raptordramon]",
+          "base": "Dorumon [Raptordramon]"
+        },
+        {
+          "evo": "RaptorDramon",
+          "base": "Dorumon [Raptordramon]"
+        },
+        {
+          "evo": "Grademon",
+          "base": "Dorumon [Raptordramon]"
+        },
+        {
+          "evo": "Alphamon",
+          "base": "Dorumon [Raptordramon]"
+        },
+        {
+          "evo": "Alphamon Ouryuken",
+          "base": "Dorumon [Raptordramon]"
+        },
+        {
+          "evo": "Alphamon Ouryuken [Shin]",
+          "base": "Dorumon [Raptordramon]"
+        }
+      ],
+      "buffs": {
+        "b1": "EV +30",
+        "b2": "EV +100",
+        "b3": "Skill Vacina +1%",
+        "b4": "Skill Luz +1%"
+      }
     }
   ],
   "jogressDB": {
@@ -1643,6 +2281,36 @@
     "ImperialDramon Paladin Mode [Shin]": [
       "Veemon [Imperialdramon]",
       "Wormmon [Imperialdramon]"
+    ],
+    "Shoutmon DX": [
+      "Shoutmon",
+      "Greymon C"
+    ],
+    "Shoutmon X7": [
+      "Shoutmon",
+      "Greymon C",
+      "MailBirdramon"
+    ],
+    "Shoutmon X7 Superior Mode": [
+      "Shoutmon",
+      "Greymon C",
+      "MailBirdramon"
+    ],
+    "MetalGreymon C": [
+      "MailBirdramon",
+      "Greymon C"
+    ],
+    "ZekeGreymon": [
+      "MailBirdramon",
+      "Greymon C"
+    ],
+    "Alphamon Ouryuken": [
+      "Dorumon [Raptordramon]",
+      "Ryudamon"
+    ],
+    "Alphamon Ouryuken [Shin]": [
+      "Dorumon [Raptordramon]",
+      "Ryudamon"
     ]
   }
 }
