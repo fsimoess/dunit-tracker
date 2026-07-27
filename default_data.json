@@ -1,24 +1,115 @@
 {
   "imagesDB": {
     "Agumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/agumon-icon.png",
-    "Greymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/greymon-icon.png"
+    "Greymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/greymon-icon.png",
+    "Garurumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/garurumon-icon.png",
+    "Gabumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gabumon-icon.png",
+    "MetalGreymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/metalgreymon-icon.png",
+    "WarGreymon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/wargreymon-icon.png",
+    "VictoryGreymon": "https://static.wikia.nocookie.net/digimonat/images/5/53/VictoryGreymon_b.jpg/revision/latest?cb=20190126130352&path-prefix=pt",
+    "Omegamon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-icon.png",
+    "Gaiomon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gaiomon-icon.png",
+    "Agumon Laço da Coragem": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/agumon-bond-of-bravery-icon.png",
+    "Omegamon Merciful Mode": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/omnimon-mm-icon.png"
   },
   "setsDB": [
     {
-      "id": "set-1",
-      "name": "Dragon's Heritage",
-      "reqLvl2": 110,
-      "reqLvl4": 140,
+      "id": "set-1785177724703",
+      "name": "Agumon",
+      "reqLvl2": 120,
+      "reqLvl4": 150,
       "requirements": [
-        { "evo": "Greymon", "base": "Agumon" },
-        { "evo": "Garurumon", "base": "Gabumon" }
+        {
+          "evo": "Agumon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "Greymon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "MetalGreymon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "WarGreymon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "VictoryGreymon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "Omegamon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "Gaiomon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "Agumon Laço da Coragem",
+          "base": "Agumon"
+        }
       ],
       "buffs": {
-        "b1": "AT +100",
-        "b2": "Max HP +500",
-        "b3": "Critical +5%",
-        "b4": "Skill Damage +8%"
+        "b1": "AT +50",
+        "b2": "DE +150",
+        "b3": "AT +70",
+        "b4": "Skill Luz +1%"
+      }
+    },
+    {
+      "id": "set-1785178035072",
+      "name": "Agumon",
+      "reqLvl2": 130,
+      "reqLvl4": 160,
+      "requirements": [
+        {
+          "evo": "Agumon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "Greymon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "MetalGreymon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "WarGreymon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "VictoryGreymon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "Omegamon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "Gaiomon",
+          "base": "Agumon"
+        },
+        {
+          "evo": "Omegamon Merciful Mode",
+          "base": "Agumon"
+        }
+      ],
+      "buffs": {
+        "b1": "CT +30",
+        "b2": "HT +50",
+        "b3": "Skill +1%",
+        "b4": "Skill Vacina +1%"
       }
     }
-  ]
+  ],
+  "jogressDB": {
+    "Omegamon": [
+      "Agumon",
+      "Gabumon"
+    ]
+  }
 }
