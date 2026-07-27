@@ -35,7 +35,13 @@
     "MetalGarurumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/metalgarurumon-icon.png",
     "Gabumon Laço da Amizade": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gabumon-bond-of-friendship-icon.png",
     "ZdGarurumon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_4bwS9_k5Q42EXxxYoY70PiTKaEakkivSTicwbUoJSA&s=10",
-    "Agumon Black [Millenniumon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/agumon-black-icon.png"
+    "Agumon Black [Millenniumon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/agumon-black-icon.png",
+    "CresGarurumon": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/cresgarurumon-icon.png",
+    "Gabumon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gabumon-black-icon.png",
+    "Garurumon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/garurumon-black-icon.png",
+    "WereGarurumon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/weregarurumon-black-icon.png",
+    "MetalGarurumon Black": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/metalgarurumon-black-icon.png",
+    "Gabumon [CresGarurumon]": "https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/gabumon-icon.png"
   },
   "setsDB": [
     {
@@ -397,6 +403,184 @@
         "b3": "AT +70",
         "b4": "Skill Luz +1%"
       }
+    },
+    {
+      "id": "set-1785184646940",
+      "name": "Gabumon",
+      "reqLvl2": 910,
+      "reqLvl4": 1120,
+      "requirements": [
+        {
+          "evo": "Gabumon",
+          "base": "Gabumon"
+        },
+        {
+          "evo": "Garurumon",
+          "base": "Gabumon"
+        },
+        {
+          "evo": "WereGarurumon",
+          "base": "Gabumon"
+        },
+        {
+          "evo": "MetalGarurumon",
+          "base": "Gabumon"
+        },
+        {
+          "evo": "ZdGarurumon",
+          "base": "Gabumon"
+        },
+        {
+          "evo": "Omegamon",
+          "base": "Gabumon"
+        },
+        {
+          "evo": "Omegamon Merciful Mode",
+          "base": "Gabumon"
+        }
+      ],
+      "buffs": {
+        "b1": "CT +0.3%",
+        "b2": "HT +50",
+        "b3": "Skill +1%",
+        "b4": "Skill Vacina +1%"
+      }
+    },
+    {
+      "id": "set-1785184782855",
+      "name": "Gabumon [CresGarurumon]",
+      "reqLvl2": 550,
+      "reqLvl4": 700,
+      "requirements": [
+        {
+          "evo": "Gabumon [CresGarurumon]",
+          "base": "Gabumon [CresGarurumon]"
+        },
+        {
+          "evo": "Garurumon",
+          "base": "Gabumon [CresGarurumon]"
+        },
+        {
+          "evo": "WereGarurumon",
+          "base": "Gabumon [CresGarurumon]"
+        },
+        {
+          "evo": "CresGarurumon",
+          "base": "Gabumon [CresGarurumon]"
+        },
+        {
+          "evo": "Omegamon Alter-S",
+          "base": "Gabumon [CresGarurumon]"
+        }
+      ],
+      "buffs": {
+        "b1": "HP +50",
+        "b2": "BL +0.2%",
+        "b3": "HP +100",
+        "b4": "Skill Vírus +1%"
+      }
+    },
+    {
+      "id": "set-1785184873823",
+      "name": "Gabumon [CresGarurumon]",
+      "reqLvl2": 600,
+      "reqLvl4": 750,
+      "requirements": [
+        {
+          "evo": "Gabumon [CresGarurumon]",
+          "base": "Gabumon [CresGarurumon]"
+        },
+        {
+          "evo": "Garurumon",
+          "base": "Gabumon [CresGarurumon]"
+        },
+        {
+          "evo": "WereGarurumon",
+          "base": "Gabumon [CresGarurumon]"
+        },
+        {
+          "evo": "CresGarurumon",
+          "base": "Gabumon [CresGarurumon]"
+        },
+        {
+          "evo": "Omegamon Alter-B",
+          "base": "Gabumon [CresGarurumon]"
+        }
+      ],
+      "buffs": {
+        "b1": "CT +0.2%",
+        "b2": "AT +20",
+        "b3": "EXP +30%",
+        "b4": "Skill Vírus +1%"
+      }
+    },
+    {
+      "id": "set-1785185265622",
+      "name": "Gabumon (Black)",
+      "reqLvl2": 550,
+      "reqLvl4": 700,
+      "requirements": [
+        {
+          "evo": "Gabumon Black",
+          "base": "Gabumon Black"
+        },
+        {
+          "evo": "Garurumon Black",
+          "base": "Gabumon Black"
+        },
+        {
+          "evo": "WereGarurumon Black",
+          "base": "Gabumon Black"
+        },
+        {
+          "evo": "MetalGarurumon Black",
+          "base": "Gabumon Black"
+        },
+        {
+          "evo": "Omegamon Zwart",
+          "base": "Gabumon Black"
+        }
+      ],
+      "buffs": {
+        "b1": "DE +30",
+        "b2": "DE +50",
+        "b3": "CT +0.5%",
+        "b4": "Skill Vírus +1%"
+      }
+    },
+    {
+      "id": "set-1785185306347",
+      "name": "Gabumon (Black)",
+      "reqLvl2": 600,
+      "reqLvl4": 750,
+      "requirements": [
+        {
+          "evo": "Gabumon Black",
+          "base": "Gabumon Black"
+        },
+        {
+          "evo": "Garurumon Black",
+          "base": "Gabumon Black"
+        },
+        {
+          "evo": "WereGarurumon Black",
+          "base": "Gabumon Black"
+        },
+        {
+          "evo": "MetalGarurumon Black",
+          "base": "Gabumon Black"
+        },
+        {
+          "evo": "Omegamon ZwartD",
+          "base": "Gabumon Black"
+        }
+      ],
+      "buffs": {
+        "b1": "EXP +20%",
+        "b2": "HT +30",
+        "b3": "Skill Vacina +2%",
+        "b4": "Skill Vírus +1%"
+      }
     }
   ],
   "jogressDB": {
@@ -427,6 +611,10 @@
     "ZeedMillenniunmon": [
       "Agumon Black [Millenniumon]",
       "Gazimon [Millenniunmon]"
+    ],
+    "Omegamon Alter-B": [
+      "Agumon Black [BlitzGreymon]",
+      "Gabumon [CresGarurumon]"
     ]
   }
 }
