@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DMO - Gerenciador D-Unit Pro</title>
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Phosphor Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen pb-12 font-sans">
@@ -21,9 +19,9 @@
         </h1>
       </div>
 
-      <!-- Actions / Import / Export -->
+      <!-- Actions -->
       <div class="flex flex-wrap items-center gap-2 text-sm">
-        <button onclick="resetToDefaults()" class="bg-red-900/50 hover:bg-red-800 text-red-200 border border-red-700/50 px-3 py-1.5 rounded flex items-center gap-1 text-xs mr-2 transition" title="Limpa o progresso local e recarrega dados mestre do JSON">
+        <button onclick="resetToDefaults()" class="bg-red-900/50 hover:bg-red-800 text-red-200 border border-red-700/50 px-3 py-1.5 rounded flex items-center gap-1 text-xs mr-2 transition">
           <i class="ph ph-arrows-counter-clockwise"></i> Resetar Padrão
         </button>
 
@@ -54,29 +52,25 @@
       <h2 class="text-md font-bold text-cyan-400 mb-3 flex items-center gap-2">
         <i class="ph ph-lightning text-xl text-yellow-400"></i> Somatório Total de Buffs Ativos
       </h2>
-      <div id="total-buffs-container" class="flex flex-wrap gap-2 text-xs">
-        <!-- Renderizado via JS -->
-      </div>
+      <div id="total-buffs-container" class="flex flex-wrap gap-2 text-xs"></div>
     </section>
 
-    <!-- LISTA EXPANSÍVEL: PRÓXIMOS DIGIMONS PARA FOCAR -->
+    <!-- PRÓXIMOS DIGIMONS PARA FOCAR -->
     <section class="bg-slate-800 rounded-xl border border-yellow-500/30 overflow-hidden shadow-md">
       <button onclick="toggleSection('focus-content', 'focus-icon')" class="w-full p-4 text-left font-bold text-slate-200 flex justify-between items-center hover:bg-slate-700/50 transition">
         <span class="flex items-center gap-2">
           <i class="ph ph-target text-yellow-400 text-xl"></i> 
-          Próximos Digimons para Focar <span class="text-xs text-slate-400 font-normal">(Top 5 por presença em conjuntos | Exclui Max/6★)</span>
+          Próximos Digimons para Focar <span class="text-xs text-slate-400 font-normal">(Top 5 por presença em conjuntos)</span>
         </span>
         <i id="focus-icon" class="ph ph-caret-down text-lg text-slate-400 transition-transform"></i>
       </button>
 
       <div id="focus-content" class="hidden p-4 border-t border-slate-700 bg-slate-900/60">
-        <div id="focus-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
-          <!-- Renderizado via JS -->
-        </div>
+        <div id="focus-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3"></div>
       </div>
     </section>
 
-    <!-- LISTA EXPANSÍVEL: MINHA COLEÇÃO DE DIGIMONS -->
+    <!-- MINHA COLEÇÃO DE DIGIMONS -->
     <section class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
       <button onclick="toggleSection('collection-content', 'collection-icon')" class="w-full p-4 text-left font-bold text-slate-200 flex justify-between items-center hover:bg-slate-700/50 transition">
         <span class="flex items-center gap-2">
@@ -86,19 +80,47 @@
         <i id="collection-icon" class="ph ph-caret-down text-lg text-slate-400 transition-transform"></i>
       </button>
 
-      <div id="collection-content" class="hidden p-4 border-t border-slate-700 bg-slate-900/50 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-        <!-- Renderizado via JS -->
+      <div id="collection-content" class="hidden p-4 border-t border-slate-700 bg-slate-900/50 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3"></div>
+    </section>
+
+    <!-- VÍNCULOS DE JOGRESS -->
+    <section class="bg-slate-800 rounded-xl border border-purple-500/30 overflow-hidden">
+      <button onclick="toggleSection('jogress-content', 'jogress-icon')" class="w-full p-4 text-left font-bold text-slate-200 flex justify-between items-center hover:bg-slate-700/50 transition">
+        <span class="flex items-center gap-2">
+          <i class="ph ph-infinity text-purple-400 text-xl"></i> 
+          Vínculos de Jogress (<span id="jogress-count" class="text-purple-400">0</span>)
+        </span>
+        <i id="jogress-icon" class="ph ph-caret-down text-lg text-slate-400 transition-transform"></i>
+      </button>
+
+      <div id="jogress-content" class="hidden p-4 border-t border-slate-700 bg-slate-900/60 space-y-4">
+        <!-- Form Jogress -->
+        <form id="form-jogress" onsubmit="saveJogress(event)" class="bg-slate-800 p-3 rounded-lg border border-purple-500/20 flex flex-wrap gap-3 items-end text-xs">
+          <div class="flex-1 min-w-[150px]">
+            <label class="block text-[11px] uppercase text-purple-300 font-bold mb-1">Nome da Jogress</label>
+            <input type="text" id="jogress-name" required placeholder="Ex: Omegamon" class="w-full bg-slate-900 border border-slate-700 rounded p-2 focus:border-purple-500 outline-none">
+          </div>
+          <div class="flex-[2] min-w-[200px]">
+            <label class="block text-[11px] uppercase text-purple-300 font-bold mb-1">Bases da Fusão (separadas por vírgula)</label>
+            <input type="text" id="jogress-bases" required placeholder="Ex: Agumon, Gabumon" class="w-full bg-slate-900 border border-slate-700 rounded p-2 focus:border-purple-500 outline-none">
+          </div>
+          <button type="submit" class="bg-purple-600 hover:bg-purple-500 text-white font-semibold px-4 py-2 rounded transition">
+            Cadastrar Jogress
+          </button>
+        </form>
+
+        <div id="jogress-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"></div>
       </div>
     </section>
 
-    <!-- FORMULÁRIOS E GERENCIAMENTO DE CONJUNTOS -->
+    <!-- FORMULÁRIOS E GERENCIAMENTO -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-      <!-- Painel Lateral: Formulários -->
+      <!-- Painel Lateral -->
       <section class="lg:col-span-1 space-y-6">
         
-        <!-- Cadastro / Edição do Digimon do Usuário -->
-        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative">
+        <!-- Cadastrar Progresso -->
+        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
           <div class="flex items-center justify-between mb-4">
             <h2 id="digi-form-title" class="text-lg font-bold text-cyan-400 flex items-center gap-2">
               <i class="ph ph-user-focus"></i> Cadastrar / Atualizar Progresso
@@ -113,7 +135,7 @@
             </div>
             <div>
               <label class="block text-xs uppercase text-slate-400 mb-1">Evoluções Desbloqueadas (Vírgula)</label>
-              <input type="text" id="user-digi-evos" placeholder="Ex: Greymon, MetalGreymon, WarGreymon" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm focus:border-cyan-500 outline-none">
+              <input type="text" id="user-digi-evos" placeholder="Ex: Greymon, Omegamon" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm focus:border-cyan-500 outline-none">
             </div>
             <div>
               <label class="block text-xs uppercase text-slate-400 mb-1">Nível Atual</label>
@@ -137,7 +159,7 @@
           </form>
         </div>
 
-        <!-- Cadastro / Edição de Conjuntos -->
+        <!-- Cadastrar Conjuntos -->
         <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
           <h2 id="set-form-title" class="text-lg font-bold text-cyan-400 mb-4 flex items-center gap-2">
             <i class="ph ph-folder-plus"></i> Cadastrar Novo Conjunto
@@ -147,11 +169,11 @@
 
             <div>
               <label class="block text-xs uppercase text-slate-400 mb-1">Nome do Conjunto</label>
-              <input type="text" id="set-name" required placeholder="Ex: Digimons de Teste" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm focus:border-cyan-500 outline-none">
+              <input type="text" id="set-name" required placeholder="Ex: Royal Knights" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm focus:border-cyan-500 outline-none">
             </div>
             <div>
               <label class="block text-xs uppercase text-slate-400 mb-1">Requisitos (Nome_Evolução (Nome_Base))</label>
-              <input type="text" id="set-digimons" required placeholder="Ex: Agumon (Agumon), Greymon (Agumon), Ogremon (Goblimon)" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm focus:border-cyan-500 outline-none">
+              <input type="text" id="set-digimons" required placeholder="Ex: Omegamon (Agumon), Omegamon" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm focus:border-cyan-500 outline-none">
             </div>
 
             <div class="grid grid-cols-2 gap-2">
@@ -169,10 +191,10 @@
             <p class="text-xs font-bold uppercase text-slate-400">Atributos / Buffs do Conjunto</p>
 
             <div class="space-y-2">
-              <input type="text" id="buff-1" placeholder="Buff Nível 1 (Ex: AT +100)" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
-              <input type="text" id="buff-2" placeholder="Buff Nível 2 (Ex: Max HP +500)" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
-              <input type="text" id="buff-3" placeholder="Buff Nível 3 (Ex: Critical +5%)" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
-              <input type="text" id="buff-4" placeholder="Buff Nível 4 (Ex: Skill Damage +8%)" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
+              <input type="text" id="buff-1" placeholder="Buff Nível 1" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
+              <input type="text" id="buff-2" placeholder="Buff Nível 2" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
+              <input type="text" id="buff-3" placeholder="Buff Nível 3" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
+              <input type="text" id="buff-4" placeholder="Buff Nível 4" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
             </div>
 
             <div class="flex gap-2">
@@ -194,14 +216,12 @@
           <i class="ph ph-squares-four text-cyan-400"></i> Conjuntos Cadastrados
         </h2>
 
-        <div id="sets-container" class="space-y-4">
-          <!-- Renderizado via JS -->
-        </div>
+        <div id="sets-container" class="space-y-4"></div>
       </section>
 
     </div>
 
-    <!-- RODAPÉ: BANCO GERAL DE IMAGENS/ÍCONES DE DIGIMONS -->
+    <!-- BANCO DE IMAGENS -->
     <section class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden mt-8">
       <button onclick="toggleSection('images-content', 'images-icon')" class="w-full p-4 text-left font-bold text-slate-200 flex justify-between items-center hover:bg-slate-700/50 transition">
         <span class="flex items-center gap-2">
@@ -212,26 +232,21 @@
       </button>
 
       <div id="images-content" class="hidden p-6 border-t border-slate-700 bg-slate-900/60 space-y-6">
-        
         <div class="bg-slate-800 p-4 rounded-lg border border-slate-700 max-w-2xl">
           <h3 id="img-form-title" class="text-sm font-bold text-cyan-400 mb-3 flex items-center gap-1.5">
             <i class="ph ph-plus-circle"></i> Cadastrar Ícone por Digimon
           </h3>
           <form id="form-img" onsubmit="saveImageEntry(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label class="block text-[11px] uppercase text-slate-400 mb-1">Nome Exato (Evolução ou Base)</label>
-              <input type="text" id="img-digi-name" required placeholder="Ex: Greymon" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
+              <label class="block text-[11px] uppercase text-slate-400 mb-1">Nome Exato</label>
+              <input type="text" id="img-digi-name" required placeholder="Ex: Omegamon" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
             </div>
             <div class="sm:col-span-2">
-              <label class="block text-[11px] uppercase text-slate-400 mb-1">URL da Imagem (Vazio = Gerar Padrão Grindosaur)</label>
+              <label class="block text-[11px] uppercase text-slate-400 mb-1">URL da Imagem</label>
               <div class="flex gap-2">
-                <input type="url" id="img-digi-url" placeholder="https://... (ou deixe vazio para padrão)" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
-                <button type="submit" id="btn-save-img" class="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold px-4 py-2 rounded text-xs transition">
-                  Salvar
-                </button>
-                <button type="button" id="btn-cancel-img" onclick="cancelImageEdit()" class="hidden bg-slate-700 hover:bg-slate-600 text-slate-300 px-3 py-2 rounded text-xs transition">
-                  Cancelar
-                </button>
+                <input type="url" id="img-digi-url" placeholder="https://... (vazio = Padrão)" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs focus:border-cyan-500 outline-none">
+                <button type="submit" id="btn-save-img" class="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold px-4 py-2 rounded text-xs transition">Salvar</button>
+                <button type="button" id="btn-cancel-img" onclick="cancelImageEdit()" class="hidden bg-slate-700 hover:bg-slate-600 text-slate-300 px-3 py-2 rounded text-xs transition">Cancelar</button>
               </div>
             </div>
           </form>
@@ -239,40 +254,37 @@
 
         <div>
           <h4 class="text-xs uppercase font-bold text-slate-400 mb-3">Ícones Cadastrados</h4>
-          <div id="images-db-container" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3">
-            <!-- Renderizado via JS -->
-          </div>
+          <div id="images-db-container" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3"></div>
         </div>
-
       </div>
     </section>
 
   </main>
 
   <script>
-    // --- GERADOR DA URL PADRÃO GRINDOSAUR ---
     function getDefaultGrindosaurUrl(name) {
       if (!name) return 'https://via.placeholder.com/80/1e293b/475569?text=?';
       const cleanName = name.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
       return `https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/${cleanName}-icon.png`;
     }
 
-    // --- ESTADO INICIAL GLOBAL ---
     let imagesDB = {};
     let setsDB = [];
     let userProgress = {};
+    let jogressDB = { "Omegamon": ["Agumon", "Gabumon"] };
     let editingImageName = null;
 
-    // --- CARREGAMENTO INICIAL ---
     async function initAppData() {
       const storedImages = localStorage.getItem('dmo_dunit_images');
       const storedSets = localStorage.getItem('dmo_dunit_sets');
       const storedProgress = localStorage.getItem('dmo_dunit_progress');
+      const storedJogress = localStorage.getItem('dmo_dunit_jogress');
 
       if (storedImages && storedSets && storedProgress) {
         imagesDB = JSON.parse(storedImages);
         setsDB = JSON.parse(storedSets);
         userProgress = JSON.parse(storedProgress);
+        if (storedJogress) jogressDB = JSON.parse(storedJogress);
         syncSetImagesToDB();
         render();
       } else {
@@ -280,31 +292,26 @@
       }
     }
 
-    // Busca conjuntos e imagens do default_data.json e reinicia a coleção do usuário como vazia
     async function fetchDefaultJSON() {
       try {
         const response = await fetch('./default_data.json');
-        if (!response.ok) throw new Error('Não foi possível carregar o default_data.json.');
-        
+        if (!response.ok) throw new Error();
         const data = await response.json();
         imagesDB = data.imagesDB || {};
         setsDB = data.setsDB || [];
-        userProgress = {}; // Progresso do usuário inicia limpo
-
+        userProgress = {};
+        if (data.jogressDB) jogressDB = data.jogressDB;
         syncSetImagesToDB();
         saveStorage();
       } catch (err) {
-        console.error('Erro ao ler default_data.json:', err);
-        alert('Erro ao carregar default_data.json. Verifique se o arquivo existe na mesma pasta.');
+        syncSetImagesToDB();
+        saveStorage();
       }
     }
 
-    // Limpa a sessão local e recarrega os dados mestre do JSON
     function resetToDefaults() {
-      if (confirm('Deseja limpar seu progresso pessoal e recarregar os conjuntos do arquivo default_data.json?')) {
-        localStorage.removeItem('dmo_dunit_images');
-        localStorage.removeItem('dmo_dunit_sets');
-        localStorage.removeItem('dmo_dunit_progress');
+      if (confirm('Deseja limpar seu progresso e recarregar os dados mestre?')) {
+        localStorage.clear();
         fetchDefaultJSON();
       }
     }
@@ -313,19 +320,17 @@
       localStorage.setItem('dmo_dunit_images', JSON.stringify(imagesDB));
       localStorage.setItem('dmo_dunit_sets', JSON.stringify(setsDB));
       localStorage.setItem('dmo_dunit_progress', JSON.stringify(userProgress));
+      localStorage.setItem('dmo_dunit_jogress', JSON.stringify(jogressDB));
       render();
     }
 
-    // Garante auto-cadastro no DB de imagens para Digimons nos conjuntos
     function syncSetImagesToDB() {
       setsDB.forEach(set => {
         set.requirements.forEach(req => {
           [req.evo, req.base].forEach(digiName => {
             if (digiName) {
               const foundKey = Object.keys(imagesDB).find(k => k.toLowerCase() === digiName.toLowerCase());
-              if (!foundKey) {
-                imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
-              }
+              if (!foundKey) imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
             }
           });
         });
@@ -333,23 +338,17 @@
     }
 
     function toggleSection(contentId, iconId) {
-      const content = document.getElementById(contentId);
-      const icon = document.getElementById(iconId);
-      content.classList.toggle('hidden');
-      icon.classList.toggle('rotate-180');
+      document.getElementById(contentId).classList.toggle('hidden');
+      document.getElementById(iconId).classList.toggle('rotate-180');
     }
 
     function getDigiImg(name) {
       if (!name) return 'https://via.placeholder.com/80/1e293b/475569?text=?';
-      
       const foundKey = Object.keys(imagesDB).find(k => k.toLowerCase() === name.toLowerCase());
-      if (foundKey) {
-        return imagesDB[foundKey];
-      } else {
-        const newUrl = getDefaultGrindosaurUrl(name);
-        imagesDB[name] = newUrl;
-        return newUrl;
-      }
+      if (foundKey) return imagesDB[foundKey];
+      const newUrl = getDefaultGrindosaurUrl(name);
+      imagesDB[name] = newUrl;
+      return newUrl;
     }
 
     function updateDigiPreview() {
@@ -363,17 +362,136 @@
       }
     }
 
-    // --- BANCO DE IMAGENS ---
+    // --- LÓGICA DE RESOLUÇÃO DE DIGIMON (NORMAL VS JOGRESS) ---
+    function getResolvedDigiData(reqEvo, reqBase) {
+      // Caso 1: Lado Específico da Jogress ou Digimon Normal
+      if (reqBase && reqBase !== reqEvo) {
+        const digi = userProgress[reqBase];
+        if (!digi) return null;
+        const hasEvo = digi.unlockedEvos.some(e => e.toLowerCase() === reqEvo.toLowerCase());
+        return { level: digi.level, transcended: digi.transcended, hasEvo };
+      }
+
+      // Caso 2: Apontamento direto por Nome (Pode ser Jogress sem especificar base)
+      const jogressBases = Object.keys(jogressDB).find(k => k.toLowerCase() === reqEvo.toLowerCase());
+
+      if (jogressBases && jogressDB[jogressBases].length > 0) {
+        const bases = jogressDB[jogressBases];
+        let maxLvl = 0;
+        let isTranscended = false;
+        let anyEvoUnlocked = false;
+
+        bases.forEach(b => {
+          const d = userProgress[b];
+          if (d) {
+            if (d.level > maxLvl) maxLvl = d.level;
+            if (d.transcended) isTranscended = true;
+            if (d.unlockedEvos.some(e => e.toLowerCase() === reqEvo.toLowerCase())) anyEvoUnlocked = true;
+          }
+        });
+
+        if (maxLvl === 0 && !anyEvoUnlocked) return null;
+        return { level: maxLvl, transcended: isTranscended, hasEvo: anyEvoUnlocked };
+      }
+
+      // Se não for Jogress, busca direto no progresso
+      const digi = userProgress[reqEvo];
+      if (!digi) return null;
+      const hasEvo = digi.unlockedEvos.some(e => e.toLowerCase() === reqEvo.toLowerCase());
+      return { level: digi.level, transcended: digi.transcended, hasEvo };
+    }
+
+    // --- CADASTRO JOGRESS ---
+    function saveJogress(e) {
+      e.preventDefault();
+      const name = document.getElementById('jogress-name').value.trim();
+      const basesRaw = document.getElementById('jogress-bases').value;
+      const bases = basesRaw.split(',').map(b => b.trim()).filter(b => b.length > 0);
+
+      if (name && bases.length > 0) {
+        jogressDB[name] = bases;
+        getDigiImg(name); // Auto-cadastra imagem do ícone da Jogress
+        document.getElementById('form-jogress').reset();
+        saveStorage();
+      }
+    }
+
+    function deleteJogress(name) {
+      delete jogressDB[name];
+      saveStorage();
+    }
+
+    // --- D-UNIT CALCULATIONS ---
+    function checkBuffsStatus(set) {
+      let b1 = true, b2 = true, b3 = true, b4 = true; 
+
+      for (let req of set.requirements) {
+        const digi = getResolvedDigiData(req.evo, req.base);
+        if (!digi) return { b1: false, b2: false, b3: false, b4: false };
+
+        if (!digi.hasEvo) b1 = false;
+        if (digi.level < (set.reqLvl2 || 110)) b2 = false;
+        if (!digi.transcended) b3 = false;
+        if (digi.level < (set.reqLvl4 || 140)) b4 = false;
+      }
+
+      return { b1, b2, b3, b4 };
+    }
+
+    function calculateFocusDigimons() {
+      const counts = {};
+      setsDB.forEach(set => {
+        set.requirements.forEach(req => {
+          const base = req.base;
+          const digi = getResolvedDigiData(req.evo, req.base);
+          const isMaxed = digi && digi.level >= 140 && digi.transcended;
+          if (!isMaxed) counts[base] = (counts[base] || 0) + 1;
+        });
+      });
+
+      return Object.keys(counts)
+        .map(base => ({ base, count: counts[base] }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 5);
+    }
+
+    function calculateTotalBuffs() {
+      const totals = {};
+      setsDB.forEach(set => {
+        const status = checkBuffsStatus(set);
+        const activeBuffTexts = [];
+
+        if (status.b1 && set.buffs.b1) activeBuffTexts.push(set.buffs.b1);
+        if (status.b2 && set.buffs.b2) activeBuffTexts.push(set.buffs.b2);
+        if (status.b3 && set.buffs.b3) activeBuffTexts.push(set.buffs.b3);
+        if (status.b4 && set.buffs.b4) activeBuffTexts.push(set.buffs.b4);
+
+        activeBuffTexts.forEach(txt => {
+          const match = txt.match(/^(.+?)\s*([\+\-])\s*(\d+(?:\.\d+)?)\s*(%?)$/);
+          if (match) {
+            const attr = match[1].trim();
+            const sign = match[2];
+            const val = parseFloat(match[3]) * (sign === '-' ? -1 : 1);
+            const isPercent = match[4] === '%';
+            const key = attr + (isPercent ? ' (%)' : '');
+            totals[key] = (totals[key] || 0) + val;
+          } else {
+            totals[txt] = (totals[txt] || 0) + 1;
+          }
+        });
+      });
+
+      return totals;
+    }
+
+    // --- FORMULÁRIOS E AÇÕES ---
     function saveImageEntry(e) {
       e.preventDefault();
       const name = document.getElementById('img-digi-name').value.trim();
       let url = document.getElementById('img-digi-url').value.trim();
       if (!url) url = getDefaultGrindosaurUrl(name);
 
-      if (editingImageName && editingImageName !== name) {
-        delete imagesDB[editingImageName];
-      }
-
+      if (editingImageName && editingImageName !== name) delete imagesDB[editingImageName];
       imagesDB[name] = url;
       cancelImageEdit();
       saveStorage();
@@ -383,7 +501,7 @@
       editingImageName = name;
       document.getElementById('img-digi-name').value = name;
       document.getElementById('img-digi-url').value = imagesDB[name];
-      document.getElementById('img-form-title').innerHTML = `<i class="ph ph-note-pencil text-yellow-400"></i> Editando Imagem de: ${name}`;
+      document.getElementById('img-form-title').innerHTML = `<i class="ph ph-note-pencil text-yellow-400"></i> Editando: ${name}`;
       document.getElementById('btn-cancel-img').classList.remove('hidden');
       document.getElementById('form-img').scrollIntoView({ behavior: 'smooth' });
     }
@@ -400,7 +518,6 @@
       saveStorage();
     }
 
-    // --- PROGRESSO DO USUÁRIO ---
     function saveUserDigimon(e) {
       e.preventDefault();
       const base = document.getElementById('user-digi-base').value.trim();
@@ -411,10 +528,7 @@
       let unlockedEvos = evosRaw.split(',').map(e => e.trim()).filter(e => e.length > 0);
       if (!unlockedEvos.includes(base)) unlockedEvos.push(base);
 
-      [base, ...unlockedEvos].forEach(digiName => {
-        const found = Object.keys(imagesDB).find(k => k.toLowerCase() === digiName.toLowerCase());
-        if (!found) imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
-      });
+      [base, ...unlockedEvos].forEach(digiName => getDigiImg(digiName));
 
       userProgress[base] = { level, transcended, unlockedEvos };
       cancelDigiEdit();
@@ -448,7 +562,6 @@
       saveStorage();
     }
 
-    // --- CONJUNTOS ---
     function parseRequirementString(str) {
       return str.split(',').map(item => {
         item = item.trim();
@@ -469,14 +582,7 @@
       const requirements = parseRequirementString(digimonsStr);
 
       requirements.forEach(req => {
-        [req.evo, req.base].forEach(digiName => {
-          if (digiName) {
-            const found = Object.keys(imagesDB).find(k => k.toLowerCase() === digiName.toLowerCase());
-            if (!found) {
-              imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
-            }
-          }
-        });
+        [req.evo, req.base].forEach(digiName => { if (digiName) getDigiImg(digiName); });
       });
 
       const buffs = {
@@ -533,73 +639,9 @@
       saveStorage();
     }
 
-    // --- D-UNIT CALCULATIONS ---
-    function checkBuffsStatus(set) {
-      let b1 = true, b2 = true, b3 = true, b4 = true; 
-
-      for (let req of set.requirements) {
-        const digi = userProgress[req.base];
-        if (!digi) return { b1: false, b2: false, b3: false, b4: false };
-
-        const hasEvo = digi.unlockedEvos.some(e => e.toLowerCase() === req.evo.toLowerCase());
-        if (!hasEvo) b1 = false;
-        if (digi.level < (set.reqLvl2 || 110)) b2 = false;
-        if (!digi.transcended) b3 = false;
-        if (digi.level < (set.reqLvl4 || 140)) b4 = false;
-      }
-
-      return { b1, b2, b3, b4 };
-    }
-
-    function calculateFocusDigimons() {
-      const counts = {};
-      setsDB.forEach(set => {
-        set.requirements.forEach(req => {
-          const base = req.base;
-          const digi = userProgress[base];
-          const isMaxed = digi && digi.level >= 140 && digi.transcended;
-          if (!isMaxed) counts[base] = (counts[base] || 0) + 1;
-        });
-      });
-
-      return Object.keys(counts)
-        .map(base => ({ base, count: counts[base] }))
-        .sort((a, b) => b.count - a.count)
-        .slice(0, 5);
-    }
-
-    function calculateTotalBuffs() {
-      const totals = {};
-      setsDB.forEach(set => {
-        const status = checkBuffsStatus(set);
-        const activeBuffTexts = [];
-
-        if (status.b1 && set.buffs.b1) activeBuffTexts.push(set.buffs.b1);
-        if (status.b2 && set.buffs.b2) activeBuffTexts.push(set.buffs.b2);
-        if (status.b3 && set.buffs.b3) activeBuffTexts.push(set.buffs.b3);
-        if (status.b4 && set.buffs.b4) activeBuffTexts.push(set.buffs.b4);
-
-        activeBuffTexts.forEach(txt => {
-          const match = txt.match(/^(.+?)\s*([\+\-])\s*(\d+(?:\.\d+)?)\s*(%?)$/);
-          if (match) {
-            const attr = match[1].trim();
-            const sign = match[2];
-            const val = parseFloat(match[3]) * (sign === '-' ? -1 : 1);
-            const isPercent = match[4] === '%';
-            const key = attr + (isPercent ? ' (%)' : '');
-            totals[key] = (totals[key] || 0) + val;
-          } else {
-            totals[txt] = (totals[txt] || 0) + 1;
-          }
-        });
-      });
-
-      return totals;
-    }
-
-    // --- RENDERIZADOR DA INTERFACE ---
+    // --- RENDERIZAÇÃO DA INTERFACE ---
     function render() {
-      // 1. Minha Coleção
+      // 1. Coleção
       const collectionContainer = document.getElementById('collection-content');
       const digiKeys = Object.keys(userProgress);
       document.getElementById('digi-count').innerText = digiKeys.length;
@@ -612,7 +654,7 @@
           return `
             <div class="bg-slate-800 p-2.5 rounded-lg border border-slate-700 flex items-center justify-between text-xs">
               <div class="flex items-center gap-2 overflow-hidden">
-                <img src="${getDigiImg(base)}" class="w-10 h-10 object-cover rounded bg-slate-900" onerror="this.src='https://via.placeholder.com/80/1e293b/475569?text=?'">
+                <img src="${getDigiImg(base)}" class="w-10 h-10 object-cover rounded bg-slate-900">
                 <div class="truncate">
                   <p class="font-bold text-slate-200 truncate">${base}</p>
                   <p class="text-slate-400 text-[11px]">Lv. <span class="text-cyan-400 font-bold">${d.level}</span> ${d.transcended ? '• 6★' : ''}</p>
@@ -628,19 +670,44 @@
         }).join('');
       }
 
-      // 2. Próximos Focos (TOP 5)
+      // 2. Jogress DB
+      const jogressContainer = document.getElementById('jogress-container');
+      const jogressKeys = Object.keys(jogressDB);
+      document.getElementById('jogress-count').innerText = jogressKeys.length;
+
+      if (jogressKeys.length === 0) {
+        jogressContainer.innerHTML = `<p class="col-span-full text-center text-slate-500 py-2 text-xs">Nenhuma Jogress vinculada.</p>`;
+      } else {
+        jogressContainer.innerHTML = jogressKeys.map(jName => {
+          const bases = jogressDB[jName];
+          return `
+            <div class="bg-slate-800 p-2.5 rounded-lg border border-purple-500/30 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2 overflow-hidden">
+                <img src="${getDigiImg(jName)}" class="w-9 h-9 object-cover rounded bg-slate-900">
+                <div class="truncate">
+                  <p class="font-bold text-purple-300 truncate">${jName}</p>
+                  <p class="text-slate-400 text-[10px] truncate">Bases: ${bases.join(' + ')}</p>
+                </div>
+              </div>
+              <button onclick="deleteJogress('${jName}')" class="text-slate-400 hover:text-red-400 p-1"><i class="ph ph-trash"></i></button>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // 3. TOP 5 Foco
       const focusContainer = document.getElementById('focus-container');
       const focusList = calculateFocusDigimons();
 
       if (focusList.length === 0) {
-        focusContainer.innerHTML = `<p class="col-span-full text-center text-slate-500 py-2 text-xs">Todos os Digimons dos conjuntos já estão Lv. 140+ e 6★!</p>`;
+        focusContainer.innerHTML = `<p class="col-span-full text-center text-slate-500 py-2 text-xs">Todos os Digimons dos conjuntos já estão no nível máximo!</p>`;
       } else {
         focusContainer.innerHTML = focusList.map((item, index) => {
           const d = userProgress[item.base];
           return `
             <div class="bg-slate-800 p-3 rounded-lg border border-yellow-500/30 flex items-center gap-3 relative overflow-hidden">
               <span class="absolute top-0 right-0 bg-yellow-500/20 text-yellow-300 font-bold text-[10px] px-1.5 py-0.5 rounded-bl">#${index + 1}</span>
-              <img src="${getDigiImg(item.base)}" class="w-10 h-10 object-cover rounded bg-slate-900" onerror="this.src='https://via.placeholder.com/80/1e293b/475569?text=?'">
+              <img src="${getDigiImg(item.base)}" class="w-10 h-10 object-cover rounded bg-slate-900">
               <div class="text-xs overflow-hidden">
                 <p class="font-bold text-slate-100 truncate">${item.base} <span class="text-yellow-400 font-semibold">(${item.count})</span></p>
                 <p class="text-slate-400 text-[11px]">${d ? `Lv. ${d.level} ${d.transcended ? '• 6★' : ''}` : '<span class="text-red-400">Não Obtido</span>'}</p>
@@ -650,7 +717,7 @@
         }).join('');
       }
 
-      // 3. Somatório dos Buffs
+      // 4. Somatório de Buffs
       const buffsContainer = document.getElementById('total-buffs-container');
       const totalBuffs = calculateTotalBuffs();
       const buffKeys = Object.keys(totalBuffs);
@@ -667,7 +734,7 @@
         }).join('');
       }
 
-      // 4. Lista de Conjuntos
+      // 5. Lista de Conjuntos
       const container = document.getElementById('sets-container');
       container.innerHTML = '';
 
@@ -678,21 +745,20 @@
           const status = checkBuffsStatus(set);
 
           let digimonsHTML = set.requirements.map(req => {
-            const data = userProgress[req.base];
+            const data = getResolvedDigiData(req.evo, req.base);
             const imgUrl = getDigiImg(req.evo);
-            const hasEvo = data?.unlockedEvos.some(e => e.toLowerCase() === req.evo.toLowerCase());
-            const isCompleted = data && hasEvo && data.level >= (set.reqLvl4 || 140) && data.transcended;
+            const isCompleted = data && data.hasEvo && data.level >= (set.reqLvl4 || 140) && data.transcended;
 
             return `
               <div class="bg-slate-900 p-3 rounded-lg flex items-center gap-3 border ${data ? 'border-slate-700' : 'border-red-900/40 opacity-60'}">
-                <img src="${imgUrl}" class="w-11 h-11 object-cover rounded bg-slate-800 transition-all duration-300 ${isCompleted ? '' : 'grayscale opacity-40'}" onerror="this.src='https://via.placeholder.com/80/1e293b/475569?text=?'">
+                <img src="${imgUrl}" class="w-11 h-11 object-cover rounded bg-slate-800 transition-all duration-300 ${isCompleted ? '' : 'grayscale opacity-40'}">
                 <div class="text-xs overflow-hidden">
                   <p class="font-bold text-slate-200 text-sm truncate">${req.evo}</p>
                   <p class="text-slate-500 text-[11px] truncate">Base: ${req.base}</p>
                   ${data ? `
                     <p class="text-slate-400 mt-0.5">Lv. <span class="text-cyan-400 font-semibold">${data.level}</span></p>
                     <div class="flex gap-1 mt-1">
-                      <span class="px-1.5 py-0.5 rounded text-[10px] ${hasEvo ? 'bg-green-900/60 text-green-300' : 'bg-red-900/60 text-red-300'}">${hasEvo ? 'Evo OK' : 'Sem Evo'}</span>
+                      <span class="px-1.5 py-0.5 rounded text-[10px] ${data.hasEvo ? 'bg-green-900/60 text-green-300' : 'bg-red-900/60 text-red-300'}">${data.hasEvo ? 'Evo OK' : 'Sem Evo'}</span>
                       <span class="px-1.5 py-0.5 rounded text-[10px] ${data.transcended ? 'bg-purple-900/60 text-purple-300' : 'bg-slate-800 text-slate-500'}">6★</span>
                     </div>
                   ` : `<p class="text-red-400 font-semibold mt-1">Não Cadastrado</p>`}
@@ -757,7 +823,7 @@
         });
       }
 
-      // 5. Banco de Imagens
+      // 6. Banco de Imagens
       const imgDbContainer = document.getElementById('images-db-container');
       const imgKeys = Object.keys(imagesDB);
       document.getElementById('img-db-count').innerText = imgKeys.length;
@@ -768,7 +834,7 @@
         imgDbContainer.innerHTML = imgKeys.map(name => `
           <div class="bg-slate-800 p-2 rounded border border-slate-700 flex items-center justify-between gap-2 overflow-hidden">
             <div class="flex items-center gap-2 overflow-hidden">
-              <img src="${imagesDB[name]}" class="w-8 h-8 object-cover rounded bg-slate-900" onerror="this.src='https://via.placeholder.com/80/1e293b/475569?text=?'">
+              <img src="${imagesDB[name]}" class="w-8 h-8 object-cover rounded bg-slate-900">
               <span class="text-xs font-semibold text-slate-200 truncate">${name}</span>
             </div>
             <div class="flex items-center">
@@ -782,7 +848,7 @@
 
     // --- IMPORT / EXPORT ---
     function exportData(type) {
-      const data = type === 'sets' ? setsDB : { userProgress, imagesDB };
+      const data = type === 'sets' ? setsDB : { userProgress, imagesDB, jogressDB };
       const filename = type === 'sets' ? 'dunit_conjuntos.json' : 'dunit_progresso.json';
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
@@ -807,6 +873,7 @@
             if (parsed.userProgress) {
               userProgress = parsed.userProgress;
               imagesDB = parsed.imagesDB || imagesDB;
+              jogressDB = parsed.jogressDB || jogressDB;
             } else {
               userProgress = parsed;
             }
@@ -820,7 +887,6 @@
       reader.readAsText(file);
     }
 
-    // Inicializa a Aplicação
     initAppData();
   </script>
 </body>
