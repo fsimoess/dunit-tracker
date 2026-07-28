@@ -263,10 +263,10 @@
             </div>
           </div>
 
-          <!-- REESTRUTURAÇÃO DOS FILTROS EM 2 LINHAS -->
+          <!-- FILTROS REESTRUTURADOS -->
           <div class="bg-slate-800 p-3 rounded-xl border border-slate-700 space-y-3">
             
-            <!-- LINHA 1: Nome Digimon + Status Conjunto + Níveis/Ordem -->
+            <!-- LINHA 1: Busca e Status -->
             <div class="flex flex-wrap items-center gap-3 w-full">
               <!-- Busca por Nome do Digimon (Base ou Evo) -->
               <div class="relative flex-1 min-w-[200px]">
@@ -281,7 +281,7 @@
                 <button id="filter-btn-pending" onclick="setSetStatusFilter('pending')" class="px-2.5 py-1 rounded text-slate-400 hover:text-slate-200 transition">A Concluir</button>
               </div>
 
-              <!-- Selects Auxiliares -->
+              <!-- Select de Nível do Buff -->
               <select id="buff-level-filter" onchange="render()" class="bg-slate-900 text-slate-200 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs outline-none focus:border-cyan-500">
                 <option value="all">Todos os Níveis</option>
                 <option value="1">Buff Nível 1</option>
@@ -289,23 +289,30 @@
                 <option value="3">Buff Nível 3</option>
                 <option value="4">Buff Nível 4</option>
               </select>
-
-              <select id="buff-sort-order" onchange="render()" class="bg-slate-900 text-slate-200 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs outline-none focus:border-cyan-500">
-                <option value="none">Ordem Padrão</option>
-                <option value="desc">Maior Buff -> Menor Buff</option>
-                <option value="asc">Menor Buff -> Maior Buff</option>
-              </select>
             </div>
 
-            <!-- LINHA 2: Select Dinâmico de Buffs -->
-            <div class="flex items-center gap-2 pt-1 border-t border-slate-700/50">
-              <label for="buff-select-filter" class="text-xs font-bold text-cyan-400 flex items-center gap-1 whitespace-nowrap">
-                <i class="ph ph-lightning"></i> Filtrar por Buff:
-              </label>
-              <select id="buff-select-filter" onchange="render()" class="w-full bg-slate-900 text-slate-200 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs outline-none focus:border-cyan-500">
-                <option value="">Todos os Buffs</option>
-                <!-- Preenchido via JS -->
-              </select>
+            <!-- LINHA 2: Select Dinâmico de Buffs + Ordenação (Transferida para cá) -->
+            <div class="flex flex-wrap items-center gap-3 pt-2 border-t border-slate-700/50">
+              <div class="flex-1 flex items-center gap-2 min-w-[220px]">
+                <label for="buff-select-filter" class="text-xs font-bold text-cyan-400 flex items-center gap-1 whitespace-nowrap">
+                  <i class="ph ph-lightning"></i> Filtrar por Buff:
+                </label>
+                <select id="buff-select-filter" onchange="render()" class="w-full bg-slate-900 text-slate-200 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs outline-none focus:border-cyan-500">
+                  <option value="">Todos os Buffs</option>
+                  <!-- Preenchido via JS -->
+                </select>
+              </div>
+
+              <div class="flex items-center gap-2 min-w-[200px]">
+                <label for="buff-sort-order" class="text-xs font-bold text-cyan-400 flex items-center gap-1 whitespace-nowrap">
+                  <i class="ph ph-sort-ascending"></i> Ordenação:
+                </label>
+                <select id="buff-sort-order" onchange="render()" class="w-full bg-slate-900 text-slate-200 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs outline-none focus:border-cyan-500">
+                  <option value="none">Ordem Padrão</option>
+                  <option value="desc">Maior Buff -> Menor Buff</option>
+                  <option value="asc">Menor Buff -> Maior Buff</option>
+                </select>
+              </div>
             </div>
 
           </div>
@@ -357,26 +364,28 @@
   </main>
 
   <script>
-    // 1. FUNÇÃO ROBUSTA DE NORMALIZAÇÃO DE NOMES
-    // Remove [Shin], [Extreme], 'X' solto/final e múltiplos espaços
+    // 1. NORMALIZAÇÃO DE NOME PADRÃO (Comparações estritas de progresso)
     function normalizarNome(nome) {
       if (!nome) return "";
+      return nome.toString().toLowerCase().replace(/\s+/g, " ").trim();
+    }
 
+    // 2. NORMALIZAÇÃO APENAS PARA BUSCAR/TRATAR IMAGEM
+    // Remove [Shin], [Extreme], 'X' solto/final e múltiplos espaços apenas para fallback de ícone
+    function normalizarNomeImagem(nome) {
+      if (!nome) return "";
       return nome
         .toString()
         .toLowerCase()
-        // Remove tags entre colchetes como [Shin] e [Extreme]
         .replace(/\[(?:shin|extreme)\]/gi, "")
-        // Remove 'X' isolado ou no final das palavras
         .replace(/\bx\b/gi, "") 
-        // Remove múltiplos espaços e faz o trim das pontas
         .replace(/\s+/g, " ")
         .trim();
     }
 
     function getDefaultGrindosaurUrl(name) {
       if (!name) return 'https://via.placeholder.com/80/1e293b/475569?text=?';
-      const cleanName = normalizarNome(name).replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+      const cleanName = normalizarNomeImagem(name).replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
       return `https://www.grindosaur.com/img/games/digimon-story-time-stranger/icons/${cleanName}-icon.png`;
     }
 
@@ -386,7 +395,7 @@
     let jogressDB = {};
     let collapsedSets = {};
     let editingImageName = null;
-    let currentSetFilter = 'all'; // 'all', 'completed', 'pending'
+    let currentSetFilter = 'all';
 
     async function initAppData() {
       const storedImages = localStorage.getItem('dmo_dunit_images') || sessionStorage.getItem('dmo_dunit_images');
@@ -460,8 +469,8 @@
         set.requirements.forEach(req => {
           [req.evo, req.base].forEach(digiName => {
             if (digiName) {
-              const cleanTarget = normalizarNome(digiName);
-              const foundKey = Object.keys(imagesDB).find(k => normalizarNome(k) === cleanTarget);
+              const exactTarget = normalizarNome(digiName);
+              const foundKey = Object.keys(imagesDB).find(k => normalizarNome(k) === exactTarget);
               if (!foundKey) imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
             }
           });
@@ -469,7 +478,6 @@
       });
     }
 
-    // Popula o select de Buffs dinamicamente
     function updateBuffOptionsSelect() {
       const buffSelect = document.getElementById('buff-select-filter');
       if (!buffSelect) return;
@@ -481,7 +489,6 @@
         ['b1', 'b2', 'b3', 'b4'].forEach(key => {
           const txt = set.buffs && set.buffs[key];
           if (txt && txt.trim() && txt.toLowerCase() !== 'ativo') {
-            // Extrai o nome do Atributo se for no formato "ATK +10%"
             const match = txt.match(/^(.+?)\s*[\+\-]/);
             const attrName = match ? match[1].trim() : txt.trim();
             buffsFound.add(attrName);
@@ -555,15 +562,22 @@
       render();
     }
 
-    // Busca de Imagens usando a Normalização
+    // Busca de Imagem: Tenta chave exata primeiro, depois fallback normalizado de imagem
     function getDigiImg(name) {
       if (!name) return 'https://via.placeholder.com/80/1e293b/475569?text=?';
 
-      const cleanTarget = normalizarNome(name);
       const keys = Object.keys(imagesDB);
-      let foundKey = keys.find(k => normalizarNome(k) === cleanTarget);
 
+      // 1. Tenta correspondência exata de nome
+      const exactTarget = normalizarNome(name);
+      let foundKey = keys.find(k => normalizarNome(k) === exactTarget);
       if (foundKey) return imagesDB[foundKey];
+
+      // 2. Se não achar exato, tenta com a limpeza de [Shin], [Extreme], X apenas para exibir a imagem
+      const cleanImgTarget = normalizarNomeImagem(name);
+      foundKey = keys.find(k => normalizarNomeImagem(k) === cleanImgTarget);
+      if (foundKey) return imagesDB[foundKey];
+
       return getDefaultGrindosaurUrl(name);
     }
 
@@ -830,7 +844,8 @@
       return totals;
     }
 
-    function getSetTotalBuffValue(set, targetLevelFilter = 'all') {
+    // CALCULA O VALOR TOTAL DO BUFF LEVANDO EM CONTA O SOMATÓRIO SE HOUVER MAIS DE UM DO MESMO TIPO
+    function getSetTotalBuffValue(set, targetLevelFilter = 'all', targetBuffFilter = '') {
       let totalValue = 0;
       const buffsToAnalyze = [];
 
@@ -840,6 +855,12 @@
       if (targetLevelFilter === 'all' || targetLevelFilter === '4') if (set.buffs.b4) buffsToAnalyze.push(set.buffs.b4);
 
       buffsToAnalyze.forEach(txt => {
+        if (!txt) return;
+        // Se um filtro específico de buff estiver ativo, soma apenas aquele buff
+        if (targetBuffFilter && !txt.toLowerCase().includes(targetBuffFilter.toLowerCase())) {
+          return;
+        }
+
         const match = txt.match(/^(.+?)\s*([\+\-])\s*(\d+(?:\.\d+)?)\s*(%?)$/);
         if (match) {
           const sign = match[2];
@@ -908,8 +929,8 @@
       if (!unlockedEvos.includes(base)) unlockedEvos.push(base);
 
       [base, ...unlockedEvos].forEach(digiName => {
-        const cleanTarget = normalizarNome(digiName);
-        const found = Object.keys(imagesDB).some(k => normalizarNome(k) === cleanTarget);
+        const exactTarget = normalizarNome(digiName);
+        const found = Object.keys(imagesDB).some(k => normalizarNome(k) === exactTarget);
         if (!found) {
           imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
         }
@@ -981,8 +1002,8 @@
       requirements.forEach(req => {
         [req.evo, req.base].forEach(digiName => { 
           if (digiName) {
-            const cleanTarget = normalizarNome(digiName);
-            const found = Object.keys(imagesDB).some(k => normalizarNome(k) === cleanTarget);
+            const exactTarget = normalizarNome(digiName);
+            const found = Object.keys(imagesDB).some(k => normalizarNome(k) === exactTarget);
             if (!found) imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
           } 
         });
@@ -1135,7 +1156,7 @@
         }).join('');
       }
 
-      // 5. Lista de Conjuntos (FILTROS ATUALIZADOS)
+      // 5. Lista de Conjuntos (FILTROS E ORDENAÇÃO DE BUFFS)
       const container = document.getElementById('sets-container');
       container.innerHTML = '';
 
@@ -1148,7 +1169,7 @@
       let filteredSets = setsDB.filter(set => {
         const status = checkBuffsStatus(set);
 
-        // A) Filtro por Status do Conjunto (Todos, Concluídos, A Concluir)
+        // A) Filtro por Status do Conjunto
         if (currentSetFilter === 'completed' && !status.isFullCompleted) return false;
         if (currentSetFilter === 'pending' && status.isFullCompleted) return false;
 
@@ -1158,7 +1179,7 @@
           if (!hasBuffInLevel) return false;
         }
 
-        // C) Filtro por Select de Buffs (ex: "EXP")
+        // C) Filtro por Select de Buffs
         if (selectedBuffFilter) {
           const setHasSelectedBuff = Object.values(set.buffs || {}).some(b => 
             b && b.toLowerCase().includes(selectedBuffFilter.toLowerCase())
@@ -1166,7 +1187,7 @@
           if (!setHasSelectedBuff) return false;
         }
 
-        // D) Filtro por Nome do Digimon (Base ou Evo) usando Normalização
+        // D) Filtro por Nome do Digimon (Base ou Evo)
         if (searchClean) {
           const nameMatch = normalizarNome(set.name).includes(searchClean);
           const reqMatch = set.requirements.some(r => {
@@ -1180,11 +1201,11 @@
         return true;
       });
 
-      // Aplicação da Ordenação por Buff Maior/Menor
+      // Aplicação da Ordenação por Somatório do Buff
       if (sortOrder === 'desc') {
-        filteredSets.sort((a, b) => getSetTotalBuffValue(b, levelFilter) - getSetTotalBuffValue(a, levelFilter));
+        filteredSets.sort((a, b) => getSetTotalBuffValue(b, levelFilter, selectedBuffFilter) - getSetTotalBuffValue(a, levelFilter, selectedBuffFilter));
       } else if (sortOrder === 'asc') {
-        filteredSets.sort((a, b) => getSetTotalBuffValue(a, levelFilter) - getSetTotalBuffValue(b, levelFilter));
+        filteredSets.sort((a, b) => getSetTotalBuffValue(a, levelFilter, selectedBuffFilter) - getSetTotalBuffValue(b, levelFilter, selectedBuffFilter));
       }
 
       if (filteredSets.length === 0) {
