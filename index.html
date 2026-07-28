@@ -498,7 +498,7 @@
       let cleanName = name.replace(/\[shin\]/gi, '').trim();
       
       // Tenta remover [Extreme]
-      let cleanName = name.replace(/\[extreme\]/gi, '').trim();
+      cleanName = name.replace(/\[extreme\]/gi, '').trim();
 
       // Se tiver X solto (ex: Agumon X), tenta o nome original sem [Shin] na base primeiro
       foundKey = keys.find(k => k.toLowerCase() === cleanName.toLowerCase());
