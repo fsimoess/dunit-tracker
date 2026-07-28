@@ -291,7 +291,7 @@
               </select>
             </div>
 
-            <!-- LINHA 2: Select Dinâmico de Buffs + Ordenação (Transferida para cá) -->
+            <!-- LINHA 2: Select Dinâmico de Buffs + Ordenação -->
             <div class="flex flex-wrap items-center gap-3 pt-2 border-t border-slate-700/50">
               <div class="flex-1 flex items-center gap-2 min-w-[220px]">
                 <label for="buff-select-filter" class="text-xs font-bold text-cyan-400 flex items-center gap-1 whitespace-nowrap">
@@ -364,14 +364,13 @@
   </main>
 
   <script>
-    // 1. NORMALIZAÇÃO DE NOME PADRÃO (Comparações estritas de progresso)
+    // 1. NORMALIZAÇÃO DE NOME PADRÃO (Para inventário, conjuntos e progresso)
     function normalizarNome(nome) {
       if (!nome) return "";
       return nome.toString().toLowerCase().replace(/\s+/g, " ").trim();
     }
 
-    // 2. NORMALIZAÇÃO APENAS PARA BUSCAR/TRATAR IMAGEM
-    // Remove [Shin], [Extreme], 'X' solto/final e múltiplos espaços apenas para fallback de ícone
+    // 2. TRATAMENTO APENAS PARA FALLBACK DE URL/IMAGEM
     function normalizarNomeImagem(nome) {
       if (!nome) return "";
       return nome
@@ -468,10 +467,8 @@
       setsDB.forEach(set => {
         set.requirements.forEach(req => {
           [req.evo, req.base].forEach(digiName => {
-            if (digiName) {
-              const exactTarget = normalizarNome(digiName);
-              const foundKey = Object.keys(imagesDB).find(k => normalizarNome(k) === exactTarget);
-              if (!foundKey) imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
+            if (digiName && !imagesDB[digiName]) {
+              imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
             }
           });
         });
@@ -562,22 +559,26 @@
       render();
     }
 
-    // Busca de Imagem: Tenta chave exata primeiro, depois fallback normalizado de imagem
+    // BUSCA DE IMAGEM ROBUSTA (Sem quebrar referências)
     function getDigiImg(name) {
       if (!name) return 'https://via.placeholder.com/80/1e293b/475569?text=?';
 
-      const keys = Object.keys(imagesDB);
+      // 1. Busca exata pela chave cadastrada no objeto
+      if (imagesDB[name]) return imagesDB[name];
 
-      // 1. Tenta correspondência exata de nome
+      const keys = Object.keys(imagesDB);
       const exactTarget = normalizarNome(name);
+
+      // 2. Busca ignorando diferenças de maiúsculas/minúsculas
       let foundKey = keys.find(k => normalizarNome(k) === exactTarget);
       if (foundKey) return imagesDB[foundKey];
 
-      // 2. Se não achar exato, tenta com a limpeza de [Shin], [Extreme], X apenas para exibir a imagem
+      // 3. Fallback de imagem limpa (ex: Agumon [Shin] -> Agumon)
       const cleanImgTarget = normalizarNomeImagem(name);
       foundKey = keys.find(k => normalizarNomeImagem(k) === cleanImgTarget);
       if (foundKey) return imagesDB[foundKey];
 
+      // 4. Retorno padrão Grindosaur
       return getDefaultGrindosaurUrl(name);
     }
 
@@ -844,7 +845,6 @@
       return totals;
     }
 
-    // CALCULA O VALOR TOTAL DO BUFF LEVANDO EM CONTA O SOMATÓRIO SE HOUVER MAIS DE UM DO MESMO TIPO
     function getSetTotalBuffValue(set, targetLevelFilter = 'all', targetBuffFilter = '') {
       let totalValue = 0;
       const buffsToAnalyze = [];
@@ -856,7 +856,6 @@
 
       buffsToAnalyze.forEach(txt => {
         if (!txt) return;
-        // Se um filtro específico de buff estiver ativo, soma apenas aquele buff
         if (targetBuffFilter && !txt.toLowerCase().includes(targetBuffFilter.toLowerCase())) {
           return;
         }
@@ -929,9 +928,7 @@
       if (!unlockedEvos.includes(base)) unlockedEvos.push(base);
 
       [base, ...unlockedEvos].forEach(digiName => {
-        const exactTarget = normalizarNome(digiName);
-        const found = Object.keys(imagesDB).some(k => normalizarNome(k) === exactTarget);
-        if (!found) {
+        if (!imagesDB[digiName]) {
           imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
         }
       });
@@ -1001,10 +998,8 @@
 
       requirements.forEach(req => {
         [req.evo, req.base].forEach(digiName => { 
-          if (digiName) {
-            const exactTarget = normalizarNome(digiName);
-            const found = Object.keys(imagesDB).some(k => normalizarNome(k) === exactTarget);
-            if (!found) imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
+          if (digiName && !imagesDB[digiName]) {
+            imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
           } 
         });
       });
@@ -1156,7 +1151,7 @@
         }).join('');
       }
 
-      // 5. Lista de Conjuntos (FILTROS E ORDENAÇÃO DE BUFFS)
+      // 5. Lista de Conjuntos
       const container = document.getElementById('sets-container');
       container.innerHTML = '';
 
@@ -1169,17 +1164,14 @@
       let filteredSets = setsDB.filter(set => {
         const status = checkBuffsStatus(set);
 
-        // A) Filtro por Status do Conjunto
         if (currentSetFilter === 'completed' && !status.isFullCompleted) return false;
         if (currentSetFilter === 'pending' && status.isFullCompleted) return false;
 
-        // B) Filtro por Nível do Buff
         if (levelFilter !== 'all') {
           const hasBuffInLevel = !!set.buffs['b' + levelFilter];
           if (!hasBuffInLevel) return false;
         }
 
-        // C) Filtro por Select de Buffs
         if (selectedBuffFilter) {
           const setHasSelectedBuff = Object.values(set.buffs || {}).some(b => 
             b && b.toLowerCase().includes(selectedBuffFilter.toLowerCase())
@@ -1187,7 +1179,6 @@
           if (!setHasSelectedBuff) return false;
         }
 
-        // D) Filtro por Nome do Digimon (Base ou Evo)
         if (searchClean) {
           const nameMatch = normalizarNome(set.name).includes(searchClean);
           const reqMatch = set.requirements.some(r => {
@@ -1201,7 +1192,6 @@
         return true;
       });
 
-      // Aplicação da Ordenação por Somatório do Buff
       if (sortOrder === 'desc') {
         filteredSets.sort((a, b) => getSetTotalBuffValue(b, levelFilter, selectedBuffFilter) - getSetTotalBuffValue(a, levelFilter, selectedBuffFilter));
       } else if (sortOrder === 'asc') {
@@ -1371,7 +1361,7 @@
         imgDbContainer.innerHTML = imgKeys.map(name => `
           <div class="bg-slate-800 p-2 rounded border border-slate-700 flex items-center justify-between gap-2 overflow-hidden">
             <div class="flex items-center gap-2 overflow-hidden">
-              <img src="${imagesDB[name]}" class="w-8 h-8 object-cover rounded bg-slate-900">
+              <img src="${getDigiImg(name)}" class="w-8 h-8 object-cover rounded bg-slate-900">
               <span class="text-xs font-semibold text-slate-200 truncate">${name}</span>
             </div>
             <div class="flex items-center">
