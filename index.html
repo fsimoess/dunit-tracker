@@ -263,6 +263,22 @@
               <button id="filter-btn-pending" onclick="setSetStatusFilter('pending')" class="px-2.5 py-1 rounded text-slate-400 hover:text-slate-200 transition">A Concluir</button>
             </div>
 
+            <!-- Filtro por Nível de Buff -->
+            <select id="buff-level-filter" onchange="render()" class="bg-slate-800 text-slate-200 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs outline-none focus:border-cyan-500">
+              <option value="all">Todos os Níveis</option>
+              <option value="1">Buff Nível 1</option>
+              <option value="2">Buff Nível 2</option>
+              <option value="3">Buff Nível 3</option>
+              <option value="4">Buff Nível 4</option>
+            </select>
+
+            <!-- Ordenação por Maior/Menor Buff -->
+            <select id="buff-sort-order" onchange="render()" class="bg-slate-800 text-slate-200 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs outline-none focus:border-cyan-500">
+              <option value="none">Ordem Padrão</option>
+              <option value="desc">Maior Buff -> Menor Buff</option>
+              <option value="asc">Menor Buff -> Maior Buff</option>
+            </select>
+
             <!-- Filtro por texto em Membros e Conjuntos -->
             <div class="relative flex-1 sm:w-48">
               <i class="ph ph-magnifying-glass absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
@@ -470,11 +486,30 @@
       render();
     }
 
+    // Busca com Suporte Inteligente para [Shin] e Sufixo X
     function getDigiImg(name) {
       if (!name) return 'https://via.placeholder.com/80/1e293b/475569?text=?';
-      const foundKey = Object.keys(imagesDB).find(k => k.toLowerCase() === name.toLowerCase());
+
+      const keys = Object.keys(imagesDB);
+      let foundKey = keys.find(k => k.toLowerCase() === name.toLowerCase());
       if (foundKey) return imagesDB[foundKey];
-      return getDefaultGrindosaurUrl(name);
+
+      // Tenta remover [Shin]
+      let cleanName = name.replace(/\[shin\]/gi, '').trim();
+      
+      // Tenta remover [Extreme]
+      let cleanName = name.replace(/\[extreme\]/gi, '').trim();
+
+      // Se tiver X solto (ex: Agumon X), tenta o nome original sem [Shin] na base primeiro
+      foundKey = keys.find(k => k.toLowerCase() === cleanName.toLowerCase());
+      if (foundKey) return imagesDB[foundKey];
+
+      // Se não encontrou imagem para Agumon X, remove o X extra
+      let withoutX = cleanName.replace(/\bX\b/gi, '').trim();
+      foundKey = keys.find(k => k.toLowerCase() === withoutX.toLowerCase());
+      if (foundKey) return imagesDB[foundKey];
+
+      return getDefaultGrindosaurUrl(withoutX || cleanName || name);
     }
 
     function updateDigiPreview() {
@@ -730,6 +765,28 @@
       return totals;
     }
 
+    // Calcula o valor total numérico somado dos atributos de um conjunto para o filtro/ordenação
+    function getSetTotalBuffValue(set, targetLevelFilter = 'all') {
+      let totalValue = 0;
+      const buffsToAnalyze = [];
+
+      if (targetLevelFilter === 'all' || targetLevelFilter === '1') if (set.buffs.b1) buffsToAnalyze.push(set.buffs.b1);
+      if (targetLevelFilter === 'all' || targetLevelFilter === '2') if (set.buffs.b2) buffsToAnalyze.push(set.buffs.b2);
+      if (targetLevelFilter === 'all' || targetLevelFilter === '3') if (set.buffs.b3) buffsToAnalyze.push(set.buffs.b3);
+      if (targetLevelFilter === 'all' || targetLevelFilter === '4') if (set.buffs.b4) buffsToAnalyze.push(set.buffs.b4);
+
+      buffsToAnalyze.forEach(txt => {
+        const match = txt.match(/^(.+?)\s*([\+\-])\s*(\d+(?:\.\d+)?)\s*(%?)$/);
+        if (match) {
+          const sign = match[2];
+          const val = parseFloat(match[3]) * (sign === '-' ? -1 : 1);
+          totalValue += val;
+        }
+      });
+
+      return totalValue;
+    }
+
     function saveImageEntry(e) {
       e.preventDefault();
       const name = document.getElementById('img-digi-name').value.trim();
@@ -755,7 +812,7 @@
       editingImageName = null;
       document.getElementById('form-img').reset();
       document.getElementById('img-form-title').innerHTML = `<i class="ph ph-plus-circle"></i> Cadastrar Ícone por Digimon`;
-      document.getElementById('btn-cancel-img').classList.add('hidden');
+      document.getElementById('btn-cancel-img').add('hidden');
     }
 
     function deleteImageEntry(name) {
@@ -786,7 +843,6 @@
 
       if (!unlockedEvos.includes(base)) unlockedEvos.push(base);
 
-      // Garante a imagem na base de imagens SOMENTE ao efetivar o salvamento no progresso
       [base, ...unlockedEvos].forEach(digiName => {
         if (!imagesDB[digiName]) {
           imagesDB[digiName] = getDefaultGrindosaurUrl(digiName);
@@ -1011,20 +1067,28 @@
         }).join('');
       }
 
-      // 5. Lista de Conjuntos (COM FILTRO POR TEXTO E STATUS CONCLUÍDO/PENDENTE)
+      // 5. Lista de Conjuntos (COM FILTROS & ORDENAÇÃO POR BUFF)
       const container = document.getElementById('sets-container');
       container.innerHTML = '';
 
       const searchInput = (document.getElementById('set-search-input')?.value || '').trim().toLowerCase();
+      const levelFilter = document.getElementById('buff-level-filter')?.value || 'all';
+      const sortOrder = document.getElementById('buff-sort-order')?.value || 'none';
 
-      const filteredSets = setsDB.filter(set => {
+      let filteredSets = setsDB.filter(set => {
         const status = checkBuffsStatus(set);
 
-        // Filtro por Estado (Todos, Concluídos, A Concluir)
+        // Filtro de Estado (Todos, Concluídos, A Concluir)
         if (currentSetFilter === 'completed' && !status.isFullCompleted) return false;
         if (currentSetFilter === 'pending' && status.isFullCompleted) return false;
 
-        // Filtro por Busca de Texto
+        // Filtro por Nível do Buff selecionado
+        if (levelFilter !== 'all') {
+          const hasBuffInLevel = !!set.buffs['b' + levelFilter];
+          if (!hasBuffInLevel) return false;
+        }
+
+        // Busca por Texto
         if (!searchInput) return true;
         const nameMatch = set.name.toLowerCase().includes(searchInput);
         const reqMatch = set.requirements.some(r => 
@@ -1033,6 +1097,13 @@
         );
         return nameMatch || reqMatch;
       });
+
+      // Aplicação da Ordenação por Buff Maior/Menor (Somando atalhos duplicados se houver)
+      if (sortOrder === 'desc') {
+        filteredSets.sort((a, b) => getSetTotalBuffValue(b, levelFilter) - getSetTotalBuffValue(a, levelFilter));
+      } else if (sortOrder === 'asc') {
+        filteredSets.sort((a, b) => getSetTotalBuffValue(a, levelFilter) - getSetTotalBuffValue(b, levelFilter));
+      }
 
       if (filteredSets.length === 0) {
         container.innerHTML = `<div class="bg-slate-800 p-8 rounded-xl text-center text-slate-500">Nenhum conjunto encontrado para os filtros selecionados.</div>`;
@@ -1050,6 +1121,16 @@
             titleColorClass = "text-amber-300 font-extrabold";
             badgeHTML = `<span class="bg-amber-500/20 text-amber-300 border border-amber-500/50 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1"><i class="ph ph-trophy"></i> 100% CONCLUÍDO</span>`;
           }
+
+          // Ícones resumidos das evoluções/bases para quando a tela estiver recolhida
+          let collapsedPreviewIconsHTML = isCollapsed ? `
+            <div class="flex items-center gap-1 ml-2 overflow-x-auto py-0.5 max-w-[200px] sm:max-w-xs">
+              ${set.requirements.map(req => {
+                const imgUrl = getDigiImg(req.evo || req.base);
+                return `<img src="${imgUrl}" title="${req.evo || req.base}" class="w-6 h-6 object-cover rounded bg-slate-900 border border-slate-700 flex-shrink-0">`;
+              }).join('')}
+            </div>
+          ` : '';
 
           let digimonsHTML = set.requirements.map(req => {
             const data = getResolvedDigiData(req.evo, req.base);
@@ -1081,10 +1162,11 @@
           card.className = `${cardBgClass} rounded-xl border p-4 transition-all duration-200 space-y-3`;
           card.innerHTML = `
             <div class="flex flex-wrap justify-between items-center gap-2">
-              <div class="flex items-center gap-3 cursor-pointer select-none" onclick="toggleSetCollapse('${set.id}')">
+              <div class="flex items-center gap-2 cursor-pointer select-none" onclick="toggleSetCollapse('${set.id}')">
                 <i class="ph ph-caret-down text-lg text-slate-400 transition-transform ${isCollapsed ? '-rotate-90' : ''}"></i>
                 <h3 class="text-base sm:text-lg font-bold ${titleColorClass}">${set.name}</h3>
                 ${badgeHTML}
+                ${collapsedPreviewIconsHTML}
               </div>
 
               <div class="flex items-center gap-3">
